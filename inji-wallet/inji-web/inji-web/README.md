@@ -1,0 +1,89 @@
+---
+icon: rocket-launch
+---
+
+# Releases
+
+## Version: 0.17.0
+
+* Name: 0.17.0
+* Date: Coming Soon&#x20;
+* [Release Notes](./#version-0.17.0)
+
+## Version: 0.16.0
+
+* Name: 0.16.0
+* Date: 13th March 2026
+* [Release Notes](./#version-0.16.0)
+
+## Version: 0.15.0
+
+* Name: 0.15.0
+* Date: 1st December 2025
+* [Release Notes](./#version-0.15.0)
+
+## Version: 0.14.1
+
+* Name: 0.14.1
+* Date: Coming Soon!
+* [Release Notes](version-0.14.1.md)
+
+## Version: 0.14.0
+
+* Name: 0.14.0
+* Date: 17th September, 2025
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.14.0)
+
+## Version: 0.13.1
+
+* Name: 0.13.1
+* Date: 18th Aug, 2025
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.13.1)
+
+## Version: 0.13.0
+
+* Name: 0.13.0
+* Date: 29th July, 2025
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.13.0)
+
+## Version: 0.12.0
+
+* Name: 0.12.0
+* Date: 8th April, 2025
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.12.0)
+
+## Version: 0.11.1
+
+* Name: Inji 0.11.1
+* Date: 19th Jan, 2025
+* [Release Notes](version-v0.11.1/)
+
+## Version: 0.11.0
+
+* Name: Inji Web 0.11.0
+* Date: 29th Jan, 2025
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.11.0)
+
+## Version: 0.10.0
+
+* Name: Inji Web 0.10.0
+* Date: 16th October, 2024
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.10.0)
+
+## Version: 0.9.0
+
+* Name: Inji Web 0.9.0
+* Date: 29th June, 2024
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.9.0)
+
+## Version: 0.8.1
+
+* Name: Inji Web 0.8.1 (Patch)
+* Date: 22nd May, 2024
+* [Release Notes](version-0.8.1.md)
+
+## Version: 0.8.0
+
+* Name: Inji 0.8.0
+* Date: 26th April, 2024
+* [Release Notes](https://github.com/mosip/documentation/blob/inji/docs/inji-wallet/inji-web/inji-web/version-0.8.0)
