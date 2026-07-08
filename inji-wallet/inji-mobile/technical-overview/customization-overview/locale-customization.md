@@ -1,17 +1,76 @@
 # Locale customization
 
-## Steps to Support a new language
+Inji Wallet Mobile uses `i18next`, `react-i18next`, and `expo-localization`. Locale resources live in the top-level `locales` folder in the mobile wallet repo, and `i18n.ts` wires those resources into the app.
 
-* Under `locales` folder, localization of a particular language JSON file has to be added.
-* Language JSON has to be imported in `i18n.ts` and load the resources to i18next as follows. `import fil from './locales/fil.json';` `const resources = { en, fil, ar, hi, kn, ta };`
-* To ensure the language needs to be included in the const `SUPPORTED_LANGUAGES`.
-* To use with react, must include the key with the 't' function
+## Supported Languages
 
+The release 1.x mobile codebase currently imports these resource files:
+
+| App code | Resource file | Language |
+| --- | --- | --- |
+| `en` | `locales/en.json` | English |
+| `fil` | `locales/fil.json` | Filipino |
+| `ar` | `locales/ara.json` | Arabic |
+| `hi` | `locales/hin.json` | Hindi |
+| `kn` | `locales/kan.json` | Kannada |
+| `ta` | `locales/tam.json` | Tamil |
+
+## Add a New Language
+
+1. Add a JSON resource file under `locales`, using the same namespaces and keys as `locales/en.json`.
+2. Import the file in `i18n.ts`.
+3. Add the imported resource to the `resources` object.
+4. Add the app language code and display label to `SUPPORTED_LANGUAGES`.
+5. Add translated issuer display data in `mimoto-issuers-config.json` where the Add New Card screen should show issuer names, titles, and descriptions in the new language.
+
+Example:
+
+```ts
+import fr from './locales/fra.json';
+
+const resources = {en, fil, ar, hi, kn, ta, fr};
+
+export const SUPPORTED_LANGUAGES = {
+  en: 'English',
+  fil: 'Filipino',
+  ar: 'Arabic',
+  hi: 'Hindi',
+  kn: 'Kannada',
+  ta: 'Tamil',
+  fr: 'French',
+};
 ```
-const { t } = useTranslation('common');
-<Text>{t('editLabel')}</Text>
 
+The display labels in `SUPPORTED_LANGUAGES` can be localized; keep the object keys aligned with the resource keys.
+
+Use translations through `useTranslation` or the existing `i18n.t` helpers:
+
+```tsx
+const {t} = useTranslation('common');
+
+<Text>{t('editLabel')}</Text>;
 ```
+
+## Language Codes in Issuer Metadata
+
+The wallet uses two-letter language codes internally, but issuer and credential metadata may use either two-letter or three-letter codes. `i18n.ts` builds a language-code map using the `iso-639-3` package so fields such as issuer display names and localized credential values can match either form.
+
+When adding issuer display entries in `mimoto-issuers-config.json`, keep the `language` values consistent with the app language codes where possible:
+
+```json
+{
+  "display": [
+    {
+      "name": "Example Issuer",
+      "title": "Download Example Credential",
+      "description": "Download example credential",
+      "language": "en"
+    }
+  ]
+}
+```
+
+For OpenID4VCI well-known credential metadata, use the issuer's `locale` or localized claim metadata according to the OpenID4VCI specification. The wallet falls back to English, `en-US`, or the first available entry when a language-specific display entry is not found.
 
 ## About libraries
 

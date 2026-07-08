@@ -1,11 +1,11 @@
 # Customizations
 
-Countries also have the option to customize Inji as per their requirements. Refer to the documents below for more information on the same.
+Implementers can customize Inji Wallet Mobile for their deployment, issuer set, supported languages, and branding. The pages in this section describe the extension points that are still current for the release 1.x mobile codebase.
 
 The following customizations are available in Inji:
 
-* [Workflow Customization](https://docs.mosip.io/inji/customization-overview/workflow-customization)
-* [UI Customization](https://docs.mosip.io/inji/customization-overview/ui-customization)
-* [Locale Customization](https://docs.mosip.io/inji/customization-overview/locale-customization)
-* [Configuration](https://docs.mosip.io/inji/customization-overview/configuration)
-* [Credential Provider](https://docs.mosip.io/inji/customization-overview/credential_providers)
+* [Workflow Customization](workflow-customization.md)
+* [UI Customization](ui-customization.md)
+* [Locale Customization](locale-customization.md)
+* [Configuration](configuration.md)
+* [Credential Provider](credential_providers.md)

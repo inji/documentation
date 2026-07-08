@@ -4,7 +4,7 @@
 
 Every user journey in **Inji Wallet** (release **1.x**) — onboarding, downloading a credential, sharing it online or offline, backing it up, logging in with a QR code — is modelled as a **finite-state machine (FSM)**. Modelling flows as state machines keeps the behaviour explicit and predictable: at any point in time the app is in exactly one well-defined state, and it can only move to another state in response to a known event.
 
-The state machines are written with [**XState v4**](https://xstate.js.org/docs/) (`xstate@^4.35.0`) and live in the [`machines/`](https://github.com/mosip/inji-wallet/tree/master/machines) folder of the Inji Wallet codebase. A few very screen-specific machines live under `screens/`, but the reusable, customizable workflow logic is concentrated in `machines/`.
+The state machines are written with [**XState v4**](https://xstate.js.org/docs/) (`xstate@^4.35.0`) and live in the [`machines/`](https://github.com/inji/inji-wallet/tree/master/machines) folder of the Inji Wallet codebase. A few very screen-specific machines live under `screens/`, but the reusable, customizable workflow logic is concentrated in `machines/`.
 
 Implementers can reuse the existing machines as-is, extend them (add states, actions, guards, or services), or replace a whole flow with their own machine — this page explains how the machines are structured and wired together so you can do that confidently.
 
