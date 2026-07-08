@@ -2,7 +2,7 @@
 
 ## Overview
 
-Every user journey in **Inji Wallet** (release **1.x**) — onboarding, downloading a credential, sharing it online or offline, backing it up, logging in with a QR code — is modelled as a **finite-state machine (FSM)**. Modelling flows as state machines keeps the behaviour explicit and predictable: at any point in time the app is in exactly one well-defined state, and it can only move to another state in response to a known event.
+Every user journey in **Inji Wallet** — onboarding, downloading a credential, sharing it online or offline, backing it up, logging in with a QR code — is modelled as a **finite-state machine (FSM)**. Modelling flows as state machines keeps the behaviour explicit and predictable: at any point in time the app is in exactly one well-defined state, and it can only move to another state in response to a known event.
 
 The state machines are written with [**XState v4**](https://xstate.js.org/docs/) (`xstate@^4.35.0`) and live in the [`machines/`](https://github.com/inji/inji-wallet/tree/master/machines) folder of the Inji Wallet codebase. A few very screen-specific machines live under `screens/`, but the reusable, customizable workflow logic is concentrated in `machines/`.
 
@@ -16,7 +16,7 @@ XState is a data structure + interpreter. Editing a machine is mostly editing a 
 
 Inji Wallet uses a **multi-actor** architecture. A root machine boots the app and **spawns** long-lived child machines ("service actors"). These references are kept in a shared context object (`AppServices`, exposed through `shared/GlobalContext`) so any part of the app can `send` events to any machine.
 
-```
+```text
 app.ts (root)
   │
   ├── store            → machines/store.ts               (spawned first — storage/crypto gateway)

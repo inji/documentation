@@ -2,21 +2,25 @@
 
 ## Configuration for Inji Wallet
 
-The configurable properties for Inji Wallet Mobile are maintained in [`inji/inji-config`](https://github.com/inji/inji-config), primarily in [`inji-default.properties`](https://github.com/inji/inji-config/blob/master/inji-default.properties). Deployment environments can override these values through their config branch or deployment-specific property source.
+The configurable properties for Inji Wallet can be found at [inji-default.properties](https://github.com/mosip/inji-config/blob/master/inji-default.properties). This property file is maintained as one for each deployment environment. On [this](https://github.com/mosip/inji-config) repository, each environment configuration is placed in a corresponding branch specific to that environment.
 
-Mimoto loads these `mosip.inji.*` properties and exposes them to the wallet through:
+> Refer to [inji-default.properties](https://github.com/mosip/inji-config/blob/collab/inji-default.properties) of Collab environment.
+
+These values will be used by Inji Wallet via Mimoto. Mimoto loads all the configurations and exposes an API which is used by the Inji Wallet application to fetch and store the configurations in the local storage.
+
+API used to fetch these configurations:
 
 ```http
 GET /v1/mimoto/allProperties
 ```
 
-For example, in a deployment whose Mimoto base URL is `https://api.collab.mosip.net`, the wallet calls:
+For example, in the Collab environment:
 
 ```text
 https://api.collab.mosip.net/v1/mimoto/allProperties
 ```
 
-The wallet caches the response locally and falls back to `shared/InitialConfig.ts` on first launch if the API is unavailable.
+The implementers can choose to use the existing configurations or add new configurations to them.
 
 ## Properties Used by Mobile
 
@@ -64,4 +68,4 @@ Some customization is build-time configuration in the mobile app, not server-sid
 | `LIVENESS_DETECTION` | `shared/constants.ts` | Enables/disables liveness detection checks. |
 | `DEBUG_MODE` | `shared/constants.ts` | Enables debug behavior in the app. |
 
-Keep deployment config, Mimoto config, and mobile build-time variables in sync. For example, if a deployment points the wallet at a new Mimoto base URL, the `MIMOTO_HOST` build variable and that Mimoto instance's `mimoto-issuers-config.json` must agree on issuer and token endpoints.
+Keep deployment config, Mimoto config, and mobile build-time variables in sync. `MIMOTO_HOST` only sets the wallet's Mimoto base URL; issuer and token endpoints are configured on the Mimoto side, primarily through `mimoto-issuers-config.json`, and must be valid for the selected Mimoto deployment.

@@ -1,6 +1,6 @@
 # Customizations
 
-Implementers can customize Inji Wallet Mobile for their deployment, issuer set, supported languages, and branding. The pages in this section describe the extension points that are still current for the release 1.x mobile codebase.
+Countries also have the option to customize Inji as per their requirements. Refer to the documents below for more information on the same.
 
 The following customizations are available in Inji:
 

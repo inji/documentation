@@ -4,7 +4,7 @@ Inji Wallet Mobile uses `i18next`, `react-i18next`, and `expo-localization`. Loc
 
 ## Supported Languages
 
-The release 1.x mobile codebase currently imports these resource files:
+The mobile codebase currently imports these resource files:
 
 | App code | Resource file | Language |
 | --- | --- | --- |
