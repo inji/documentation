@@ -2,9 +2,9 @@
 
 ## Configuration for Inji Wallet
 
-The configurable properties for Inji Wallet can be found at [inji-default.properties](https://github.com/mosip/inji-config/blob/master/inji-default.properties). This property file is maintained as one for each deployment environment. On [this](https://github.com/mosip/inji-config) repository, each environment configuration is placed in a corresponding branch specific to that environment.
+The configurable properties for Inji Wallet can be found at [inji-default.properties](https://github.com/inji/inji-config/blob/master/inji-default.properties). This property file is maintained as one for each deployment environment. On [this](https://github.com/inji/inji-config) repository, each environment configuration is placed in a corresponding branch specific to that environment.
 
-> Refer to [inji-default.properties](https://github.com/mosip/inji-config/blob/collab/inji-default.properties) of Collab environment.
+> Refer to [inji-default.properties](https://github.com/inji/inji-config/blob/collab/inji-default.properties) of Collab environment.
 
 These values will be used by Inji Wallet via Mimoto. Mimoto loads all the configurations and exposes an API which is used by the Inji Wallet application to fetch and store the configurations in the local storage.
 

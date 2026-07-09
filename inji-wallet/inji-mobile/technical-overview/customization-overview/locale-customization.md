@@ -21,7 +21,6 @@ The mobile codebase currently imports these resource files:
 2. Import the file in `i18n.ts`.
 3. Add the imported resource to the `resources` object.
 4. Add the app language code and display label to `SUPPORTED_LANGUAGES`.
-5. Add translated issuer display data in `mimoto-issuers-config.json` where the Add New Card screen should show issuer names, titles, and descriptions in the new language.
 
 Example:
 

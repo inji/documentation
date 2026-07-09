@@ -103,7 +103,7 @@ The single gateway for all persistence. It exposes `GET`/`SET`/`APPEND`/`REMOVE`
 * [`react-native-mmkv-storage`](https://github.com/ammarahm-ed/react-native-mmkv-storage) — stores metadata and references to encrypted VCs.
 * [`react-native-fs`](https://www.npmjs.com/package/react-native-fs) — stores each encrypted VC as a separate file.
 
-Key material is held in the hardware-backed keystore (see [Secure Keystore](../integration-guide/secure-keystore.md)).
+Key material is held in the hardware-backed keystore (see [Secure Keystore](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/secure-keystore.md)).
 
 ### auth.ts
 
@@ -133,7 +133,7 @@ Owns the **entire OpenID4VCI download journey**. It calls Mimoto's `/issuers` an
 
 * performs OIDC authorization (authorization-code and pre-authorized/credential-offer flows, including transaction-code / `tx_code` prompts),
 * generates the key pair and builds the proof JWT for the credential request,
-* downloads the credential via the [VCI-Client SDK](../integration-guide/vci-client.md),
+* downloads the credential via the [VCI-Client SDK](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/vci-client.md),
 * verifies the credential, and
 * hands it to `vcMeta`/`store` to be persisted.
 
@@ -171,7 +171,7 @@ Spawned **once per credential**, this machine tracks a single VC's lifecycle: lo
 
 ### openID4VP/openID4VPMachine
 
-Drives **online credential presentation** using OpenID4VP (via the [OpenID4VP SDK](../integration-guide/openid4vp.md)). It receives the authorization request (scanned or via deep link), lets the user select which VC(s) to present, optionally performs **face authentication** (share-with-selfie) through `faceScanner`, constructs and sends the Verifiable Presentation to the verifier, and logs the activity.
+Drives **online credential presentation** using OpenID4VP (via the [OpenID4VP SDK](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/openid4vp.md)). It receives the authorization request (scanned or via deep link), lets the user select which VC(s) to present, optionally performs **face authentication** (share-with-selfie) through `faceScanner`, constructs and sends the Verifiable Presentation to the verifier, and logs the activity.
 
 **Flows covered:**
 
@@ -181,7 +181,7 @@ Drives **online credential presentation** using OpenID4VP (via the [OpenID4VP SD
 
 ## Offline sharing — BLE (Tuvali)
 
-Offline sharing uses the [Tuvali BLE SDK](../integration-guide/tuvali/) and the [BLE Verifier](../integration-guide/ble-verifier.md) integration.
+Offline sharing uses the [Tuvali BLE SDK](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/tuvali/) and the [BLE Verifier](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/ble-verifier.md) integration.
 
 ### bleShare/scan/scanMachine.ts
 
@@ -219,7 +219,7 @@ Powers **"Login with QR code"** on portals that support OpenID Connect with Inji
 
 ### faceScanner.ts
 
-Encapsulates the face-capture interaction. It is reused wherever face authentication is required — share-with-selfie (both online OpenID4VP and offline BLE flows). See the [Face Match integration](../integration-guide/face-match.md).
+Encapsulates the face-capture interaction. It is reused wherever face authentication is required — share-with-selfie (both online OpenID4VP and offline BLE flows). See the [Face Match integration](../integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/face-match.md).
 
 ## Backup & Restore
 
