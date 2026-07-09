@@ -4,7 +4,7 @@
 
 The **Issuer** is one of the backend services that Inji Wallet interacts with to obtain Verifiable Credentials (VCs). As defined by the **OpenID for Verifiable Credential Issuance (OpenID4VCI)** specification, an Issuer is responsible for issuing credentials to eligible users.
 
-Within the Inji ecosystem, **Inji Certify** acts as the Issuer. It exposes the OpenID4VCI endpoints that Inji Wallet uses to authenticate users, request credentials, and download the issued Verifiable Credentials. Once downloaded, Inji Wallet securely stores and manages these credentials on the user's device.
+Within the Inji ecosystem, **Inji Certify** acts as the Issuer. It exposes the OpenID4VCI endpoints that Inji Wallet uses to request and download issued Verifiable Credentials. User authentication is handled by a separate authorization server (eSignet) before the credential issuance process begins. Once downloaded, Inji Wallet securely stores and manages these credentials on the user's device.
 
 ## Credential Download Flow
 

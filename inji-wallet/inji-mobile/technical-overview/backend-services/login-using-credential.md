@@ -77,5 +77,3 @@ Once the user approves the requested claims, the wallet submits the consent.
 ## Reference
 
 For details about the Wallet Authentication APIs, refer to the [eSignet Wallet Authenticator documentation](https://docs.esignet.io/esignet-authentication/develop/integration/wallet/wallet-authenticator#wallet-authentication-apis)
-
-[//]: # (TODO: Fix swagger esignet links)
