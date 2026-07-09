@@ -1,4 +1,4 @@
-# Mimoto
+# Inji Wallet Backend - Mimoto
 
 Mimoto is a BFF(Backend for Frontend) for Inji Wallet. It's being used to get default configuration, download verifiable credentials (VC) and activate VC.\
 It provides all necessary APIs to the Inji Wallet and acts as a proxy for resident services. Mimoto gets the request from Inji Wallet, performs all the validations and forwards it to respective services. Additionally, it subscribes to the web-sub event to be able to download the VC once it's ready.
@@ -15,27 +15,21 @@ The user is currently on the `+` button on the Home screen, which will open `Add
 [mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
 {% endswagger %}
 
-To get complete configuration of the specific issuer, below api is called.
-
-{% swagger src="../../../../.gitbook/assets/mimoto (1).json" path="/issuers/{issuer-id}" method="get" %}
-[mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
-{% endswagger %}
-
 ### Retrieve accessToken for OIDC flow
 This endpoint exchanges an OAuth 2.0 authorization code for an access token as part of the OpenID4VCI authorization flow for a Mimoto client registered with an Authorization Server (AS).
 
 The issuer name is used to resolve the corresponding Authorization Server and its token endpoint from the issuer configuration (`issuers-config.json`). The client authenticates with the Authorization Server using the same cryptographic key pair that was registered during client registration. The token request includes a signed client assertion JWT to authenticate the client before the Authorization Server issues an access token.
 
-
-API: POST /v1/mimoto/get-token/{issuer}
-
-https://mosip.stoplight.io/docs/mimoto/6fc8a9a1587a5-retrieve-access-token-for-oidc-flow
+{% swagger src="../../../../.gitbook/assets/mimoto (1).json" path="/get-token/{issuer}" method="post" %}
+[mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
+{% endswagger %}
 
 ## Online Login
 
-There is a usecase of activating / binding a credential to an Authorization server and using that Authorization Server, an online service can be logged in 
-using that binded credential. This usecase is avaiklable within Inji ecosystem as "Mosip or National ID" usecase. 
-This usecase uses eSignet as an Authorization Server for the Mosip / National ID credential downloaded from Inji Certify for logging in to health id services.
+A use case exists where a credential is activated or bound to an Authorization Server, enabling users to access an online service by authenticating with that bound credential.
+
+Within the Inji ecosystem, this is available as the **Veridonia National ID use case**. In this flow, **eSignet** acts as the Authorization Server for the MOSIP/National ID credential issued through **Inji Certify**. Users can use this credential to authenticate and log in to service such as Health ID platforms.
+
 
 ### Activate credentials
 
@@ -57,17 +51,22 @@ Credentials have to be activated in order to use them for online login. When a u
 
 ## Configuration
 
-The configurable properties for mimoto can be found at [mimoto-default.properties](https://github.com/mosip/mosip-config/blob/collab1/mimoto-default.properties). This property file is maintained as one for each deployment environment. On [this](https://github.com/mosip/mosip-config) repository, each environment configuration is placed in a corresponding branch specific to that environment.
+The configurable properties for mimoto can be found at [mimoto-default.properties](https://github.com/inji/inji-config/blob/collab/mimoto-default.properties). This property file is maintained as one for each deployment environment. On [this](https://github.com/inji/inji-config) repository, each environment configuration is placed in a corresponding branch specific to that environment.
 
-> Refer to [mimoto-default.properties](https://github.com/mosip/mosip-config/blob/collab1/mimoto-default.properties) of Collab environment.
+> Refer to [mimoto-default.properties](https://github.com/inji/inji-config/blob/collab1/mimoto-default.properties) of Collab environment.
 
 The implementers can choose to use the existing configurations or add new configurations to them.
 
-### Wallet Configurations
+# Wallet Configurations
 
-**API:** `GET /v1/mimoto/allProperties`
+The Inji wallet configurations are defined in the [inji-default.properties](https://github.com/inji/inji-config/blob/collab/inji-default.properties) file, which acts as the source of default configuration values. These configurations are exposed through the Mimoto `allProperties` API and are consumed by the Inji wallet at runtime.
 
-**Reference:** [inji-default.properties](https://github.com/inji/inji-config/blob/collab/inji-default.properties)
+The properties retrieved through the `allProperties` API control various wallet functionalities, including credential downloads, storage validation, caching, and OpenID4VP capabilities.
+
+
+{% swagger src="../../../../.gitbook/assets/mimoto (1).json" path="/allProperties" method="get" %}
+[mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
+{% endswagger %}
 
 ```properties
 # Timeout for VC download API via OpenID4VCI flow in milliseconds
@@ -89,8 +88,6 @@ mosip.inji.disableCredentialOfferVcVerification=true
 # OpenID4VP wallet configuration defining the wallet capabilities
 mosip.inji.openid4vpWalletConfig={"response_types_supported":["vp_token"],"vp_formats_supported":{"mso_mdoc":{"issuerauth_alg_values":[-7],"deviceauth_alg_values":[-7]},"ldp_vc":{"proof_type_values":["Ed25519Signature2020","JsonWebSignature2020"]},"dc+sd-jwt":{"sd-jwt_alg_values":["EdDSA","ES256"],"kb-jwt_alg_values":["ES256","EdDSA"]},"vc+sd-jwt":{"sd-jwt_alg_values":["EdDSA","ES256"],"kb-jwt_alg_values":["ES256","EdDSA"]}},"client_id_prefixes_supported":["redirect_uri","decentralized_identifier","pre-registered"],"request_object_signing_alg_values_supported":["EdDSA"],"authorization_encryption_alg_values_supported":["ECDH-ES"],"authorization_encryption_enc_values_supported":["A256GCM"],"presentation_definition_uri_supported":true,"request_uri_methods_supported":["get","post"]}
 ```
-
-[//]: # (TODO: Add swagger)
 
 #### Property Descriptions
 
@@ -120,13 +117,6 @@ mosip.inji.openid4vpWalletConfig={"response_types_supported":["vp_token"],"vp_fo
     3. For more information, see [Inji Wallet Usage](https://github.com/inji/inji-wallet/blob/master/docs/openid4vp/openid4vp-support.md#wallet-configuration-for-the-openid4vp-flow)
 
 
-
-{% swagger src="../../../../.gitbook/assets/mimoto (1).json" path="/allProperties" method="get" %}
-[mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
-{% endswagger %}
-
-
-
 ### Wallet's Trusted / Pre-registered Verifier list
 
 The Inji Wallet retrieves the list of pre-registered (trusted) verifiers from the Mimoto backend service.
@@ -136,5 +126,7 @@ The Inji Wallet retrieves the list of pre-registered (trusted) verifiers from th
 
 The API response provides the list of trusted verifiers, which is then embedded into the `walletConfig`. This configuration is supplied to the Inji OpenID4VP library to execute **client validation** during the OpenID4VP flow.
 
-[//]: # (TODO: Add swagger)
+{% swagger src="../../../../.gitbook/assets/mimoto (1).json" path="/verifiers" method="get" %}
+[mimoto (1).json](<../../../../.gitbook/assets/mimoto%20(1).json>)
+{% endswagger %}
 
