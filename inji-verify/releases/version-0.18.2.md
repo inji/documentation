@@ -30,7 +30,7 @@ i) inji-verify-service - [https://github.com/inji/inji-verify/tree/release-0.18.
 
 #### &#x20;**Compatible modules:**
 
-The following table outlines the tested and certified compatibility of Inji Verify 0.18.1 with other modules.
+The following table outlines the tested and certified compatibility of Inji Verify 0.18.2 with other modules.
 
 | **Module**         | **Version**                                                                 |
 | ------------------ | --------------------------------------------------------------------------- |
