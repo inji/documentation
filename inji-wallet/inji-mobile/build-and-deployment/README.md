@@ -370,7 +370,7 @@ A Google play console developer account is a must to publish builds in PlayConso
 
 2. To deploy the Android build to PlayConsole, select the `Internal Build [Android & IOS]` workflow from github actions, and select `Android` in the **Build for** option.
 
-![img.png](../../../.gitbook/assets/inji_android_github_actions.jpg)
+![img.png](../../../.gitbook/assets/inji_github_actions_android_ios.jpg)
 
 3. Choose the branch, backend url, theme and describe about build details.
 4. Click the `Run` workflow button.
@@ -468,7 +468,7 @@ An Apple developer account must be configured to Inji app to publish builds via 
 
 1. To deploy the iOS build to testflight, select the `Internal Build [Android & IOS]` workflow from github actions, and select `IOS` in the **Build for** option.
 
-![img.png](../../../.gitbook/assets/inji_android_github_actions.jpg)
+![img.png](../../../.gitbook/assets/inji_github_actions_android_ios.jpg)
 
 2. Choose the branch, backend URL, theme, testers group from TestFlight to get the build and describe about build details.
 3. Click the `Run` workflow button.
