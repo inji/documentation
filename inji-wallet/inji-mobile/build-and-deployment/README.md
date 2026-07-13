@@ -41,6 +41,8 @@ brew install nvm
 nvm install 18.17.1
 
 nvm use 18.17.1
+
+npm install -g npm@8.19.3
 ```
 
 #### Step 2:
@@ -193,6 +195,8 @@ update the nvm version
 ```
 nvm install 18.17.1
 nvm use 18.17.1
+
+npm install -g npm@8.19.3
 ```
 
 #### Step 9:
@@ -249,7 +253,7 @@ sdk.dir = <location-of-the-android-sdk>
 **Build and run the application on a connected device or emulator:**
 
 * Run `npm run android:mosip` to build and install the application on a connected device or a running emulator.
-* Run `npm run android:mosip --reset-cache` to build and install the application if any change is made in the .env file.
+* Run `npm run android:mosip -- --reset-cache` to build and install the application if any change is made in the .env file.
 
 > Note: Inji Wallet uses the Android hardware-backed keystore for secure key storage where available. Emulators (and some devices) don't support hardware-backed keystore — the app still runs and falls back to a software-backed keystore, but shows a one-time in-app warning about it. Use a physical device if you need to validate the hardware-backed keystore path.
 
