@@ -8,11 +8,17 @@
 
 ### **Overview**
 
-We are pleased to announce the release of **Inji Verify v0.18.2**.
+We are pleased to announce the release of **Inji Verify v0.18.2**. Inji Verify **0.18.2** makes verify-service usable as a Maven library dependency, This patch release updates verify-service's build packaging so it can be consumed directly as a Maven dependency by other projects, in addition to running as a standalone service.
 
-This release (**v0.18.2**) is a **patch update** focused on giving ability to configure verify-service to generate an additional library JAR.
+The focus of this release is packaging: verify-service now publishes a plain library JAR as its default Maven artefact, alongside its existing executable JAR, with transitive dependencies resolved automatically via the published POM.
 
 It does **not introduce new features**, but improves stability, correctness, and reliability of existing functionality in the Inji Verify module.
+
+**Key Benefits**:
+
+* Embed verify-service's credential-verification logic directly inside another Java/Maven service
+* No manual dependency wrangling — transitive dependencies resolve through the published POM
+* Existing standalone/executable deployment of verify-service is unaffected
 
 {% hint style="info" %}
 **Note:** The Inji Verify UI is a _reference implementation_ to demonstrate orchestration. Developers can selectively embed SDK components in the verifier applications as per their needs.
@@ -20,19 +26,19 @@ It does **not introduce new features**, but improves stability, correctness, and
 
 ### **Repositories: Released/Dependent**
 
-| Repositories | Tags: Released/Dependent                                        |
-| ------------ | --------------------------------------------------------------- |
-| Inji Verify  | [**v0.18.2**](https://github.com/inji/inji-verify/tree/v0.18.2) |
+| Repositories        | Tags: Released/Dependent                                        |
+| ------------------- | --------------------------------------------------------------- |
+| Inji Verify Service | [**v0.18.2**](https://github.com/inji/inji-verify/tree/v0.18.2) |
 
-### &#x20;**Compatible modules**
+### **Compatible modules**
 
 The following table outlines the tested and certified compatibility of Inji Verify 0.18.2 with other modules.
 
-| Module             | Tex    |
-| ------------------ | ------ |
-| Inji Wallet        | 0.22.1 |
-| Inji Web           | 0.17.0 |
-| Pixel-Pass library | 0.8.0  |
+| Module             | Version                                                            |
+| ------------------ | ------------------------------------------------------------------ |
+| Inji Wallet        | [0.22.1](https://github.com/inji/inji-wallet/releases/tag/v0.22.1) |
+| Inji Web           | [0.17.0](https://github.com/inji/inji-verify/tree/v0.17.0)         |
+| Pixel-Pass library | [0.8.0](https://github.com/inji/pixelpass/tree/v0.8.0)             |
 
 ### &#x20;**Bug Fixes**
 
@@ -54,4 +60,4 @@ Below is a list of some key known issues. For a detailed overview and the comple
 * [Integration Guide](https://docs.inji.io/inji-verify/technical-overview/integration-guides)
 * [API Documentation](https://mosip.stoplight.io/studio/inji-verify)
 * [Collab Guide](https://mosip.atlassian.net/wiki/spaces/PROD/pages/1306984580)
-* [QA Report](https://github.com/inji/test-management/tree/master/inji-verify/0.18.2)
+* [QA Report](test-report.md)

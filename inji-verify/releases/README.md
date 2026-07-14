@@ -7,7 +7,7 @@ icon: rocket-launch
 **Version:** v0.18.2
 
 * 13th July, 2026
-* [Release Notes](version-0.18.2.md)
+* [Release Notes](version-0.18.2/)
 
 **Version**: **0.18.1**
 
