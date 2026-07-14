@@ -42,7 +42,7 @@ The following table outlines the tested and certified compatibility of Inji Veri
 
 ### &#x20;**Bug Fixes**
 
-Below is the list of fixes as part of the **0.18.2** release, You can refer [here](https://github.com/orgs/inji/projects/3/views/7?filterQuery=milestone%3A0.18.2\&visibleFields=%5B%22Title%22%2C%22Type%22%2C%22Status%22%2C263064096%2C%22Assignees%22%2C346208867%2C342689860%2C346206438%5D) to look at the list of bugs fixed through this release.
+Below is the list of fixes as part of the **0.18.2** release, You can refer [here](https://github.com/inji/inji-verify/issues?q=milestone%3A0.18.2) to look at the list of bugs fixed through this release.
 
 | Bug ID                                                   | Summary                                                                  |
 | -------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -50,7 +50,7 @@ Below is the list of fixes as part of the **0.18.2** release, You can refer [her
 
 ### **Known Issues**
 
-Below is a list of some key known issues. For a detailed overview and the complete list of issues related to Inji Verify, please click [here](https://github.com/orgs/inji/projects/3/views/5).
+Below is a list of some key known issues. For a detailed overview and the complete list of issues related to Inji Verify, please click [here](https://github.com/inji/inji-verify/issues?q=is%3Aissue%20state%3Aopen%20-milestone%3A1.0.0-alpha.1%20-label%3Ainjiverify_1.0.0%20type%3ABug)
 
 <table><thead><tr><th width="122.17578125">Issue ID</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-verify/issues/1790">1790</a></td><td>The OpenID4VP (Cross device) component in Inji Verify currently validates a presentation as successful even when a wrong Verifiable Credential (VC) is submitted. As a temporary workaround, implement credential type validation on the Relaying Party (RP) side, by verifying that the received VC matches the expected type defined in the original presentation_definition.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1845">1845</a></td><td>We are uploading an invalid QR code, and while it displays an error message stating that the QR code is invalid, the credential details are still visible.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1844">1844</a></td><td>On iPhone 8 and iPhone 7, uploading the Injiweb QR code PDF shows an error message.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1852">1852</a></td><td>Inji Verify - Upload not functioning on Mac Safari Browser Versions 16 and below.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1789">1789</a></td><td>INJI Verify SDK should be able to support integration with applications built on platforms beyond <em>React (Typescript) applications</em>, such as Angular, PHP, and others.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1805">1805</a></td><td>Long-polling listeners are implemented within the service layer, preventing the backend from scaling effectively in a multi-pod (distributed) environment.</td></tr></tbody></table>
 
