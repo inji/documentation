@@ -15,6 +15,8 @@
   * [Supported Integrations](readme/supported-integrations/README.md)
     * [MOSIP](https://docs.mosip.io)
   * [Project Governance](readme/project-governance.md)
+  * [Community](readme/community/README.md)
+    * [Calendar](readme/community/calendar.md)
   * [Contribution](readme/contribution/README.md)
     * [Code Contribution](readme/contribution/code-contribution.md)
     * [Code of Conduct](readme/contribution/code-of-conduct.md)
