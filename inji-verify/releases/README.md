@@ -4,6 +4,11 @@ icon: rocket-launch
 
 # Releases
 
+**Version:** Version 1.0.0-alpha.1
+
+* <mark style="color:red;">**Coming Soon!**</mark>
+* [Release Notes](version-1.0.0-alpha.1.md)
+
 **Version:** v0.18.2
 
 * 13th July, 2026

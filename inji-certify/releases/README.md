@@ -4,6 +4,12 @@ icon: rocket-launch
 
 # Releases
 
+#### **Version:** v1.0.0-alpha.1
+
+* Name: Version 1.0.0-alpha.1
+* Date: <mark style="color:red;">**Coming Soon!**</mark>
+* [Release Notes](version-1.0.0-alpha.1.md)
+
 #### **Version: 0.14.0**
 
 * Name: **Release Version**: 0.14.0
