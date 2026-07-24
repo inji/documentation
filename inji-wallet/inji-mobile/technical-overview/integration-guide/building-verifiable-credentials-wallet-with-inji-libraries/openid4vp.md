@@ -2,79 +2,112 @@
 
 ## OpenID4VP - Online Sharing
 
-This library enables consumer applications (mobile wallet) to share users Verifiable Credentials with Verifiers who request them online. It adheres to the OpenID4VP [specification](https://openid.net/specs/openid-4-verifiable-presentations-1_0-23.html) draft version 23, which outlines the standards for requesting and presenting Verifiable Credentials.
+This library for **wallet-side** processing of [OpenID for Verifiable Presentations](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) (OpenID4VP). This library validates incoming authorization requests, helps build Verifiable Presentations (with signing delegated to your app), and sends responses to the verifier.
 
-#### Library Functionalities: Processing the Request from Decoding to Verifier Response
+**Key Responsibilities:**
 
-1. Receives the Verifier's Authorization Request sent by the consumer application (mobile wallet).
-2. Validates the received Authorization Request to check if the required details are present or not, and then returns the Authorization Request to the consumer application once all the validations are successful.
-3. Receives the list of Verifiable Credentials from the consumer application which are selected by the consumer application end-user based on the credentials requested as part of Verifier Authorization request.
-4. Constructs the vp\_token without proof section and sends it back to the consumer application for generating Json Web Signature (JWS).
-5. Receives the generated signature along with the other details and generates vp\_token with proof section & presentation\_submission.
-6. Sends a POST request with generated vp\_token and presentation\_submission to the received Verifier's response\_uri endpoint.
-7. Below sections details on the steps for integrating the Kotlin and Swift packages into the app. Below sections details on the steps for integrating the Kotlin and Swift packages into the app.
+* **OpenID4VP Library**
 
-**Supported features**
+    * Handles OpenID4VP protocol workflows and compliance
+    * Simplifies Verifiable Presentation creation and response exchange
+    * Reduces development complexity and integration time
 
-| Feature                                                    | Supported values                                                                                                                                                                                                                                                                                             |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Device flow                                                | Cross device flow, Same device flow (only `direct_post` and `direct_post.jwt` supported)                                                                                                                                                                                                                     |
-| Client id scheme                                           | `pre-registered`, `redirect_uri`, `did`                                                                                                                                                                                                                                                                      |
-| Signed authorization request verification algorithms       | Ed25519                                                                                                                                                                                                                                                                                                      |
-| Obtaining authorization request                            | <p>- By value : both signed (via <code>request</code> param) and unsigned (via URL encoded parameters)<br>- By reference ( via <code>request_uri</code> method)<br><em>Note: The use of signed or unsigned requests, is determined by the <code>client_id_scheme</code> associated with the client.</em></p> |
-| Obtaining presentation definition in authorization request | By value, By reference (via `presentation_definition_uri`)                                                                                                                                                                                                                                                   |
-| Authorization Response content encryption algorithms       | `A256GCM`                                                                                                                                                                                                                                                                                                    |
-| Authorization Response key encryption algorithms           | `ECDH-ES`                                                                                                                                                                                                                                                                                                    |
-| Credential formats                                         | `ldp_vc`, `mso_mdoc`, `dc+sd-jwt`, `vc+sd-jwt`                                                                                                                                                                                                                                                               |
-| Authorization Response mode                                | `direct_post`, `direct_post.jwt` (with encrypted & unsigned responses) and `iar-post` (unencrypted response), `iar-post.jwt` (Encrypted and unsigned response)                                                                                                                                               |
-| Authorization Response type                                | `vp_token`                                                                                                                                                                                                                                                                                                   |
+* **Library Consumer App**
 
-### Android: Kotlin package for OpenID4VP:
+    * Owns user consent and credential selection
+    * Performs secure cryptographic signing
 
-#### Repository
+Build OpenID4VP capabilities faster with a library designed to remove protocol complexity, reduce implementation risk, and accelerate your journey toward interoperable digital credentials.
 
-* inji-openid4vp kotlin repo - [here](https://github.com/inji/inji-openid4vp)
+## Supported features
 
-#### Installation
+### Feature Matrix by Specification Version
 
-Snapshot builds are available - [aar](https://central.sonatype.com/artifact/io.inji/inji-openid4vp-aar) and [jar](https://central.sonatype.com/artifact/io.inji/inji-openid4vp-jar)
+**Legend:** ✅ = Supported | ❌ = Not Implemented | N/A = Not Applicable
 
-{% hint style="info" %}
-Note: implementation "io.inji:inji-openID4VP:0.7.0"
-{% endhint %}
+| Feature                                       | Draft 23  | Version 1.0 | Notes                                                                                                                                                        |
+|-----------------------------------------------|:---------:|:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Device Flow**                               |           |             |                                                                                                                                                              |
+| — Cross device flow                           |     ✅     |      ✅      | Wallet scans QR code and passes data to this library                                                                                                         |
+| — Same device flow                            |     ✅     |      ✅      | Wallet receives VP request via deeplink                                                                                                                      |
+| **Client ID Prefix**                          |           |             | Equivalent to Client ID Scheme in draft 23                                                                                                                   |
+| — pre-registered                              |     ✅     |      ✅      | Validated via `WalletConfig.trustedVerifiers`                                                                                                                |
+| — redirect_uri                                |     ✅     |      ✅      |                                                                                                                                                              |
+| — decentralized_identifier                    | ✅ (`did`) |      ✅      |                                                                                                                                                              |
+| **Authorization Request Delivery**            |           |             | Per [RFC 9101](https://www.rfc-editor.org/info/rfc9101/#name-authorization-request)                                                                          |
+| — By value (signed request)                   |     ✅     |      ✅      |                                                                                                                                                              |
+| — By value (unsigned request)                 |     ✅     |      ✅      | Via URL-encoded parameters                                                                                                                                   |
+| — By reference (request_uri)                  |     ✅     |      ✅      | Fetched via HTTP GET/POST                                                                                                                                    |
+| — Request signing algorithms                  |     ✅     |      ✅      | Ed25519                                                                                                                                                      |
+| **Presentation Request**                      |           |             |                                                                                                                                                              |
+| — DCQL Query                                  |     ❌     |      ✅      |                                                                                                                                                              |
+| — Presentation Definition                     |     ✅     |      ❌      | By value or via `presentation_definition_uri`                                                                                                                |
+| — Scope parameter                             |     ❌     |      ❌      | Not implemented                                                                                                                                              |
+| **VP Response Modes**                         |           |             |                                                                                                                                                              |
+| — direct_post                                 |     ✅     |      ✅      |                                                                                                                                                              |
+| — direct_post.jwt                             |     ✅     |      ✅      | Unsigned and Encrypted response                                                                                                                              |
+| — iar-post / iae_post                         |     ✅     |      ✅      |                                                                                                                                                              |
+| — iar-post.jwt / iae_post.jwt                 |     ✅     |      ✅      | Unsigned and Encrypted response                                                                                                                              |
+| **VP Response Type**                          |           |             |                                                                                                                                                              |
+| — vp_token                                    |     ✅     |      ✅      |                                                                                                                                                              |
+| — vp_token id_token                           |     ❌     |      ❌      | Not implemented                                                                                                                                              |
+| — code                                        |     ❌     |      ❌      | Not implemented                                                                                                                                              |
+| **Authorization Response Encryption**         |           |             | For `direct_post.jwt` and `iar-post.jwt` / `iae_post.jwt` modes                                                                                              |
+| — Encryption algorithm (content)              |     ✅     |      ✅      | A256GCM                                                                                                                                                      |
+| — Key agreement algorithm                     |     ✅     |      ✅      | ECDH-ES                                                                                                                                                      |
+| **VP Token Generation**                       |           |             |                                                                                                                                                              |
+| — DCQL Query-based                            |     ❌     |      ✅      |                                                                                                                                                              |
+| — Presentation Definition-based               |     ✅     |      ❌      |                                                                                                                                                              |
+| — Error responses                             |     ✅     |      ✅      | Any failure during VP request validation / user consent rejection / VP response preparation is prepared as Authorization Error response and sent to Verifier |
+| **Supported Verifiable Presentation Formats** |           |             |                                                                                                                                                              |
+| — ldp_vp                                      |     ✅     |      ✅      |                                                                                                                                                              |
+| — mso_mdoc                                    |     ✅     |      ✅      |                                                                                                                                                              |
+| — vc+sd-jwt / dc+sd-jwt                       |     ✅     |      ✅      |                                                                                                                                                              |
 
-### iOS: Swift package for OpenID4VP:
 
-#### Repository
+## Libraries Available in
 
-* inji-openid4vp-ios-swift swift repo -> [here](https://github.com/inji/inji-openid4vp-ios-swift)
+This library is available in Kotlin and Swift, supporting Android, JVM and iOS platforms.
 
-#### Installation
+- **Kotlin**: [Android (AAR) & JVM (JAR)](https://github.com/inji/inji-openid4vp/tree/master/kotlin)
+- **Swift**: [iOS](https://github.com/inji/inji-openid4vp-ios-swift)
 
-1. Clone the repo.
-2. In your swift application go to file > add package dependency > add the https://github.com/inji/inji-openid4vp-ios-swift in git search bar > add package.
-3. Import the library and use.
+### Core Methods
 
-### APIs
+The library provides the following methods organized into different workflow patterns:
 
-The OpenID4VP library provides the following APIs for implementing the OpenID4VP flow:
+#### Primary Flow Methods
 
-| API Method                   | Use Case                                                                                           |
-| ---------------------------- | -------------------------------------------------------------------------------------------------- |
-| `authenticateVerifier`       | Validate and decode the verifier's authorization request                                           |
-| `constructUnsignedVPToken`   | Create unsigned VP tokens (V1 API) from verifiable credentials for signing by the wallet           |
-| `constructUnsignedVPTokenV2` | Create flattened list of unsigned VP tokens (V2 API) with signing metadata for simplified workflow |
-| `constructVPResponse`        | Construct the VP response (V1 API) with signed tokens ready to be sent to the verifier             |
-| `constructVPResponseV2`      | Construct the VP response (V2 API) from simplified signing results                                 |
-| `sendVPResponseToVerifier`   | Construct VP response and send it to the verifier via HTTP POST                                    |
-| `constructErrorInfo`         | Construct an authorization error response as per OpenID4VP specification                           |
-| `sendErrorInfoToVerifier`    | Construct and send error response to the verifier via HTTP POST                                    |
+| Method                           | Purpose                                                                                                                                    |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| **`authenticateVerifier()`**     | Validates incoming authorization requests from verifiers. Resolves request objects, verifies signatures, and returns a structured request. |
+| **`getMatchingCredentials()`**   | *(DCQL Helper)* Evaluates DCQL queries against your wallet's credentials to determine which satisfy the verifier's requirements.           |
+| **`constructUnsignedVPToken()`** | Prepares VP tokens based on selected credentials. Returns unsigned data that your wallet must sign.                                        |
 
-> **For detailed API reference including parameters, response structures, examples, and exceptions, refer to the** [**Kotlin API Reference**](https://github.com/inji/inji-openid4vp/tree/master/kotlin#apis) **or** [**Swift API Reference**](https://github.com/inji/inji-openid4vp-ios-swift?tab=readme-ov-file#apis) **accordingly.**
+#### Response Submission — Two Patterns Available
 
-#### OpenID4VP library and Inji Wallet integration:
+**Option 1: Construct & Send (Recommended)** — SDK handles VP Response submission
 
-The below diagram shows the interactions between Inji Wallet, Verifier and OpenID4VP library.
+| Method                           | Purpose                                                                                                  |
+|----------------------------------|----------------------------------------------------------------------------------------------------------|
+| **`sendVPResponseToVerifier()`** | Assembles signed VP tokens into an OpenID4VP response **and submits it** to the verifier.                |
+| **`sendErrorInfoToVerifier()`**  | Constructs and sends error/rejection responses to the verifier (e.g., user denial, validation failures). |
+
+**Option 2: Construct Only (Advanced)** — You handle VP Response submission yourself
+
+| Method                      | Purpose                                                                              |
+|-----------------------------|--------------------------------------------------------------------------------------|
+| **`constructVPResponse()`** | Constructs the VP response **without sending**. You handle VP Response submission.   |
+| **`constructErrorInfo()`**  | Constructs an error response **without sending**. You handle VP Response submission. |
+
+
+> **For detailed API reference including parameters, response structures, examples, and exceptions, refer to the** [**Kotlin API Reference**](https://github.com/inji/inji-openid4vp/tree/master/docs/integration-guide.md) **or** [**Swift API Reference**](https://github.com/inji/inji-openid4vp-ios-swift/docs/integration-guide.md) **accordingly.**
+
+---
+
+#### OpenID4VP library and Wallet integration:
+
+The below diagram shows the interactions between Wallet, Verifier and OpenID4VP library.
 
 ```mermaid
 sequenceDiagram
@@ -103,17 +136,14 @@ sequenceDiagram
     
     activate Wallet
     Note over Wallet: Sign VP Token
-    Note over Wallet: Construct JWS Token
     deactivate Wallet
-    Wallet-->>Library: Send Signed JWS Token
+    Wallet-->>Library: Send Signed data
     
     activate Library
-    Note over Library: Construct Proof Object
-    Note over Library: Attach Proof to VP Token
+    Note over Library: Create Verifiable Presentation
+    Note over Library: Populate VP response
     deactivate Library
     
-    Library-->>Verifier: HTTP POST Request with:<br/>1. VP Token<br/>2. Presentation Submission<br/>3. State
+    Library-->>Verifier: HTTP POST Request with: VP Response 
 
 ```
-
-_Note: Currently, the `vp_token` uses the `Ed25519Signature2020` type for digital signatures._
