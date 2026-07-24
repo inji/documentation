@@ -70,10 +70,7 @@ Below is the list of known issues related to the release v1.0.0-alpha.1. To acce
 1. vc+sd-jwt format - replaced by dc+sd-jwt
    * **Required Action:** Update credential configurations to use dc+sd-jwt format
    * **Impact:** Clients must upgrade configuration or credential issuance will fail
-2. iar endpoint - replaced by iae
-   * **Required Action:** Update IAR request endpoints to use iae (per OpenID4VCI 1.0 spec)
-   * **Impact:** Requests to iar endpoint will be rejected
-3. c\_nonce in access token response - Removed
+2. c\_nonce in access token response - Removed
    * **Required Action:** Clients must now call /nonce endpoint to retrieve c\_nonce
    * **Impact:** Access token responses no longer include c\_nonce; separate endpoint call required
 
@@ -92,13 +89,13 @@ Supported Platforms & Components
 
 | Modules               | Version                                                                         |
 | --------------------- | ------------------------------------------------------------------------------- |
-| eSignet               | 1.6.2                                                                           |
+| eSignet               | 1.8.0                                                                           |
 | IDA                   | 1.3.0                                                                           |
 | Sunbird C             | [v2.0.0](https://github.com/Sunbird-RC/sunbird-rc-core/releases/tag/v2.0.0-rc3) |
-| esignet-mock-services | [v0.11.2](https://github.com/mosip/esignet-mock-services/tree/v0.11.2)          |
+| esignet-mock-services | v0.13.0                                                                         |
 | commons               | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                           |
-| mimoto                | 0.20.1                                                                          |
-| inji-web              | 0.16.0                                                                          |
+| mimoto                | v1.0.0-alpha.1                                                                  |
+| inji-web              | v1.0.0-alpha.1                                                                  |
 
 ### Documentation
 
