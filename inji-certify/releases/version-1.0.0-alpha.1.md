@@ -25,7 +25,6 @@ Inji Certify **v1.0.0-alpha.1** delivers comprehensive alignment with the [OpenI
 **Key Changes:**
 
 * OpenID4VCI 1.0 specification alignment (credential endpoint, well-known metadata, authorization flows)
-* Pre-Authorized Code flow and Presentation During Issuance (PDI) enhancement to have OpenID4VCI 1.0 specification alignment
 * Credential format transitions (**vc+sd-jwt** to **dc+sd-jwt**)
 * Nonce endpoint and Interactive Authorization Request (IAR/IAE) alignment
 
