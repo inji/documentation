@@ -20,7 +20,7 @@ Inji Certify **v1.0.0-alpha.1** marks our formal adoption of the [**OpenID4VCI 1
 
 ### Overview
 
-Inji Certify **v1.0.0-alpha.1** delivers comprehensive alignment with the OpenID4VCI 1.0 specification and introduces critical enhancements to credential issuance workflows, interoperability, and system stability. This release focuses on modernizing the credential issuance architecture, removing draft implementations, and providing enhanced support for emerging credential formats.
+Inji Certify **v1.0.0-alpha.1** delivers comprehensive alignment with the [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) specification and introduces critical enhancements to credential issuance workflows, interoperability, and system stability. This release focuses on modernizing the credential issuance architecture, removing draft implementations, and providing enhanced support for emerging credential formats.
 
 **Key Changes:**
 
