@@ -88,10 +88,10 @@ Supported Platforms & Components
 
 | Modules               | Version                                                                         |
 | --------------------- | ------------------------------------------------------------------------------- |
-| eSignet               | 1.8.0                                                                           |
+| eSignet               | 1.6.2                                                                           |
 | IDA                   | 1.3.0                                                                           |
 | Sunbird C             | [v2.0.0](https://github.com/Sunbird-RC/sunbird-rc-core/releases/tag/v2.0.0-rc3) |
-| esignet-mock-services | v0.13.0                                                                         |
+| esignet-mock-services | v0.11.0                                                                         |
 | commons               | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                           |
 | mimoto                | v1.0.0-alpha.1                                                                  |
 | inji-web              | v1.0.0-alpha.1                                                                  |
