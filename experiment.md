@@ -4,13 +4,16 @@ hidden: true
 
 # Experiment
 
-### Inji Verify — Transition from PEX to DCQL
+# Inji Verify — Transition from PEX to DCQL
 
 Backward Compatibility & Presentation Definition to DCQL Migration Guide (v1.0.0-alpha.1)
 
-#### Part 1 — Backward Compatibility: DCQL vs. PEX
 
-**1.1 Overview**
+
+
+# Part 1 — Backward Compatibility: DCQL vs. PEX
+
+## Overview
 
 As Inji Verify evolves to adopt **DCQL (Digital Credentials Query Language)** as its primary query protocol, older wallet implementations that only support **PEX (Presentation Exchange)** are no longer compatible with newer verifier versions.
 
@@ -18,7 +21,7 @@ This section defines the compatibility behavior, versioning strategy, and guidan
 
 > **Important:** There is no backward compatibility layer. No fallback from DCQL to PEX will be implemented in any verifier version.
 
-**1.2 Background**
+## Background
 
 | **Protocol**                              | **Description**                                                                                                              |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +30,7 @@ This section defines the compatibility behavior, versioning strategy, and guidan
 
 These two protocols are not interoperable. A verifier built on DCQL cannot process a presentation from a wallet that only speaks PEX, and vice versa.
 
-**1.3 Versioning Strategy**
+## Versioning Strategy
 
 | **Inji Verify Version**           | **Supported Protocol**         | **Compatible Wallets**                  |
 | --------------------------------- | ------------------------------ | --------------------------------------- |
@@ -39,7 +42,7 @@ These two protocols are not interoperable. A verifier built on DCQL cannot proce
 * There is no verifier version that supports both query protocols for new verification requests.
 * **Result-fetch endpoints in the current version can still return results for both DCQL-based and legacy Presentation Definition submissions, so previously completed verifications remain readable.**
 
-**1.4 Compatibility Matrix**
+## Compatibility Matrix
 
 | **Wallet Type**             | **Inji Verify ≤ 0.18.x (PEX)** | **Inji Verify 1.0.0-alpha.1+ (DCQL)** |
 | --------------------------- | ------------------------------ | ------------------------------------- |
@@ -47,29 +50,29 @@ These two protocols are not interoperable. A verifier built on DCQL cannot proce
 | Wallet supporting PEX only  | ✅ Works                        | ❌ Does not work                       |
 | Wallet supporting both      | ✅ Works                        | ✅ Works                               |
 
-**1.5 System Integrator (SI) Guidance**
+## System Integrator (SI) Guidance
 
 SIs must choose the verifier version based on the wallet ecosystem they intend to support:
 
-**Scenario A — Supporting Legacy Wallets**
+### Scenario A — Supporting Legacy Wallets
 
 * **Use:** Inji Verify version ≤ 0.18.x (PEX-based)
 * **When:** Your end users are on older wallets that have not yet migrated to DCQL
 * **Trade-off:** You will not benefit from DCQL capabilities, OpenID4VP 1.0 alignment, or other features of newer verifier releases
 
-**Scenario B — Supporting Modern Wallets**
+### Scenario B — Supporting Modern Wallets
 
 * **Use:** Inji Verify 1.0.0-alpha.1 or later (DCQL-based)
 * **When:** Your ecosystem is on modern wallets with DCQL / OpenID4VP 1.0 support
 * **Trade-off:** End users on older PEX-only wallets will be unable to complete verification
 
-**Scenario C — Mixed Ecosystem (Transition Period)**
+### Scenario C — Mixed Ecosystem (Transition Period)
 
 **Recommended approach:** Run two separate verifier deployments — one PEX (legacy version), one DCQL (current version) — and route users based on wallet capability detection at the application layer.
 
 Inji Verify itself does not perform this routing; the SI is responsible for the routing logic.
 
-**1.6 End-User Messaging**
+### End-User Messaging
 
 When a user with an incompatible (PEX-only) wallet attempts verification against a DCQL verifier, the flow will fail. SIs should surface a clear, actionable message to the end user.
 
@@ -86,7 +89,7 @@ Additional guidance for SIs:
 * Provide a link to wallet upgrade/download instructions where applicable.
 * Do not surface raw protocol error codes to end users.
 
-**1.7 Migration Roadmap**
+### Migration Roadmap
 
 | Phase      | Action                                                                                                 |
 | ---------- | ------------------------------------------------------------------------------------------------------ |
@@ -98,17 +101,20 @@ SIs are encouraged to plan wallet upgrade timelines in coordination with their w
 
 ***
 
-### Part 2 — Migrating Presentation Definition to DCQL Query
 
-**2.1 Overview**
+
+
+# Part 2 — Migrating Presentation Definition to DCQL Query
+
+## Overview
 
 As Inji Verify adopts DCQL as its primary query protocol, developers who have built integrations using Presentation Definitions (PD/PEX) need a clear, practical guide to migrate their existing queries to the DCQL format.
 
 This section explains how each component of a Presentation Definition maps to its DCQL equivalent, with step-by-step guidance and real-world examples aligned to OpenID4VP 1.0 (final) and the structures accepted by the current Inji Verify verify-service.
 
-**2.2 Understanding the Two Formats**
+## Understanding the Two Formats
 
-**2.2.1 Presentation Definition (PD / PEX)**
+### Presentation Definition (PD / PEX)
 
 Presentation Definitions are part of the DIF Presentation Exchange (PEX) specification. They describe what credentials a verifier requires using input\_descriptors, constraints, and fields.
 
@@ -137,7 +143,7 @@ Presentation Definitions are part of the DIF Presentation Exchange (PEX) specifi
 }
 ```
 
-**2.2.2 DCQL Query**
+### DCQL Query
 
 DCQL is the credential query language defined in OpenID4VP 1.0. It uses a credentials array with claims entries to express the same requirements more concisely, plus optional claim\_sets and credential\_sets for alternatives.
 
@@ -164,7 +170,7 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 
 > **Note:** in the Inji Verify create-verification-request API the query is passed as the dcqlQuery field of the request body; the wire-level authorization request carries it as dcql\_query per OpenID4VP.
 
-**2.3 Component Mapping Reference**
+## Component Mapping Reference
 
 | PD Component                                             | DCQL Equivalent                                         | Notes                                                              |
 | -------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -182,7 +188,7 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 | constraints.limit\_disclosure                            | Implied by format                                       | Selective disclosure handled by dc+sd-jwt                          |
 | Holder binding checks                                    | require\_cryptographic\_holder\_binding                 | Replaces the earlier acceptVPWithoutHolderProof configuration      |
 
-**2.4 Step-by-Step Migration Process**
+## Step-by-Step Migration Process
 
 **Step 1 — Inventory Your Presentation Definition**
 
@@ -227,9 +233,9 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 * Confirm the wallet returns the expected claims in the vp\_token
 * Verify semantic equivalence with the original PD before deprecating the PD-based flow
 
-**2.5 Migration Examples**
+## Migration Examples
 
-**Example 1 — Simple Age Verification (Single Field)**
+### Example 1 — Simple Age Verification (Single Field)
 
 **Before (PD):**
 
@@ -270,7 +276,7 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 }
 ```
 
-**Example 2 — Identity Verification (Multiple Fields, W3C VC)**
+## Example 2 — Identity Verification (Multiple Fields, W3C VC)
 
 **Before (PD):**
 
@@ -328,7 +334,7 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 
 > **Note:** type\_values uses full type URIs (each inner array is one acceptable combination of types). The Verify UI also uses type\_values to match submitted credentials when multiple verifier configurations share the same credential type.
 
-**Example 3 — Multi-Credential Request with Value Filter and Alternatives (Complex)**
+### Example 3 — Multi-Credential Request with Value Filter and Alternatives (Complex)
 
 **Before (PD):**
 
@@ -401,7 +407,7 @@ DCQL is the credential query language defined in OpenID4VP 1.0. It uses a creden
 
 Here claim\_sets lists acceptable claim combinations in order of preference, and credential\_sets.options expresses that presenting either credential satisfies the request — the DCQL equivalent of a PEX pick submission requirement.
 
-**2.6 Edge Cases & Handling**
+## Edge Cases & Handling
 
 | Scenario                    | PD Behavior                                              | DCQL Handling                                                                                     |
 | --------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
@@ -416,7 +422,7 @@ Here claim\_sets lists acceptable claim combinations in order of preference, and
 | Selective disclosure        | limit\_disclosure: "required"                            | Use dc+sd-jwt format — disclosure handled by the format itself                                    |
 | Holder binding              | Verifier-side configuration (acceptVPWithoutHolderProof) | require\_cryptographic\_holder\_binding parameter, supported for SD-JWT VC and LDP\_VC            |
 
-**2.7 Best Practices**
+## Best Practices
 
 * **Maintain semantic equivalence** — always verify the DCQL query returns the same claims as the original PD before deprecating PD-based flows
 * **Use the correct format identifiers** — dc+sd-jwt is the OpenID4VP 1.0 identifier for SD-JWT VCs; vc+sd-jwt appears only in older draft-based integrations
@@ -434,6 +440,7 @@ Here claim\_sets lists acceptable claim combinations in order of preference, and
 * No Automated PD-to-DCQL conversion tooling
 
 
+***
 
 
 
