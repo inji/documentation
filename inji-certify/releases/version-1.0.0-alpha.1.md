@@ -12,7 +12,7 @@
 Inji Certify **v1.0.0-alpha.1** marks our formal adoption of the [**OpenID4VCI 1.0 specification**](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html). This is an important milestone, and we want to provide clear guidance for all community members.
 
 * **Upgrading is optional but recommended for spec compliance.** This release is intended for teams ready to align with the finalized OpenID4VCI 1.0 standard. Teams running earlier Certify release versions built on draft specifications of OpenID4VCI are not mandatory to upgrade — the earlier releases can be continued without any disruption, with the option to upgrade at a time that suits your roadmap.
-* **For those upgrading to v1.0.0-alpha.1**, This release **does not maintain backward compatibility** with earlier draft specifications of OpenID4VCI. APIs, credential formats, and endpoints that have been updated or replaced are listed below wherever required. Reviewing that section before upgrading is strongly recommended.
+* **For those upgrading to v1.0.0-alpha.1**, This release **does not maintain backward compatibility** with earlier draft specifications of OpenID4VCI. APIs, credential formats that have been updated or replaced are listed below wherever required. Reviewing that section before upgrading is strongly recommended.
 {% endhint %}
 
 ### Overview
@@ -96,5 +96,5 @@ Supported Platforms & Components
 
 * [Feature Documentation](https://docs.mosip.io/inji/inji-certify/functional-overview/features)
 * [Local Setup](https://docs.mosip.io/inji/inji-certify/build-and-deploy/local-setup)
-* [API Documentation](https://mosip.stoplight.io/docs/inji-certify/25f435617408e-inji-certify)
+* [API Documentation](https://mosip.stoplight.io/docs/inji-certify/branches/0.15.0/25f435617408e-open-api-definition)
 * Test Report
