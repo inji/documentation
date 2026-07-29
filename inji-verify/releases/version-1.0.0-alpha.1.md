@@ -47,7 +47,7 @@ The following table outlines the tested and certified compatibility of Inji Veri
 
 ### **Bug Fixes**
 
-Below is the list of fixes as part of the **v1.0.0-alpha.1** release, refer [here](https://github.com/orgs/inji/projects/3/views/7?filterQuery=milestone%3A1.0.0-alpha.1+type%3ABug) for the comprehensive list.
+Below is the list of fixes as part of the **v1.0.0-alpha.1** release, refer [here](https://github.com/inji/inji-verify/issues?q=type%3ABug%20milestone%3A1.0.0-alpha.1) for the comprehensive list.
 
 <table><thead><tr><th width="141.65234375">Bug ID</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-verify/issues/2086">#2086</a></td><td>Verify library contributes global servlet context path when embedded in Certify</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1919">#1919</a></td><td>Upload valid claim 169 QR code shows invalid result intermittently</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1920">#1920</a></td><td>Scan QR Code feature returns invalid result for valid VC intermittently across multiple camera scenarios</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/2045">#2045</a></td><td>Nonce validation gaps in VP request creation</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/2062">#2062</a></td><td>Possible race condition in VP submission: status listener notified before transaction commits</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1928">#1928</a></td><td>Open INJI-Verify application Navigate to Verify Credentials Select Scan QR Code tab Disable internet connection (simulate offline mode) Click on Scan QR Code button Observe the behaviour after scan failure / retry</td></tr></tbody></table>
 
@@ -57,7 +57,7 @@ Below is the list of fixes as part of the **v1.0.0-alpha.1** release, refer [her
 
 ### **Known Issues**
 
-Below is a list of some key known issues. For a detailed overview and the complete list of issues related to Inji Verify, please click [here](https://github.com/orgs/inji/projects/3/views/5?filterQuery=type%3ABug+-status%3ADone+-status%3ACancelled)
+Below is a list of some key known issues. For a detailed overview and the complete list of issues related to Inji Verify, please click [here](https://github.com/inji/inji-verify/issues?q=type%3ABug%20-milestone%3A1.0.0-alpha.1%20-is%3Aclosed)
 
 <table><thead><tr><th width="143.3359375">Issue ID</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-verify/issues/1845">#1845</a></td><td>We are uploading an invalid QR code, and while it displays an error message stating that the QR code is invalid, the credential details are still visible.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1844">#1844</a></td><td>On iPhone 8 and iPhone 7, uploading the Injiweb QR code PDF shows an error message.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1852">#1852</a></td><td>Inji Verify - Upload not functioning on Mac Safari Browser Versions 16 and below.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1789">#1789</a></td><td>INJI Verify SDK should be able to support integration with applications built on platforms beyond <em>React (Typescript) applications</em>, such as Angular, PHP, and others.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/2178">#2178</a></td><td>The latest Inji Verify release cannot support complete end-to-end testing of VP (Verifiable Presentation) flow and Data Share flow when integrated with Inji Web.</td></tr></tbody></table>
 
@@ -65,6 +65,6 @@ Below is a list of some key known issues. For a detailed overview and the comple
 
 * [Feature documentation](https://docs.inji.io/inji-verify/overview/features)
 * [Integration Guide](https://docs.inji.io/inji-verify/technical-overview/integration-guides)
-* [API Documentation](https://mosip.stoplight.io/studio/inji-verify)
+* [API Documentation](https://mosip.stoplight.io/docs/inji-verify/67445477d332e-open-id-4-vp-verifier-api-inji-verify)
 * [Collab Guide](https://mosip.atlassian.net/wiki/spaces/PROD/pages/1306984580)
 * QA Report
