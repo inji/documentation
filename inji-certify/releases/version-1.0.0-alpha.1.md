@@ -58,7 +58,7 @@ The following bugs have been addressed in this release.
 
 ### Known Issues
 
-Below is the list of known issues related to the release v1.0.0-alpha.1. To access all open issues related to Inji Certify please click [here](https://github.com/orgs/inji/projects/1/views/8?visibleFields=%5B%22Title%22%2C273524858%2C%22Assignees%22%2C%22Status%22%2C%22Linked+pull+requests%22%2C%22Sub-issues+progress%22%2C354699068%5D\&filterQuery=label%3Abug+-status%3ADone+-status%3ATesting)
+Below is the list of known issues related to the release v1.0.0-alpha.1. To access all open issues related to Inji Certify please click [here](https://github.com/inji/inji-certify/issues?q=is%3Aissue%20state%3Aopen%20-milestone%3A1.0.0-alpha.1%20label%3Abug)
 
 <table><thead><tr><th width="151.17578125">Issue ID</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-certify/issues/842">#842</a></td><td>Validations to add "qrSignatureAlgo" in credential config API</td></tr><tr><td><a href="https://github.com/inji/inji-certify/issues/679">#679</a></td><td>Validations issues for qrsettings block in Credential config API</td></tr><tr><td><a href="https://github.com/inji/inji-certify/issues/878">#878</a></td><td>unknown_error returned for negative scenarios</td></tr><tr><td><a href="https://github.com/inji/inji-certify/issues/967">#967</a></td><td>Credential Issuer Metadata not served at spec-mandated well-known path for issuer identifiers with a path component</td></tr><tr><td><a href="https://github.com/inji/inji-certify/issues/966">#966</a></td><td>Facing issue at automating the mdocVP test cases. Getting "VP cryptographic verification failed</td></tr></tbody></table>
 
