@@ -76,7 +76,7 @@ Supported Platforms & Components
 | Repository                 | Version        |
 | -------------------------- | -------------- |
 | inji-certify               | v1.0.0-alpha.1 |
-| inji-config                | v1.0.0         |
+| inji-config                | v1.0.0-alpha.1 |
 | keymanager                 | v1.4.0         |
 | digital-credential-plugins | v1.0.0-alpha.1 |
 
