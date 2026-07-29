@@ -6,8 +6,6 @@
 
 **Release Date:** <mark style="color:red;">**Coming Soon!**</mark>
 
-
-
 {% hint style="success" %}
 **Note**
 
@@ -31,20 +29,19 @@ Inji Certify **v1.0.0-alpha.1** delivers comprehensive alignment with the [OpenI
 #### Major Features & Enhancements
 
 1. **Credential Issuance Endpoint Enhancement**\
-   The credential issuance endpoint has been upgraded to full OpenID4VCI 1.0 compliance. Requests now require a mandatory credential\_configuration\_id field, and the format field is rejected in requests as per the specification. Array-based proof JWT validation is supported, and request/response structures have been updated accordingly. Validation mechanisms have been enhanced and error handling improved throughout the issuance flow.
+   The credential issuance endpoint has been upgraded to full [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)  compliance. Requests now require a mandatory credential\_configuration\_id field, and the format field is rejected in requests as per the specification. Array-based proof JWT validation is supported, and request/response structures have been updated accordingly. Validation mechanisms have been enhanced and error handling improved throughout the issuance flow.
 2. **Issuer Well-Known Metadata Update**\
-   The /.well-known/openid-credential-issuer endpoint response has been updated to reflect OpenID4VCI 1.0 adoption. The metadata now exposes the new nonce\_endpoint, includes updated claim display properties per the 1.0 schema, and externalizes metadata configuration for greater flexibility. The full response has been validated against the OpenID4VCI 1.0 specification.
+   The /.well-known/openid-credential-issuer endpoint response has been updated to reflect OpenID4VCI 1.0 adoption. The metadata now exposes the new nonce\_endpoint, includes updated claim display properties per the 1.0 schema, and externalizes metadata configuration for greater flexibility. The full response has been validated against the [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)  specification.
 3. **Nonce Endpoint Implementation**\
    A dedicated /nonce endpoint has been introduced for c\_nonce generation and replay attack prevention. Nonces are cryptographically generated with a configurable TTL-based expiration and stored in Redis with automatic expiry. During credential issuance, the nonce is validated and marked as used. As a result, c\_nonce has been removed from the access token response in line with the updated specification. \
    **Breaking Change:** Clients must now call the /nonce endpoint separately, as c\_nonce is no longer included in the token response.
 4. **Replace Credential Format: vc+sd-jwt → dc+sd-jwt**\
-   The vc+sd-jwt credential format has been replaced with the standardized dc+sd-jwt format as mandated by OpenID4VCI 1.0. \
+   The vc+sd-jwt credential format has been replaced with the standardized dc+sd-jwt format as mandated by [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) . \
    **Breaking Change:** The vc+sd-jwt format is no longer supported and all configurations must be updated.
 5. **Pre-Authorized Credential Offer API Enhancement**\
-   The /pre-authorized-data API has been upgraded to comply with the OpenID4VCI 1.0 specification. The credential\_configuration\_id is now validated against issuer metadata via /.well-known/openid-credential-issuer, and claims are validated against the structures defined in the credential configuration. Unknown or unsupported claims are rejected, while existing API logic outside the claims validation scope remains unchanged.
-6.  #### Configurable JSON-LD Context Loader with Caching
-
-    A Spring-managed JSON-LD `DocumentLoader` has been introduced to resolve JSON-LD `@context` IRIs during Verifiable Credential processing. It provides a configurable context registry (mapping context IRIs to classpath, file, or HTTP resources), an in-memory cache with TTL and a maximum-entry limit, startup preload of configured contexts, and controlled remote resolution guarded by a host allowlist and an opt-in toggle for unknown contexts. The W3C Credentials v1/v2 and Ed25519 Security Suite v1 contexts are bundled locally by default. This removes the runtime dependency on external context hosts, improving latency, reliability, and security (mitigating SSRF-style risks) during proof generation. Configuration lives under the new `mosip.certify.jsonld.*` namespace. See [JSON-LD Context Loader documentation](https://github.com/inji/inji-certify/blob/release-1.0.x/docs/JSON-LD-context-loader.md) for details.
+   The /pre-authorized-data API has been upgraded to comply with the [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html)  specification. The credential\_configuration\_id is now validated against issuer metadata via /.well-known/openid-credential-issuer, and claims are validated against the structures defined in the credential configuration. Unknown or unsupported claims are rejected, while existing API logic outside the claims validation scope remains unchanged.
+6. **Configurable JSON-LD Context Loader with Caching**\
+   A Spring-managed JSON-LD `DocumentLoader` has been introduced to resolve JSON-LD `@context` IRIs during Verifiable Credential processing. It provides a configurable context registry (mapping context IRIs to classpath, file, or HTTP resources), an in-memory cache with TTL and a maximum-entry limit, startup preload of configured contexts, and controlled remote resolution guarded by a host allowlist and an opt-in toggle for unknown contexts. The W3C Credentials v1/v2 and Ed25519 Security Suite v1 contexts are bundled locally by default. This removes the runtime dependency on external context hosts, improving latency, reliability, and security (mitigating SSRF-style risks) during proof generation. Configuration lives under the new `mosip.certify.jsonld.*` namespace. See [JSON-LD Context Loader documentation](https://github.com/inji/inji-certify/blob/release-1.0.x/docs/JSON-LD-context-loader.md) for details.
 
 #### User Stories Released
 
@@ -77,19 +74,19 @@ Below is the list of known issues related to the release v1.0.0-alpha.1. To acce
 
 Supported Platforms & Components
 
-| Repository                                                                                           | Version        |
-| ---------------------------------------------------------------------------------------------------- | -------------- |
-| [inji-certify](https://github.com/inji/inji-certify/releases/tag/v0.15.0)                            | v1.0.0-alpha.1 |
-| [inji-config](https://github.com/inji/inji-config/releases/tag/v0.15.0)                              | v1.0.0         |
-| [keymanager](https://github.com/mosip/keymanager/releases/tag/v1.4.0)                                | v1.4.0         |
-| [digital-credential-plugins](https://github.com/inji/digital-credential-plugins/releases/tag/v0.6.0) | v1.0.0-alpha.1 |
+| Repository                 | Version        |
+| -------------------------- | -------------- |
+| inji-certify               | v1.0.0-alpha.1 |
+| inji-config                | v1.0.0         |
+| keymanager                 | v1.4.0         |
+| digital-credential-plugins | v1.0.0-alpha.1 |
 
 ### Compatible Modules
 
 | Modules               | Version                                                                         |
 | --------------------- | ------------------------------------------------------------------------------- |
-| eSignet               | 1.6.2                                                                           |
-| IDA                   | 1.3.0                                                                           |
+| eSignet               | [1.6.2](https://github.com/mosip/esignet/tree/v1.6.2)                           |
+| IDA                   | [1.3.0](https://github.com/mosip/id-authentication/tree/v1.3.0)                 |
 | Sunbird C             | [v2.0.0](https://github.com/Sunbird-RC/sunbird-rc-core/releases/tag/v2.0.0-rc3) |
 | esignet-mock-services | v0.11.0                                                                         |
 | commons               | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                           |
@@ -98,7 +95,7 @@ Supported Platforms & Components
 
 ### Documentation
 
-* Feature Documentation
-* Local Setup
-* API Documentation
+* [Feature Documentation](https://docs.mosip.io/inji/inji-certify/functional-overview/features)
+* [Local Setup](https://docs.mosip.io/inji/inji-certify/build-and-deploy/local-setup)
+* [API Documentation](https://mosip.stoplight.io/docs/inji-certify/25f435617408e-inji-certify)
 * Test Report
