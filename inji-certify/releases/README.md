@@ -8,7 +8,7 @@ icon: rocket-launch
 
 * Name: Version 1.0.0-alpha.1
 * Date: <mark style="color:red;">**Coming Soon!**</mark>
-* [Release Notes](version-1.0.0-alpha.1.md)
+* [Release Notes](version-1.0.0-alpha.1/)
 
 #### **Version: 0.14.0**
 
