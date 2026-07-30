@@ -10,10 +10,9 @@
 **Note**:
 
 * **Inji Verify v1.0.0-alpha.1** marks our formal adoption of the [OpenID4VP 1.0 specification](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html). This is an important milestone, and we want to provide clear guidance for all community members.
-* **Upgrading Guidance - Upgrading is optional but recommended** for spec compliance. This release is intended for teams ready to align with the finalized OpenID4VP 1.0 standard. Teams running earlier injiverify release versions built on draft specifications of OpenID4VP are **not mandatory to upgrade** — earlier releases can be continued without any disruption, with the option to upgrade at a time that suits your roadmap.
-* **Backward Compatibility -** For those upgrading to v1.0.0-alpha.1, this release **does not maintain full backward compatibility** with draft versions specification implementations
+* **Upgrading Guidance - Upgrading is optional but recommended** for teams ready to align with the finalized OpenID4VP 1.0 specification. Earlier injiverify releases built on draft specifications remain fully functional, and can be continued without disruption, with the option to upgrade at a time that suits your roadmap.
+* **Legacy Support -** Note that this release **does not maintain full backward compatibility** with draft specification implementations. Limited support for Presentation Definition (PD) based sessions is retained on result-fetch endpoints only, allowing existing integrations to keep working through the transition.
 * APIs, credential formats, and endpoints that have been updated or replaced are detailed in [API Documentation](https://mosip.stoplight.io/docs/inji-verify/67445477d332e-open-id-4-vp-verifier-api-inji-verify) . **Reviewing these sections before upgrading is strongly recommended.**
-* **Legacy Support -** For backward compatibility with existing workflows, the release retains limited support for Presentation Definition (PD) based sessions on result-fetch endpoints only. This allows existing integrations to continue functioning during transition periods.
 * **Migration Guide**: Link to Migration Guide
 {% endhint %}
 
