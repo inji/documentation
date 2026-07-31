@@ -135,5 +135,5 @@ This includes additional reference information for the report. It contains a his
 | VC        | Verifiable Credentials                |
 | OpenID4VC | OpenID for Verifiable Credentials     |
 
-\
+Refer to the github link for more on reports [here](https://github.com/inji/test-management/tree/master/inji-certify/1.0.0-alpha.1).\
 <br>

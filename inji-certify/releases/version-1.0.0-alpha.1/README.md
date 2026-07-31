@@ -97,4 +97,4 @@ Supported Platforms & Components
 * [Feature Documentation](https://docs.mosip.io/inji/inji-certify/functional-overview/features)
 * [Local Setup](https://docs.mosip.io/inji/inji-certify/build-and-deploy/local-setup)
 * [API Documentation](https://mosip.stoplight.io/docs/inji-certify/branches/0.15.0/25f435617408e-open-api-definition)
-* Test Report
+* [Test Report](test-report.md)
