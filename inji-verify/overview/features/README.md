@@ -269,3 +269,23 @@ Protect sensitive credential data throughout the verification process.
 ## Upcoming Features
 
 Refer to Roadmap 2026 to keep updated about the upcoming features [here](../../../readme/roadmap/).
+
+***
+
+IV alpha 1
+
+### DCQL Support
+
+The entire verification flow — authorization requests, VP token submission, validation, and result processing — now uses **DCQL (Digital Credentials Query Language)** in place of Presentation Exchange (presentation\_definition). Only the result-fetch endpoints retain backward compatibility with legacy Presentation Definition submissions.
+
+* **Cryptographic Holder Binding** — DCQL's require\_cryptographic\_holder\_binding governs holder proof for both SD-JWT VC and LDP\_VC submissions, replacing acceptVPWithoutHolderProof.
+* **Expanded SD-JWT Support** — Both vc+sd-jwt and dc+sd-jwt formats are accepted.
+* **Replay Attack Prevention** — KB-JWT nonce and aud claims are validated for SD-JWT submissions, so a presentation cannot be reused across sessions.
+* **Server-Side Request Integrity** — VP request expiry and duplicate submissions are enforced server-side and reported back to wallets.
+* **Protocol Compliance** — vp\_formats\_supported replaces vp\_formats; client\_id prefix moves from did: to decentralized\_identifier:; client\_metadata is rejected for pre-registered clients.
+* **Verify UI Enhancements** — Submitted credentials are matched via DCQL type\_values, keeping matching accurate when multiple verifier configurations share a credential type.
+
+
+
+
+

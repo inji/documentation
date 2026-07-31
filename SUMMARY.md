@@ -275,6 +275,7 @@
     * [Locale Customizations](inji-verify/technical-overview/customization/locale-customizations.md)
   * [Integration Guides](inji-verify/technical-overview/integration-guides/README.md)
     * [OpenID4VP Verification Integration Guide](inji-verify/technical-overview/integration-guides/openid4vp-vp-verification-integration-guide.md)
+    * [Transition from PEX to DCQL](inji-verify/technical-overview/integration-guides/transition-from-pex-to-dcql.md)
 * [API](inji-verify/api.md)
 * [Deploy](readme/setup/deploy.md#deploying-inji-verify)
 * [Releases](inji-verify/releases/README.md)
