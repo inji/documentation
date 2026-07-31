@@ -14,12 +14,7 @@ hidden: true
 * **Credential combinations** — credential\_sets (OR across options, AND within); optional sets via required: false.
 * **Multiplicity** — multiple (default false) allows more than one presentation per query.
 
-### Removed
 
-* **PEX** — presentationDefinition / presentationDefinitionId rejected; /vp-definition/{id} removed.
-* acceptVPWithoutHolderProof — replaced by require\_cryptographic\_holder\_binding.
-* presentation\_submission — the flow is DCQL-only.
-* **Legacy paths** — /vp-request, /vp-session-request, /vp-request/{requestId}, /vp-submission/direct-post replaced by /v2 counterparts.
 
 
 

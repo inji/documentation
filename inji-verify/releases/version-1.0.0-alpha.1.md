@@ -7,6 +7,10 @@
 **Release Date**: <mark style="color:red;">**Coming Soon!**</mark>
 
 {% hint style="success" %}
+**Upgrade Notes**: Refer to '[Migarting from PEX to DCQL](../technical-overview/integration-guides/transition-from-pex-to-dcql.md)' guide to upgrade to DCQL and also refer to '[What got deprecated!](version-1.0.0-alpha.1.md#deprecations)' this release.
+{% endhint %}
+
+{% hint style="success" %}
 **Note**:
 
 * **Inji Verify v1.0.0-alpha.1** marks our formal adoption of the [OpenID4VP 1.0 specification](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html). This is an important milestone, and we want to provide clear guidance for all community members.
@@ -58,6 +62,17 @@ Below is the list of fixes as part of the **v1.0.0-alpha.1** release, refer [her
 Below is a list of some key known issues. For a detailed overview and the complete list of issues related to Inji Verify, please click [here](https://github.com/inji/inji-verify/issues?q=type%3ABug%20-milestone%3A1.0.0-alpha.1%20-is%3Aclosed)
 
 <table><thead><tr><th width="143.3359375">Issue ID</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-verify/issues/1845">#1845</a></td><td>We are uploading an invalid QR code, and while it displays an error message stating that the QR code is invalid, the credential details are still visible.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1844">#1844</a></td><td>On iPhone 8 and iPhone 7, uploading the Injiweb QR code PDF shows an error message.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1852">#1852</a></td><td>Inji Verify - Upload not functioning on Mac Safari Browser Versions 16 and below.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/1789">#1789</a></td><td>INJI Verify SDK should be able to support integration with applications built on platforms beyond <em>React (Typescript) applications</em>, such as Angular, PHP, and others.</td></tr><tr><td><a href="https://github.com/inji/inji-verify/issues/2178">#2178</a></td><td>The latest Inji Verify release cannot support complete end-to-end testing of VP (Verifiable Presentation) flow and Data Share flow when integrated with Inji Web.</td></tr></tbody></table>
+
+### **API Changes**
+
+Refer [here](../api.md#changes-which-came-with-inji-verify-1.0.0-alpha.1) for 'Changes to API' and 'New APIs'.
+
+### **Deprecations**
+
+* **PEX** — presentationDefinition / presentationDefinitionId rejected; /vp-definition/{id} removed.
+* acceptVPWithoutHolderProof — replaced by require\_cryptographic\_holder\_binding.
+* presentation\_submission — the flow is DCQL-only.
+* **Legacy paths** — /vp-request, /vp-session-request, /vp-request/{requestId}, /vp-submission/direct-post replaced by /v2 counterparts.
 
 ### **Documentation**
 
