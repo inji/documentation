@@ -63,7 +63,7 @@ If you are creating your own custom plugin, you can refer to [this link](https:/
 
 ## Documentation
 
-* **API Documentation:** API endpoints, base URL (`/v1/certify`), and mock server details are available via Stoplight and Swagger documentation: [Inji Certify API Documentation](https://mosip.stoplight.io/docs/inji-certify/branches/0.15.0/25f435617408e-open-api-definition).
+* **API Documentation:** API endpoints, base URL (`/v1/certify`), and mock server details are available via Stoplight and Swagger documentation: Inji Certify API Documentation.
 * **Product Documentation:**
   * To know more about Inji Certify in the perspective of functional and use cases you can refer to our main document: [Overview | Inji](https://docs.inji.io/inji-certify/overview)
   * Inji Certify is part of Inji Stack, to know more about Inji Stack you can refer to our stack document: [Inji | Inji](https://docs.inji.io/)
