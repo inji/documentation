@@ -4,7 +4,7 @@
 
 **Release Type:** Developer Release
 
-**Release Date:** <mark style="color:red;">**Coming Soon!**</mark>
+**Release Date:** 31st July, 2026
 
 {% hint style="success" %}
 **Note**
@@ -73,24 +73,24 @@ Below is the list of known issues related to the release v1.0.0-alpha.1. To acce
 
 Supported Platforms & Components
 
-| Repository                 | Version        |
-| -------------------------- | -------------- |
-| inji-certify               | v1.0.0-alpha.1 |
-| inji-config                | v1.0.0-alpha.1 |
-| keymanager                 | v1.4.0         |
-| digital-credential-plugins | v1.0.0-alpha.1 |
+| Repository                 | Version                                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| inji-certify               | [v1.0.0-alpha.1](https://github.com/inji/digital-credential-plugins/tree/v1.0.0-alpha.1) |
+| inji-config                | [v1.0.0-alpha.1](https://github.com/inji/inji-config/tree/v1.0.0-alpha.1)                |
+| digital-credential-plugins | [v1.0.0-alpha.1](https://github.com/inji/inji-certify/tree/v1.0.0-alpha.1)               |
 
 ### Compatible Modules
 
-| Modules               | Version                                                                         |
-| --------------------- | ------------------------------------------------------------------------------- |
-| eSignet               | [1.6.2](https://github.com/mosip/esignet/tree/v1.6.2)                           |
-| IDA                   | [1.3.0](https://github.com/mosip/id-authentication/tree/v1.3.0)                 |
-| Sunbird C             | [v2.0.0](https://github.com/Sunbird-RC/sunbird-rc-core/releases/tag/v2.0.0-rc3) |
-| esignet-mock-services | v0.11.0                                                                         |
-| commons               | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                           |
-| mimoto                | v1.0.0-alpha.1                                                                  |
-| inji-web              | v1.0.0-alpha.1                                                                  |
+| Modules               | Version                                                                               |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| keymanager            | [v1.4.0](https://github.com/mosip/keymanager/tree/v1.4.0)                             |
+| eSignet               | [1.6.2](https://github.com/mosip/esignet/tree/v1.6.2)                                 |
+| IDA                   | [1.3.0](https://github.com/mosip/id-authentication/tree/v1.3.0)                       |
+| Sunbird C             | [v2.0.0](https://github.com/Sunbird-RC/sunbird-rc-core/releases/tag/v2.0.0-rc3)       |
+| esignet-mock-services | [v0.11.2](https://github.com/mosip/esignet-mock-services/tree/v0.11.2)                |
+| commons               | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                                 |
+| mimoto                | v1.0.0-alpha.1 ([Release Coming Soon](https://community.mosip.io/tag/announcement/2)) |
+| inji-web              | v1.0.0-alpha.1 ([Release Coming Soon](https://community.mosip.io/tag/announcement/2)) |
 
 ### Documentation
 
