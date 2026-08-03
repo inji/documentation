@@ -6,7 +6,7 @@ icon: house
 
 ## Overview
 
-Inji Certify enables issuers to generate, sign and issue a verifiable credentials. It follows the standard of OpenID4VCI (Open ID For VC Issuance) draft 13. It also issues VC complaints with W3C Verifiable Credentials (1.1 & 2.0). Issuers can configure credential schemas for different certificate types, generating credentials in different VC formats such JSON-LD, SD-JWT etc.
+Inji Certify enables issuers to generate, sign and issue a verifiable credentials. It follows the standard of [OpenID4VCI 1.0](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) Specifications (Open ID For VC Issuance). It also issues VC complaints with W3C Verifiable Credentials (1.1 & 2.0). Issuers can configure credential schemas for different certificate types, generating credentials in different VC formats such JSON-LD, SD-JWT etc.
 
 ### How is the 'Inji Certify Documentation' organised?
 
@@ -24,15 +24,15 @@ The docs follow the typical journey: understand → try → set up → build →
 
 As an OpenID4VCI 1.0 Specification compliant issuer, Inji Certify provides the following features:
 
-| Feature                     | Status      | Description                                                       |
-| --------------------------- | ----------- | ----------------------------------------------------------------- |
-| **Issuer Metadata**         | Available   | Publish credential issuer configuration and supported credentials |
-| **Access Token Validation** | Available   | Validate OAuth 2.0 access tokens for secure credential requests   |
-| **Credential Issuance**     | Available   | Issue signed Verifiable Credentials to digital wallets            |
-| **Credential Binding**      | Partial     | DID keys and JWT proof supported; CWT proof coming soon           |
-| **VC Formats**              | Partial     | JSON-LD and SD-JWT supported; mDoc/mDL coming soon                |
-| **Revocation**              | Partial     | JSON-LD supported; SD-JWT and mDoc/mDL coming soon                |
-| **Credential Offer Flows**  | Coming Soon | Pre-authorised and authorisation code flows                       |
+| Feature                     | Status    | Description                                                       |
+| --------------------------- | --------- | ----------------------------------------------------------------- |
+| **Issuer Metadata**         | Available | Publish credential issuer configuration and supported credentials |
+| **Access Token Validation** | Available | Validate OAuth 2.0 access tokens for secure credential requests   |
+| **Credential Issuance**     | Available | Issue signed Verifiable Credentials to digital wallets            |
+| **Credential Binding**      | Available | DID keys and JWT proof supported; CWT proof coming soon           |
+| **VC Formats**              | Available | JSON-LD , SD-JWT and mDoc/mDL supported                           |
+| **Revocation**              | Partial   | JSON-LD supported; SD-JWT and mDoc/mDL coming soon                |
+| **Credential Offer Flows**  | Available | Pre-authorised and authorisation code flows                       |
 
 To know more about features available in Inji Certify please refer to [this documentation](features/).
 
