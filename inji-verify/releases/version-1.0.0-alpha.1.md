@@ -24,12 +24,7 @@
 
 We are excited to announce the release of **Inji Verify v1.0.0-alpha.1.**
 
-Inji Verify **v1.0.0-alpha.1** upgrades the platform from OpenID4VP Draft 23 to the [OpenID4VP 1.0](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) final specification. The core change is the migration from Presentation Exchange (PEX) to [**DCQL** (Digital Credentials Query Language)](link) across the full verification flow — authorization requests, VP token submission, validation, and result processing — with backward compatibility retained only for existing PD-based <!-- Expand PD - or link with Glossary term)--> sessions on result-fetch endpoints. 
-
-<!-- Changes highlights should come here -->
-
-The release adds support for cryptographic holder binding (require_cryptographic_holder_binding) for both SD-JWT VC and LDP_VC formats, accepts both vc+sd-jwt and dc+sd-jwt credential formats, and strengthens security through KB-JWT nonce/aud claim validation and server-side enforcement of VP request expiry and duplicate submission checks. Client metadata and identifier schemes have also been aligned with the v1.0 specification.
-
+Inji Verify **v1.0.0-alpha.1** upgrades the platform from OpenID4VP Draft 23 to the [OpenID4VP 1.0](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) final specification. The core change is the migration from Presentation Exchange (PEX) to **DCQL** (Digital Credentials Query Language) across the full verification flow — authorization requests, VP token submission, validation, and result processing — with backward compatibility retained only for existing PD-based sessions on result-fetch endpoints. The release adds support for cryptographic holder binding (require\_cryptographic\_holder\_binding) for both SD-JWT VC and LDP\_VC formats, accepts both vc+sd-jwt and dc+sd-jwt credential formats, and strengthens security through KB-JWT nonce/aud claim validation and server-side enforcement of VP request expiry and duplicate submission checks. Client metadata and identifier schemes have also been aligned with the v1.0 specification.
 
 {% hint style="info" %}
 **Note:** The Inji Verify UI is a _reference implementation_ to demonstrate orchestration. Developers can selectively embed SDK components in the verifier applications as per their needs.
@@ -70,7 +65,7 @@ Below is a list of some key known issues. For a detailed overview and the comple
 
 ### **API Changes**
 
-Refer [here](../api.md#changes-which-came-with-inji-verify-1.0.0-alpha.1) for 'Changes to API' and 'New APIs'.
+Refer [here](../api/#changes-which-came-with-inji-verify-1.0.0-alpha.1) for 'Changes to API' and 'New APIs'.
 
 ### **Deprecations**
 
