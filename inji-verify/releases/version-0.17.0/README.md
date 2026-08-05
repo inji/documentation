@@ -12,7 +12,7 @@ We are excited to announce the release of **Inji Verify v0.17.0.** This version 
 
 ### **New Features**
 
-#### [**API Redesign**](https://docs.inji.io/inji-verify/overview/features#api-v2-enhancements-for-seamless-integration-came-with-0.17.0-release)
+#### [**API Redesign**](../../api/api-changelog.md#api-v2-enhancements-for-seamless-integration-came-with-0170-release)
 
 * We have redesigned the Inji Verify **/vc-verification** endpoint to deliver structured, detailed verification responses with flexible request parameters. Instead of just the final status (SUCCESS / INVALID / EXPIRED / REVOKED), the response now includes comprehensive diagnostic information and configurable verification checks. This enables relying party applications to make informed decisions about next steps with reduced custom processing.
 * Similarly, the **/vp-result/{txnId}** endpoint is enhanced to return richer, granular information for each credential, rather than only the final status. With these detailed insights, integrators can build faster, more reliable workflows with fewer API calls, significantly simplifying integration across diverse verifier applications.
