@@ -15,20 +15,17 @@
 
 * **Inji Verify v1.0.0-alpha.1** marks our formal adoption of the [OpenID4VP 1.0 specification](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html). This is an important milestone, and we want to provide clear guidance for all community members.
 * **Upgrading Guidance - Upgrading is optional but recommended** for teams ready to align with the finalized OpenID4VP 1.0 specification. Earlier injiverify releases built on draft specifications remain fully functional, and can be continued without disruption, with the option to upgrade at a time that suits your roadmap.
-* **Legacy Support -** Note that this release **does not maintain full backward compatibility** with draft specification implementations. Limited support for Presentation Definition (PD) based sessions is retained on result-fetch endpoints only, allowing existing integrations to keep working through the transition.
+* **Legacy Support -** Note that this release **does not maintain full backward compatibility** with releases built on draft specifications of OpenID4VP. Limited support for Presentation Definition (PD) based sessions is retained on result-fetch endpoints only, allowing existing integrations to keep working through the transition.
 * APIs, credential formats, and endpoints that have been updated or replaced are detailed in [API Documentation](https://mosip.stoplight.io/docs/inji-verify/67445477d332e-open-id-4-vp-verifier-api-inji-verify) . **Reviewing these sections before upgrading is strongly recommended.**
-* **Migration Guide**: Link to Migration Guide
 {% endhint %}
 
 ### **Overview**
 
-We are excited to bring the release of **Inji Verify v1.0.0-alpha.1.**
-This release completes Inji Verify's move to DCQL (Digital Credentials Query Language) — the [OpenID4VP 1.0](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) way of describing what a verifier needs from a wallet — across the entire verification flow: authorization requests, VP token submission, validation, and results. 
-The core change is the migration from Presentation Exchange (PEX) to [**DCQL** (Digital Credentials Query Language)](link). PEX - Presentation Exchange (`presentation_definition`) is no longer accepted for new requests; only previously completed PD-based verifications remain readable through the result-fetch endpoints.
+We are excited to bring the release of **Inji Verify v1.0.0-alpha.1.** This release completes Inji Verify's move to DCQL (Digital Credentials Query Language) — the [OpenID4VP 1.0](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) way of describing what a verifier needs from a wallet — across the entire verification flow: authorization requests, VP token submission, validation, and results. The core change is the migration from Presentation Exchange (PEX) to [**DCQL** (Digital Credentials Query Language)](link/). PEX - Presentation Exchange (`presentation_definition`) is no longer accepted for new requests; only previously completed PD-based verifications remain readable through the result-fetch endpoints.
 
 **Highlights:**
 
-* **Stronger holder proof** — `require_cryptographic_holder_binding` lets verifiers demand cryptographic proof of holder possession for both SD-JWT VC and LDP_VC presentations, replacing the older `acceptVPWithoutHolderProof` flag.
+* **Stronger holder proof** — `require_cryptographic_holder_binding` lets verifiers demand cryptographic proof of holder possession for both SD-JWT VC and LDP\_VC presentations, replacing the older `acceptVPWithoutHolderProof` flag.
 * **Wider SD-JWT compatibility** — both `vc+sd-jwt` and `dc+sd-jwt` format identifiers are accepted, so wallets built against either the draft or final SD-JWT VC spec continue to verify.
 * **Replay protection** — KB-JWT `nonce` and `aud` claims are validated on every SD-JWT submission, so a captured presentation can't be resubmitted elsewhere.
 * **Tamper-resistant sessions** — VP request expiry and duplicate submissions are now enforced server-side, not left to the wallet to self-report.
@@ -77,15 +74,15 @@ Below is a list of some key known issues. For a detailed overview and the comple
 Refer [here](../api.md#changes-which-came-with-inji-verify-1.0.0-alpha.1) for 'Changes to API' and 'New APIs'.
 
 ### Removals & Replacements
+
 The following are no longer supported in this release. See the [PEX to DCQL Migration Guide](../technical-overview/integration-guides/transition-from-pex-to-dcql.md) to update existing integrations.
 
-| Deprecated | Replaced By | What This Means |
-|---|---|---|
-| Presentation Exchange (`presentation_definition`, `presentationDefinitionId`) | DCQL (`dcql_query`) | New requests using PD are rejected; previously completed PD-based results remain readable via result-fetch endpoints only. |
-| `acceptVPWithoutHolderProof` | `require_cryptographic_holder_binding` | Holder-proof enforcement is now expressed inside the DCQL query itself. |
-| `presentation_submission` | — (DCQL-only) | This field is no longer accepted; DCQL query IDs identify submissions instead. |
-| Legacy request endpoints (`/vp-request`, `/vp-session-request`, `/vp-request/{requestId}`, `/vp-submission/direct-post`) | `/v2` counterparts | Existing integrations calling these paths must move to the `/v2` endpoints. |
-
+| Fields                                                                                                                   | Replaced By                            | What This Means                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Presentation Exchange (`presentation_definition`, `presentationDefinitionId`)                                            | DCQL (`dcql_query`)                    | New requests using PD are rejected; previously completed PD-based results remain readable via result-fetch endpoints only. |
+| `acceptVPWithoutHolderProof`                                                                                             | `require_cryptographic_holder_binding` | Holder-proof enforcement is now expressed inside the DCQL query itself.                                                    |
+| `presentation_submission`                                                                                                | DCQL-only                              | This field is no longer accepted; DCQL query IDs identify submissions instead.                                             |
+| Legacy request endpoints (`/vp-request`, `/vp-session-request`, `/vp-request/{requestId}`, `/vp-submission/direct-post`) | `/v2` counterparts                     | Existing integrations calling these paths must move to the `/v2` endpoints.                                                |
 
 ### **Documentation**
 
