@@ -70,6 +70,15 @@ Verify Verifiable Presentations securely using OpenID4VP standards for both cros
 * **Streamlined Online Sharing**: Embed URLs instead of dense VCs in QR codes, reducing complexity while maintaining secure credential retrieval from designated storage locations
 * **Inji Web Wallet OpenID4VP Integration**: Establish a secure, standards-compliant credential exchange between Inji Verify (verifier) and Inji Web Wallet (holder), enabling privacy-preserving presentation and verification flows
 
+### Modern Credential Query Support (DCQL)
+Inji Verify now describes what it needs from a wallet using DCQL (Digital Credentials Query Language), the OpenID4VP 1.0 standard for expressing credential requirements — replacing the earlier Presentation Exchange format.
+
+* **Precise, Privacy-Preserving Requests**: Verifiers ask for exactly the claims they need, with support for alternative ways to satisfy a request, instead of over-specifying.
+* **Stronger Holder Proof**: Verification can require cryptographic proof that the person presenting a credential is the person it was issued to.
+* **Replay Protection**: A captured presentation can't be reused in a different verification session.
+* **Broader SD-JWT Compatibility**: Recognizes SD-JWT credentials under both the older and newer format identifiers, so wallets on either side of the spec transition still verify successfully.
+* **Reliable Credential Matching**: Matches submitted credentials by type more precisely, even when multiple verifier configurations accept the same credential type.
+
 ### SD-JWT Credential Verification
 
 Verify selective disclosure credentials while preserving holder privacy.
@@ -169,18 +178,6 @@ Robust server-side verification with persistent data storage.
 
 * [Inji Verify APIs](https://mosip.stoplight.io/docs/inji-verify/63da8fc2ca609-open-id-4-vp-verifier-api-inji-verify)
 
-### API v2 Enhancements for Seamless Integration (Came with 0.17.0 Release)
-
-Inji Verify's redesigned v2 endpoints introduce structured, detailed verification responses that significantly simplify integration for verifier applications.
-
-* **Structured Response Design**: The `/vc-verification` and `/vp-result/{txnId}` endpoints deliver comprehensive verification details beyond simple success/failure status, enabling relying parties to understand outcomes and determine appropriate next steps
-* **Flexible Request Parameters**: Configure verification checks based on your application's specific requirements, adapting credential validation to match your business logic without custom processing
-* **Reduced API Calls**: Richer responses in single requests eliminate the need for follow-up API calls to gather additional verification context, streamlining integration workflows
-* **Simplified Custom Processing**: Detailed diagnostic information (per-credential status, specific failure reasons, actionable outcomes) is returned natively, reducing custom post-processing logic on the integrator side
-* **Faster Developer Onboarding**: Clear, predictable API contracts enable teams to build reliable verification workflows with reduced complexity and faster time-to-integration
-
-These enhancements position Inji Verify as a developer-friendly verification platform where integration complexity is minimized and reliability is maximized.
-
 ## Ecosystem Compatibility
 
 ### MOSIP UIN-Based VC Support
@@ -278,12 +275,12 @@ IV alpha 1
 
 The entire verification flow — authorization requests, VP token submission, validation, and result processing — now uses **DCQL (Digital Credentials Query Language)** in place of Presentation Exchange (presentation\_definition). Only the result-fetch endpoints retain backward compatibility with legacy Presentation Definition submissions.
 
-* **Cryptographic Holder Binding** — DCQL's require\_cryptographic\_holder\_binding governs holder proof for both SD-JWT VC and LDP\_VC submissions, replacing acceptVPWithoutHolderProof.
+* **Cryptographic Holder Binding** — DCQL's require_cryptographic_holder_binding governs holder proof for both SD-JWT VC and LDP_VC submissions, replacing acceptVPWithoutHolderProof.
 * **Expanded SD-JWT Support** — Both vc+sd-jwt and dc+sd-jwt formats are accepted.
 * **Replay Attack Prevention** — KB-JWT nonce and aud claims are validated for SD-JWT submissions, so a presentation cannot be reused across sessions.
 * **Server-Side Request Integrity** — VP request expiry and duplicate submissions are enforced server-side and reported back to wallets.
-* **Protocol Compliance** — vp\_formats\_supported replaces vp\_formats; client\_id prefix moves from did: to decentralized\_identifier:; client\_metadata is rejected for pre-registered clients.
-* **Verify UI Enhancements** — Submitted credentials are matched via DCQL type\_values, keeping matching accurate when multiple verifier configurations share a credential type.
+* **Protocol Compliance** — vp_formats_supported replaces vp_formats; client_id prefix moves from did: to decentralized_identifier:; client_metadata is rejected for pre-registered clients.
+* **Verify UI Enhancements** — Submitted credentials are matched via DCQL type_values, keeping matching accurate when multiple verifier configurations share a credential type.
 
 
 

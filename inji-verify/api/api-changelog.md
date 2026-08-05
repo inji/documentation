@@ -32,3 +32,15 @@ The request and submission flow is re-versioned for OpenID4VP 1.0 (final) and SD
 ### Standardized Error Responses
 
 All endpoints return typed error bodies: ErrorResponse (errorCode + errorMessage) for 4xx and InternalErrorResponse (timestamp, status, path, error) for 500, with complete per-endpoint error-code tables published in the [API documentation](https://mosip.stoplight.io/docs/inji-verify/67445477d332e-open-id-4-vp-verifier-api-inji-verify).
+
+### API v2 Enhancements for Seamless Integration (Came with 0.17.0 Release)
+
+Inji Verify's redesigned v2 endpoints introduce structured, detailed verification responses that significantly simplify integration for verifier applications.
+
+* **Structured Response Design**: The `/vc-verification` and `/vp-result/{txnId}` endpoints deliver comprehensive verification details beyond simple success/failure status, enabling relying parties to understand outcomes and determine appropriate next steps
+* **Flexible Request Parameters**: Configure verification checks based on your application's specific requirements, adapting credential validation to match your business logic without custom processing
+* **Reduced API Calls**: Richer responses in single requests eliminate the need for follow-up API calls to gather additional verification context, streamlining integration workflows
+* **Simplified Custom Processing**: Detailed diagnostic information (per-credential status, specific failure reasons, actionable outcomes) is returned natively, reducing custom post-processing logic on the integrator side
+* **Faster Developer Onboarding**: Clear, predictable API contracts enable teams to build reliable verification workflows with reduced complexity and faster time-to-integration
+
+These enhancements position Inji Verify as a developer-friendly verification platform where integration complexity is minimized and reliability is maximized.
