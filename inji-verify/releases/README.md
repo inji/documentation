@@ -6,8 +6,8 @@ icon: rocket-launch
 
 **Version:** Version 1.0.0-alpha.1
 
-* <mark style="color:red;">**Coming Soon!**</mark>
-* [Release Notes](version-1.0.0-alpha.1.md)
+* 4th August, 2026
+* [Release Notes](version-1.0.0-alpha.1/)
 
 **Version:** v0.18.2
 

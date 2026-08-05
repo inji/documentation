@@ -71,6 +71,7 @@ Verify Verifiable Presentations securely using OpenID4VP standards for both cros
 * **Inji Web Wallet OpenID4VP Integration**: Establish a secure, standards-compliant credential exchange between Inji Verify (verifier) and Inji Web Wallet (holder), enabling privacy-preserving presentation and verification flows
 
 ### Modern Credential Query Support (DCQL)
+
 Inji Verify now describes what it needs from a wallet using DCQL (Digital Credentials Query Language), the OpenID4VP 1.0 standard for expressing credential requirements — replacing the earlier Presentation Exchange format.
 
 * **Precise, Privacy-Preserving Requests**: Verifiers ask for exactly the claims they need, with support for alternative ways to satisfy a request, instead of over-specifying.
@@ -78,6 +79,15 @@ Inji Verify now describes what it needs from a wallet using DCQL (Digital Creden
 * **Replay Protection**: A captured presentation can't be reused in a different verification session.
 * **Broader SD-JWT Compatibility**: Recognizes SD-JWT credentials under both the older and newer format identifiers, so wallets on either side of the spec transition still verify successfully.
 * **Reliable Credential Matching**: Matches submitted credentials by type more precisely, even when multiple verifier configurations accept the same credential type.
+* **Verify UI Enhancements** — Submitted credentials are matched via DCQL type\_values, keeping matching accurate when multiple verifier configurations share a credential type.
+
+### DCQL Query Capabilities
+
+* **Per-query holder binding** — require\_cryptographic\_holder\_binding (default true); outcome surfaces as holderProofCheck in results.
+* **Type constraints** — meta.type\_values for ldp\_vc (OR-of-ANDs, IRI fragment matching); meta.vct\_values for SD-JWT (exact match).
+* **Claim-level requests** — claims paths with optional expected values; claim\_sets for acceptable combinations.
+* **Credential combinations** — credential\_sets (OR across options, AND within); optional sets via required: false.
+* **Multiplicity** — multiple (default false) allows more than one presentation per query.
 
 ### SD-JWT Credential Verification
 
@@ -266,23 +276,3 @@ Protect sensitive credential data throughout the verification process.
 ## Upcoming Features
 
 Refer to Roadmap 2026 to keep updated about the upcoming features [here](../../../readme/roadmap/).
-
-***
-
-IV alpha 1
-
-### DCQL Support
-
-The entire verification flow — authorization requests, VP token submission, validation, and result processing — now uses **DCQL (Digital Credentials Query Language)** in place of Presentation Exchange (presentation\_definition). Only the result-fetch endpoints retain backward compatibility with legacy Presentation Definition submissions.
-
-* **Cryptographic Holder Binding** — DCQL's require_cryptographic_holder_binding governs holder proof for both SD-JWT VC and LDP_VC submissions, replacing acceptVPWithoutHolderProof.
-* **Expanded SD-JWT Support** — Both vc+sd-jwt and dc+sd-jwt formats are accepted.
-* **Replay Attack Prevention** — KB-JWT nonce and aud claims are validated for SD-JWT submissions, so a presentation cannot be reused across sessions.
-* **Server-Side Request Integrity** — VP request expiry and duplicate submissions are enforced server-side and reported back to wallets.
-* **Protocol Compliance** — vp_formats_supported replaces vp_formats; client_id prefix moves from did: to decentralized_identifier:; client_metadata is rejected for pre-registered clients.
-* **Verify UI Enhancements** — Submitted credentials are matched via DCQL type_values, keeping matching accurate when multiple verifier configurations share a credential type.
-
-
-
-
-

@@ -278,9 +278,12 @@
   * [Integration Guides](inji-verify/technical-overview/integration-guides/README.md)
     * [OpenID4VP Verification Integration Guide](inji-verify/technical-overview/integration-guides/openid4vp-vp-verification-integration-guide.md)
     * [Transition from PEX to DCQL](inji-verify/technical-overview/integration-guides/transition-from-pex-to-dcql.md)
-* [API](inji-verify/api.md)
+* [API](inji-verify/api/README.md)
+  * [API Changes](inji-verify/api/api-changes.md)
 * [Deploy](readme/setup/deploy.md#deploying-inji-verify)
 * [Releases](inji-verify/releases/README.md)
+  * [Version 1.0.0-alpha.1](inji-verify/releases/version-1.0.0-alpha.1/README.md)
+    * [Test Report](inji-verify/releases/version-1.0.0-alpha.1/test-report.md)
   * [Version 0.18.2](inji-verify/releases/version-0.18.2/README.md)
     * [Test Report](inji-verify/releases/version-0.18.2/test-report.md)
   * [Version 0.18.1](inji-verify/releases/version-0.18.1/README.md)
@@ -314,7 +317,6 @@
   * [Version 0.8.1](inji-verify/releases/version-0.8.1.md)
   * [Version 0.8.0](inji-verify/releases/release-notes/README.md)
     * [Test Report](inji-verify/releases/release-notes/test-report.md)
-  * [Version 1.0.0-alpha.1](inji-verify/releases/version-1.0.0-alpha.1.md)
 
 ***
 

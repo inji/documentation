@@ -6,23 +6,24 @@ hidden: true
 
 ## Features Page Content - To review
 
-### DCQL Query Capabilities
-
-* **Per-query holder binding** — require\_cryptographic\_holder\_binding (default true); outcome surfaces as holderProofCheck in results.
-* **Type constraints** — meta.type\_values for ldp\_vc (OR-of-ANDs, IRI fragment matching); meta.vct\_values for SD-JWT (exact match).
-* **Claim-level requests** — claims paths with optional expected values; claim\_sets for acceptable combinations.
-* **Credential combinations** — credential\_sets (OR across options, AND within); optional sets via required: false.
-* **Multiplicity** — multiple (default false) allows more than one presentation per query.
 
 
+### DCQL Support
 
+The entire verification flow — authorization requests, VP token submission, validation, and result processing — now uses **DCQL (Digital Credentials Query Language)** in place of Presentation Exchange (presentation\_definition). Only the result-fetch endpoints retain backward compatibility with legacy Presentation Definition submissions.
 
-
-
-
+* **Cryptographic Holder Binding** — DCQL's require\_cryptographic\_holder\_binding governs holder proof for both SD-JWT VC and LDP\_VC submissions, replacing acceptVPWithoutHolderProof.
+* **Expanded SD-JWT Support** — Both vc+sd-jwt and dc+sd-jwt formats are accepted.
+* **Replay Attack Prevention** — KB-JWT nonce and aud claims are validated for SD-JWT submissions, so a presentation cannot be reused across sessions.
+* **Server-Side Request Integrity** — VP request expiry and duplicate submissions are enforced server-side and reported back to wallets.
+* **Protocol Compliance** — vp\_formats\_supported replaces vp\_formats; client\_id prefix moves from did: to decentralized\_identifier:; client\_metadata is rejected for pre-registered clients.
+*
 
 
 
+
+
+###
 
 ***
 

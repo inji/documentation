@@ -422,10 +422,9 @@ Here claim\_sets lists acceptable claim combinations in order of preference, and
 * **Version your queries** — tag DCQL queries with a version identifier for traceability across deployments
 * **Document the migration** — record the original PD and its DCQL equivalent in your integration documentation for audit purposes
 
-**3. Points to Note**
+### **Points to Note**
 
 * No fallback implementation from DCQL to PEX
 * No dual-protocol support for new verification requests within a single verifier version
 * No automatic wallet version detection within Inji Verify
 * No Automated PD-to-DCQL conversion tooling
-
