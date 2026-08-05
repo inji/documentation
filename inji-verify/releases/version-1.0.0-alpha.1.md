@@ -7,7 +7,7 @@
 **Release Date**: <mark style="color:red;">**Coming Soon!**</mark>
 
 {% hint style="success" %}
-**Upgrade Notes**: Refer to '[Migarting from PEX to DCQL](../technical-overview/integration-guides/transition-from-pex-to-dcql.md)' guide to upgrade to DCQL and also refer to '[What got deprecated!](version-1.0.0-alpha.1.md#deprecations)' this release.
+**Upgrade Notes**: Refer to '[Migarting from PEX to DCQL](../technical-overview/integration-guides/transition-from-pex-to-dcql.md)' guide to upgrade to DCQL and also refer to '[Removals & Replacements](version-1.0.0-alpha.1.md#removals--replacements)' this release.
 {% endhint %}
 
 {% hint style="success" %}
@@ -76,7 +76,7 @@ Below is a list of some key known issues. For a detailed overview and the comple
 
 Refer [here](../api.md#changes-which-came-with-inji-verify-1.0.0-alpha.1) for 'Changes to API' and 'New APIs'.
 
-### **Deprecations**
+### Removals & Replacements
 The following are no longer supported in this release. See the [PEX to DCQL Migration Guide](../technical-overview/integration-guides/transition-from-pex-to-dcql.md) to update existing integrations.
 
 | Deprecated | Replaced By | What This Means |
@@ -85,15 +85,6 @@ The following are no longer supported in this release. See the [PEX to DCQL Migr
 | `acceptVPWithoutHolderProof` | `require_cryptographic_holder_binding` | Holder-proof enforcement is now expressed inside the DCQL query itself. |
 | `presentation_submission` | — (DCQL-only) | This field is no longer accepted; DCQL query IDs identify submissions instead. |
 | Legacy request endpoints (`/vp-request`, `/vp-session-request`, `/vp-request/{requestId}`, `/vp-submission/direct-post`) | `/v2` counterparts | Existing integrations calling these paths must move to the `/v2` endpoints. |
-
-<!-- revised the content below with above table to make it comprehensive
-
-* **PEX** — presentationDefinition / presentationDefinitionId rejected; /vp-definition/{id} removed.
-* acceptVPWithoutHolderProof — replaced by require\_cryptographic\_holder\_binding.
-* presentation\_submission — the flow is DCQL-only.
-* **Legacy paths** — /vp-request, /vp-session-request, /vp-request/{requestId}, /vp-submission/direct-post replaced by /v2 counterparts.
-
--->
 
 
 ### **Documentation**
