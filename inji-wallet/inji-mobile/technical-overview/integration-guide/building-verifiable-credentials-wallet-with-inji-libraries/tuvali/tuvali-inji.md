@@ -18,7 +18,7 @@ The Verifier device generates a URI using the `startAdvertisement()` method and 
 OPENID4VP://connect?name=STADONENTRY&key=8520f0098930a754748b7ddcb43ef75a0dbf3a0d26381af4eba4a98eaa9b4e6a
 ```
 
-URI structure can be found in the [spec](https://bitbucket.org/openid/connect/src/master/openid-4-verifiable-presentations-over-ble/openid-4-verifiable-presentations-over-ble-1_0.md). Currently the library doesnot support iOS as a verifier.But it can act as a wallet for android verifier.
+URI structure can be found in the [spec](https://bitbucket.org/openid/connect/src/master/openid-4-verifiable-presentations-over-ble/openid-4-verifiable-presentations-over-ble-1_0.md). Currently, the library doesn't support iOS as a verifier.But it can act as a wallet for android verifier.
 
 ```
 var verifier = Verifier()
