@@ -6,16 +6,19 @@ icon: list-tree
 
 ### Repositories
 
-{% embed url="https://github.com/mosip/inji-wallet" %}
+{% embed url="https://github.com/inji/inji-wallet" %}
 
 ### Prerequisite
 
-* [Gradle](https://gradle.org/install/)
+* [Node](https://nodejs.org/en/download) v18.17.1 and npm 8.19.3
+* [Gradle](https://gradle.org/install/) 8.6
 * [Java 17](https://www.oracle.com/ph/java/technologies/downloads/#java17)
-* [Expo](https://docs.expo.dev/home/get-started/installation/)
-* [Android SDK](https://developer.android.com/)
-* [Node](https://nodejs.org/en/download)
-* [XCode](https://developer.apple.com/xcode/) for iOS development
+* [Expo](https://docs.expo.dev/get-started/installation) 51.0.0 (React Native 0.74.5)
+* [Android Studio](https://developer.android.com/studio) (latest stable release)
+* [Android SDK](https://developer.android.com/) with Build-Tools 35.0.0, compileSdk 35, minSdk 24, targetSdk 35, NDK 21.4.7075529, Kotlin 1.9.22
+* [XCode](https://developer.apple.com/xcode/) 15 or higher, for iOS development (Minimum Deployment Target: 14.0)
+* [CocoaPods](https://cocoapods.org/) > 1.12 and Ruby >= 2.6.10, for iOS development
+* [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/), for running the Mimoto backend locally
 
 To perform **offline sharing using BLE**, we recommend below:
 
@@ -30,14 +33,14 @@ The below sections describe the steps for building the android application in Ma
 
 #### Step 1:
 
-Configure Node & npm (recommended to use v16.19.0)
+Configure Node & npm (recommended to use v18.17.1)
 
 ```
 brew install nvm
 
-nvm install 16.19.0
+nvm install 18.17.1
 
-nvm use 16.19.0
+nvm use 18.17.1
 ```
 
 #### Step 2:
@@ -55,14 +58,14 @@ Configure Gradle & Java
 ```
 curl -s "https://get.sdkman.io" | bash
 
-sdk install gradle 7.5.1
+sdk install gradle 8.6
 
 sdk install java 17.0.13-amzn
 ```
 
 #### Step 4:
 
-Configure Expo, refer [here](https://docs.expo.dev/get-started/installation/).
+Configure Expo, refer [here](https://docs.expo.dev/get-started/installation).
 
 #### Step 5:
 
@@ -143,7 +146,7 @@ curl -s "<https://get.sdkman.io>" | bash
 * Use the command below in Git terminal.
 
 ```
-sdk install gradle 7.5.1
+sdk install gradle 8.6
 ```
 
 * To check the installed gradle version.
@@ -161,11 +164,7 @@ Restart system
 
 #### Step 5:
 
-* Install expo
-
-```
-npm install --global expo-cli
-```
+* No global install needed — Expo is already a project dependency and is used via `npx expo` (the legacy global `expo-cli` is deprecated).
 
 #### Step 6:
 
@@ -192,8 +191,8 @@ wget -qO- <https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh> | ba
 update the nvm version
 
 ```
-nvm install 16.19.0
-nvm use 16.19.0
+nvm install 18.17.1
+nvm use 18.17.1
 ```
 
 #### Step 9:
@@ -232,13 +231,13 @@ sdk.dir = <location-of-the-android-sdk>
 
 * Inji application currently supports two themes: **gradient** and **purple**.
 * The default theme of the app is gradient.
-* To change the theme of the application, go to `.env` file and change the value of `APPLICATION_THEME` to `purple` or `orange` to apply gradient theme
+* To change the theme of the application, go to `.env` file and change the value of `APPLICATION_THEME` to `gradient` or `purple`
 
 #### Step 4:
 
-* Update mimoto url as https://api.collab.mosip.net [here](https://github.com/mosip/inji/blob/main/.env#L5)
-* Update esignet host as https://esignet.collab.mosip.net [here](https://github.com/mosip/inji/blob/main/.env#L7)
-* To deploy mimoto in local refer [here](https://docs.mosip.io/inji/inji-mobile-wallet/build-and-deployment/local-setup#how-to-run-this-setup)
+* Update mimoto url as `https://api.collab.mosip.net` for `MIMOTO_HOST` [here](https://github.com/inji/inji-wallet/blob/main/.env)
+* Update esignet host as `https://esignet.collab.mosip.net` for `ESIGNET_HOST` [here](https://github.com/inji/inji-wallet/blob/main/.env)
+* To deploy mimoto in local refer [here](https://docs.inji.io/inji-wallet/inji-mobile/build-and-deployment/local-setup#how-to-run-this-setup)
 
 #### Step 5:
 
@@ -247,10 +246,12 @@ sdk.dir = <location-of-the-android-sdk>
 
 #### Step 6:
 
-**Build and run the application on the device:**
+**Build and run the application on a connected device or emulator:**
 
-* Run `npm run android:mosip` to build and install the application on the device.
+* Run `npm run android:mosip` to build and install the application on a connected device or a running emulator.
 * Run `npm run android:mosip --reset-cache` to build and install the application if any change is made in the .env file.
+
+> Note: Inji Wallet uses the Android hardware-backed keystore for secure key storage where available. Emulators (and some devices) don't support hardware-backed keystore — the app still runs and falls back to a software-backed keystore, but shows a one-time in-app warning about it. Use a physical device if you need to validate the hardware-backed keystore path.
 
 ### 3. Troubleshooting
 
@@ -267,7 +268,7 @@ If you encounter the below issue on Windows,
   > Could not read script 'C:\"PATH"\inji\node_modules\expo\scripts\android\autolinking_implementation.gradle' as it does not exist.
 ```
 
-* Run `npm i expo-modules-autolinking@~1.1.0` and rebuild the app
+* Run `npm i expo-modules-autolinking@~1.11.0` and rebuild the app
 * Path for debug apk in Inji directory `android/app/build/outputs/apk/mosip/debug`
 
 ### 4. Setting Up Google API Services and Client ID for Data backup & Restore
@@ -338,7 +339,7 @@ The Internal testing version of the build can be uploaded to `PlayConsole` for t
 
 A Google play console developer account is a must to publish builds in PlayConsole.
 
-1. Set the backend URL and choose a theme (orange | purple) inside the `.env` file.
+1. Set the backend URL and choose a theme (gradient | purple) inside the `.env` file.
 2. Build the Apk or App bundle.
 3. Login to PlayConsole and create a new release inside Internal testers.
 4. Upload the Apk or App bundle to PlayConsole.
@@ -367,9 +368,9 @@ A Google play console developer account is a must to publish builds in PlayConso
 
 ![img.png](../../../.gitbook/assets/internal_testers_select_android.png)
 
-2. To deploy the Android build to PlayConsole, select `Android Custom Build` workflow from github actions.
+2. To deploy the Android build to PlayConsole, select the `Internal Build [Android & IOS]` workflow from github actions, and select `Android` in the **Build for** option.
 
-![img.png](../../../.gitbook/assets/inji_android_github_actions.png)
+![img.png](../../../.gitbook/assets/inji_github_actions_android_ios.jpg)
 
 3. Choose the branch, backend url, theme and describe about build details.
 4. Click the `Run` workflow button.
@@ -388,15 +389,15 @@ The below section describes the steps build the iOS application.
 
 #### Step 1:
 
-Follow the [Steps](./#installation-and-keystore-generation-on-mac) to configure Node & npm, Expo and generate debug keystore
+Follow the [Steps](./#1a-installation-and-keystore-generation-on-mac) to configure Node & npm, Expo and generate debug keystore
 
 #### Step 2:
 
-Configure XCode, refer [here](https://developer.apple.com/xcode/).
+Configure XCode, refer [here](https://developer.apple.com/xcode/)
 
 #### Step 3:
 
-Enable iCloud and create Containers, refer https://developer.apple.com/help/account/manage-identifiers/create-an-icloud-container/
+Enable iCloud and create Containers, refer [here](https://developer.apple.com/help/account/manage-identifiers/create-an-icloud-container/)
 
 ### 2. Build process
 
@@ -425,6 +426,8 @@ Command to run real device
 npm run ios -- --device
 ```
 
+**Note:** When the application is built via an IDE (e.g. XCode), Metro needs to be started manually — the Metro hook is removed when building via XCode. Building via npm commands (`npm run android:mosip` or `npm run ios`) starts Metro automatically.
+
 ### 3. Build for TestFlight
 
 The beta version of the build can be uploaded to `TestFlight` for testing. TestFlight allows the creation of internal and external testing teams who will be notified once a new build is published.
@@ -435,7 +438,7 @@ The beta version of the build can be uploaded to `TestFlight` for testing. TestF
 
 An Apple developer account is a must to publish builds in TestFlight.
 
-1. Set the backend URL and choose a theme (orange | purple) inside the `.env` file.
+1. Set the backend URL and choose a theme (gradient | purple) inside the `.env` file.
 2. Archive the build using `xcode`.
 3. Upload the archive to Testflight.
 
@@ -463,9 +466,9 @@ An Apple developer account must be configured to Inji app to publish builds via 
 
 ![img.png](../../../.gitbook/assets/testflight_testers_group.png)
 
-1. To deploy the iOS build to testflight, select `Inji iOS build` workflow from github actions.
+1. To deploy the iOS build to testflight, select the `Internal Build [Android & IOS]` workflow from github actions, and select `IOS` in the **Build for** option.
 
-![img.png](../../../.gitbook/assets/inji_ios_github_actions.png)
+![img.png](../../../.gitbook/assets/inji_github_actions_android_ios.jpg)
 
 2. Choose the branch, backend URL, theme, testers group from TestFlight to get the build and describe about build details.
 3. Click the `Run` workflow button.
