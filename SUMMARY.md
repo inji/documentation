@@ -115,6 +115,7 @@
         * [Secure Keystore](inji-wallet/inji-mobile/technical-overview/integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/secure-keystore.md)
         * [Face Match](inji-wallet/inji-mobile/technical-overview/integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/face-match.md)
         * [Telemetry](inji-wallet/inji-mobile/technical-overview/integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/telemetry.md)
+        * [Inji VC Renderer](inji-wallet/inji-mobile/technical-overview/integration-guide/building-verifiable-credentials-wallet-with-inji-libraries/inji-vc-renderer.md)
     * [Specifications](inji-wallet/inji-mobile/technical-overview/specifications/README.md)
       * [Face SDK Specifications](inji-wallet/inji-mobile/technical-overview/specifications/face-sdk-specifications.md)
     * [Backend Services](inji-wallet/inji-mobile/technical-overview/backend-services/README.md)
