@@ -1,221 +1,138 @@
 # UI customization
 
-## CSS Themes
+## Themes
 
-Currently, Inji Wallet supports two themes:
+Inji Wallet Mobile currently ships with two theme files:
 
-* default gradient
-* purple
+* `components/ui/themes/DefaultTheme.ts`
+* `components/ui/themes/PurpleTheme.ts`
 
-We can customize the application by adding a new file under `components/ui/themes` and import that file in `components/ui/styleUtils.ts` and assign that to `Theme` variable in it. Default Gradient theme is referred as DefaultTheme.
+The active theme is selected in `components/ui/styleUtils.ts` from the `APPLICATION_THEME` environment variable:
 
+```ts
+import {DefaultTheme} from './themes/DefaultTheme';
+import {PurpleTheme} from './themes/PurpleTheme';
+import {APPLICATION_THEME} from 'react-native-dotenv';
+
+export const Theme =
+  APPLICATION_THEME?.toLowerCase() === 'purple' ? PurpleTheme : DefaultTheme;
 ```
-Example:-
-    components/ui/styleUtils.ts
 
-    import { PurpleTheme } from './PurpleTheme';
-    export const Theme = PurpleTheme;
-```
+To add a new theme:
 
-### App Logo and Background Images
+1. Add a new theme file under `components/ui/themes`.
+2. Keep the exported object shape compatible with `DefaultTheme` and `PurpleTheme`; `components/ui/themes/themes.test.ts` validates required properties.
+3. Import the new theme in `components/ui/styleUtils.ts` and extend the `APPLICATION_THEME` selector.
+4. If the splash screen should change with the theme, update `app.config.ts` as well.
 
-To change app logo on homescreen
+## Logos and Background Images
 
-```
-HomeScreenLogo: require(path of logo you want to use, in string format) in a theme file
+The home header logo is imported by each theme and exposed through the theme object:
 
-Example:-
+```ts
 import HomeScreenLogo from '../../../assets/InjiHomeLogo.svg';
+
 export const DefaultTheme = {
-    HomeScreenLogo: HomeScreenLogo
-    ...
-}
+  HomeScreenLogo,
+  // ...
+};
 ```
 
-Profile logo is part of downloaded verifiable credential. If credential doesn't face/photo attribute, default profile icon is being used.
+`HomeScreenLayout.tsx` renders the header logo through `SvgImage.InjiLogo(Theme.Styles.injiLogo)`, and the logo dimensions/spacing are controlled by `Theme.Styles.injiLogo` and `Theme.Styles.injiHomeLogo`.
 
-To change the profile logo, In `ProfileIcon.tsx`, refer
+The default profile icon is not an image asset. When a credential does not include a face/photo attribute, `components/ProfileIcon.tsx` renders the `person` icon from `react-native-elements` and colors it with `Theme.Colors.ProfileIconColor`:
 
-```
+```tsx
 import {Icon} from 'react-native-elements';
-use `person` as icon from the library
+
+<Icon
+  name="person"
+  color={Theme.Colors.ProfileIconColor}
+  size={props.profileIconSize}
+/>
 ```
 
-Card background is driven by wellknown exposed by issuing authoriy. If background details are not exposed, default background is being used. To change card background on home screen if not provided by issuer:
+VC card logos, background colors, text colors, and claims come from the issuer well-known metadata when the issuer provides them. The wallet fetches the issuer metadata through `shared/openId4VCI/Utils.ts` and uses the matching credential configuration for rendering.
 
-```
-CloseCard: require(path of the image you want to use, in string format)
+If issuer metadata does not provide enough display information, the theme fallback images are used:
 
-Example:-
+```ts
 export const DefaultTheme = {
-    CloseCard: require('../../../assets/Card_Bg1.png'),
-    ...
-}
+  CloseCard: require('../../../assets/images/png/CardBGLandscape.png'),
+  OpenCard: require('../../../assets/images/png/CardBGPortrait.png'),
+  // ...
+};
 ```
 
-To change background on card details screen if not provided by issuer
+## Header and Tab Icons
 
-```
-OpenCard: require(path of the image you want to use, in string format)
+Most app icons are SVG components imported in `components/ui/svg.tsx`. Bottom tab entries are defined in `routes/main.ts`, and the tab renderer in `screens/MainLayout.tsx` resolves each icon through `SvgImage[route.name]`.
 
-Example:-
-export const DefaultTheme = {
-    OpenCard: require('../../../assets/Card_Bg1.png'),
-    ...
-}
-```
+For example, the shipped bottom tabs are:
 
-To change the top header icons:
-
-![](../../../../.gitbook/assets/header_icons.png)
-
-In `HomeScreenLayout.tsx`, refer
-
-```
- var HomeScreenOptions = {
-    headerLeft: () =>
-      isIOS() || !isRTL
-        ? SvgImage.InjiLogo(Theme.Styles.injiLogo)
-        : screenOptions,
-    headerTitle: '',
-    headerRight: () =>
-      isIOS() || !isRTL
-        ? screenOptions
-        : SvgImage.InjiLogo(Theme.Styles.injiLogo),
-  };
-```
-
-### Colours
-
-To change the text, colour and logo for Tabs:
-
-![](../../../../.gitbook/assets/bottom_tabs.png)
-
-In `main.ts`, there are 4 tab screens variables
-
-```
-const home: TabScreen
-const scan: TabScreen
-const history: TabScreen
-const settings: TabScreen
-
-```
-
-`image` can be changed by `icon` attribute, `text` and `styles` can be changed by `options` attribute in `MainLayout.tsx` while rendering `Navigator`
-
-```
-Example:-
-const history: TabScreen = {
-  name: BOTTOM_TAB_ROUTES.history,
-  component: HistoryScreen,
-  icon: 'history',
+```ts
+const home: TabScreen = {
+  name: BOTTOM_TAB_ROUTES.home,
+  component: HomeScreenLayout,
+  icon: 'home',
   options: {
-    headerTitleStyle: Theme.Styles.HistoryHeaderTitleStyle,
-    title: i18n.t('MainLayout:history'),
+    headerTitle: '',
+    headerShown: false,
   },
 };
 ```
 
-Card content text color is driven by wellknown exposed by issuing authoriy. If text color is not exposed, default color is being used. To change default Label text color if not provided by issuer:
+To add or replace a tab:
 
-```
+1. Add or replace the route in `routes/main.ts`.
+2. Add the matching SVG method in `components/ui/svg.tsx`.
+3. Add localized tab labels in the locale JSON files under `locales`.
+4. Adjust tab colors, active backgrounds, labels, and spacing in `Theme.BottomTabBarStyle`, `Theme.Styles.bottomTabIconStyle`, and `Theme.Colors.GradientColorsLight`.
+
+## Colors and Typography
+
+Colors and typography are controlled by each theme object. Commonly customized keys include:
+
+| Area | Theme keys |
+| --- | --- |
+| Bottom tabs | `TabItemText`, `IconBg`, `GradientColorsLight`, `bottomTabIconStyle`, `BottomTabBarStyle` |
+| VC card text fallback | `Details`, `DetailsLabel`, `fieldItemTitle`, `fieldItemValue` |
+| Buttons and gradients | `gradientBtn`, `linearGradientStart`, `linearGradientEnd`, `LinearGradientDirection` |
+| Settings screen | `settingsLabel`, `textLabel`, `textValue`, `AboutInjiScreenStyle` |
+| Add credential flow | `IssuersScreenStyles`, `issuerLogo`, `issuersContainer`, `issuersSearchSubText` |
+| Status and warnings | `WarningIcon`, `warningLogoBgColor`, `StatusInfoModalStyles`, `ToastItemText` |
+
+Example:
+
+```ts
 export const DefaultTheme = {
   Colors: {
-     DetailsLabel: Colors.Gray40,
-    ...
-  }
-}
-```
-
-To change default Label value color if not provided by issuer:
-
-```
-export const DefaultTheme = {
-  Colors: {
-     Details: Colors.Black,
-    ...
-  }
-}
-```
-
-To change the colour of `+` icon colour:
-
-In `HomeScreen.tsx`, refer `DownloadFABIcon` component
-
-```
-const DownloadFABIcon: React.FC = () => {
-    const plusIcon
-....
-}
-```
-
-To change the colours of Label in Settings:
-
-```
-export const DefaultTheme = {
-  Colors: {
-     settingsLabel: Colors.Black,
-     textLabel: Colors.Grey,
-    ...
-  }
-}
-```
-
-To change the background and label colour for version section:
-
-![](../../../../.gitbook/assets/about-version.png)
-
-```
-export const DefaultTheme = {
-    Colors: {
-      aboutVersion: Colors.Gray40,
-      ...
+    DetailsLabel: Colors.Gray40,
+    Details: Colors.Black,
+    settingsLabel: Colors.Black,
+    textLabel: Colors.Grey,
+    // ...
+  },
+  Styles: StyleSheet.create({
+    versionContainer: {
+      backgroundColor: Colors.Grey6,
+      margin: 4,
+      borderRadius: 14,
     },
-    Styles: StyleSheet.create({
-      versionContainer: {
-        backgroundColor: Colors.Grey6,
-        margin: 4,
-        borderRadius: 14,
-    }
-    ...
-  })
-}
+    // ...
+  }),
+};
 ```
 
-To change colour on add new card page:
+## VC Card Customization
 
-```
-export const DefaultTheme = {
-    Styles: StyleSheet.create({
-    issuerHeading: {
-      fontFamily: 'Inter_600SemiBold',
-      fontSize: 14,
-      paddingHorizontal: 3,
-      marginBottom: 2,
-      marginTop: 5,
-    },
-    issuerDescription: {
-      fontSize: 11,
-      lineHeight: 14,
-      color: Colors.ShadeOfGrey,
-      paddingVertical: 5,
-      paddingHorizontal: 3,
-      paddingTop: 1.4,
-    }
-    ...
-  })
-}
-```
+VC card rendering is driven first by the credential issuer metadata exposed in the issuer's OpenID4VCI well-known endpoint. The wallet uses this metadata to select display fields and rendering hints for `ldp_vc`, `mso_mdoc`, `vc+sd-jwt`, and `dc+sd-jwt` credentials.
 
-## VC Card Customization:
+For OpenID4VCI Final 1.0 issuers, the wallet reads `credential_configurations_supported.<credential_configuration_id>.credential_metadata.display` and `credential_metadata.claims`. Legacy issuers that still expose `display`, `claims`, `credential_definition`, or `order` at the top level are handled by fallback parsing.
 
-The VC can be dynamically rendered with all the fields, and if the display properties provided in the[ .well-known](https://injicertify-mosipid.collab.mosip.net/v1/certify/issuance/.well-known/openid-credential-issuer), Inji Wallet downloads the `.well-known` and applies the below properties on the VC template to modify the VC render.
+Issuer display metadata can include name, logo, background color, and text color:
 
-* Text colour
-* Background colour
-* Logo change
-
-```
+```json
 {
   "display": [
     {
@@ -231,3 +148,5 @@ The VC can be dynamically rendered with all the fields, and if the display prope
   ]
 }
 ```
+
+If issuer metadata is missing or cannot be parsed, the wallet falls back to the theme defaults described above.
