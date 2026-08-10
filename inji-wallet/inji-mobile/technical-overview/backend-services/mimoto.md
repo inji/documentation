@@ -13,16 +13,6 @@ Detailed API documentation of Mimoto is available [here](https://mosip.stoplight
 
 The user is currently on the `+` button on the Home screen, which will open `Add new card` screen, where all the issuers are displayed Below issuers list API gives out all the issuers list.
 
-Inji Mimoto Api available organization wide:
-
-{% openapi-operation spec="mimoto-api-1" path="/issuers" method="get" %}
-[OpenAPI mimoto-api-1](https://4401d86825a13bf607936cc3a9f3897a.r2.cloudflarestorage.com/gitbook-x-prod-openapi/raw/07272b04f8ee0d9137d93f94480d7bf033ab1a0f5e0f1324c8812aa96f19bad9.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dce48141f43c0191a2ad043a6888781c%2F20260810%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260810T055806Z&X-Amz-Expires=172800&X-Amz-Signature=c774ace3e4244e9438af9f574a9df5f69853c8b133fbf134adad64058a4e9aa7&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
-{% endopenapi-operation %}
-
-Inji documentation space:&#x20;
-
-
-
 {% openapi src="../../../../.gitbook/assets/mimoto (1).json" path="/issuers" method="get" %}
 [mimoto (1).json](<../../../../.gitbook/assets/mimoto (1).json>)
 {% endopenapi %}
