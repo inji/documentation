@@ -4,10 +4,16 @@ icon: rocket-launch
 
 # Releases
 
+## Version: 1.0.0-alpha.1
+
+* Name: 1.0.0-alpha.1
+* Date: Coming Soon
+* [Release Notes](./#version-1.0.0-alpha.1)
+
 ## Version: 0.17.0
 
 * Name: 0.17.0
-* Date: Coming Soon&#x20;
+* Date: 27th April 2026
 * [Release Notes](./#version-0.17.0)
 
 ## Version: 0.16.0

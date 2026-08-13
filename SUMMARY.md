@@ -211,6 +211,8 @@
   * [API](inji-wallet/inji-web/api.md)
   * [Deploy](readme/setup/deploy.md#deploying-inji-web-wallet)
   * [Releases](inji-wallet/inji-web/inji-web/README.md)
+    * [1.0.0-alpha.1](inji-wallet/inji-web/inji-web/1.0.0-alpha.1/README.md)
+      * [Test Report](inji-wallet/inji-web/inji-web/1.0.0-alpha.1/test-report.md)
     * [Version 0.17.0](inji-wallet/inji-web/inji-web/version-0.17.0/README.md)
       * [Test Report](inji-wallet/inji-web/inji-web/version-0.17.0/test-report.md)
     * [Version 0.16.0](inji-wallet/inji-web/inji-web/version-0.16.0/README.md)
