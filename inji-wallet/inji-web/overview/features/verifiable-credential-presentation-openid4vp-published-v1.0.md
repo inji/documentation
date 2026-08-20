@@ -1,4 +1,4 @@
-# Verifiable Credential Presentation (OpenID4VP) : Published 1.0
+# Verifiable Credential Presentation (OpenID4VP) : Published v1.0
 
 ## OpenID4VP Credential Sharing with DCQL
 
@@ -12,7 +12,7 @@ Inji Web Wallet lets a user share Verifiable Credentials (VCs) already stored in
 * The user reviews and approves what will be shared.
 * The wallet builds the Verifiable Presentation (VP) and returns it to the Verifier.
 
-The broader OpenID4VP ecosystem also defines the **Digital Credentials Query Language (DCQL)** — the JSON-based query language, introduced in the OpenID4VP 1.0 Final specification, that lets a Verifier describe exactly which credentials and claims it needs (format, type, specific claims, and combinations of credentials via credential sets), rather than asking for a whole credential. DCQL affects the wallet side of the exchange too: instead of matching against a looser request, the wallet evaluates a structured query against its stored credentials to determine what satisfies it.
+The broader OpenID4VP ecosystem also defines the **Digital Credentials Query Language (DCQL),** the JSON-based query language introduced in the OpenID4VP 1.0 Final specification, that lets a Verifier describe exactly which credentials and claims it needs (format, type, specific claims, and combinations of credentials via credential sets), rather than asking for a whole credential. DCQL affects the wallet side of the exchange too: instead of matching against a looser request, the wallet evaluates a structured query against its stored credentials to determine what satisfies it.
 
 > **Scope note:** This page documents credential _sharing/presentation_ from Inji Web Wallet only. It does not cover credential issuance (OpenID4VCI), Inji Certify, verifier-side implementation, or the Inji Mobile Wallet.
 

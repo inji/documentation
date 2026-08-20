@@ -68,7 +68,7 @@ A verifier initiates a presentation request using **OpenID for Verifiable Presen
 Inji Web Wallet supports OpenID4VP presentation requests conforming to:
 
 * [**OpenID4VP Draft 23**](https://docs.inji.io/inji-wallet/inji-web/overview/features/verifiable-credential-presentation-openid4vp)
-* [**OpenID4VP 1.0 Final**](verifiable-credential-presentation-openid4vp-published-1.0.md)
+* [**OpenID4VP 1.0 Final**](verifiable-credential-presentation-openid4vp-published-v1.0.md)
 
 **5. Match the Credential**
 
