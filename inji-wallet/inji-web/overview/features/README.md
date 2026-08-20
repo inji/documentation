@@ -1,21 +1,21 @@
 # Features
 
-**Inji Web Wallet** is a browser-based, open-source digital wallet designed for secure **download, verification, storage, and sharing** of Verifiable Credentials (VCs). It supports **OpenID4VCI**, **OpenID4VP**, **IETF** **SD-JWT**, and **W3C VC** standards—no app install required.
+**Inji Web Wallet** is a browser-based, open-source digital wallet designed for secure **download, verification, storage, and sharing** of Verifiable Credentials (VCs). It supports **OpenID4VCI**, **OpenID4VP**, **IETF** **SD-JWT**, and **W3C VC** standards; no app install required.
 
 ### **Multiple Credential Format Support**
 
 Inji Wallet is designed for interoperability and flexibility by supporting a wide range of credential formats:
 
-* **W3C Verifiable Credentials (JSON-LD VCs) Data Model 1.1**
+* **W3C Verifiable Credentials (JSON-LD VCs) Data Model 1.1 & 2.0**
   * Standards-based credential format is widely adopted across ecosystems.
   * Suitable for general-purpose credential issuance and verification.
-  * Supports OpenID4VP-based live presentation of JSON-LD VCs to any compliant verifier
+  * Supports OpenID4VP-based live presentation of JSON-LD & IETF SD-JWT VCs to any compliant verifier
 * **ISO 18013-5 (mDL)**
   * Mobile Driving License and Mobile Document specification.
   * Supports use cases like identity verification in transport, law enforcement, and service access.
 * **IETF SD-JWT**
   * **IETF** **SD-JWT Verifiable Credentials**: Enables holders to download and share credentials in IETF **SD-JWT format**. This allows users to share only the necessary attributes while keeping other data private, ensuring **privacy-preserving credential sharing**.
-  * Allows users to share only the required claims with verifiers via the OpenIDVP flow, where these selectively disclosable claims can be shared as per the user's need. _**(Coming Soon in the upcoming release)**_
+  * Allows users to share only the required claims with verifiers via the OpenIDVP flow, where these selectively disclosable claims can be shared as per the user's needs.
 
 This multi-format support allows Inji Wallet to work seamlessly across different ecosystems, ensuring **compatibility, security, and user privacy**.
 
@@ -34,12 +34,23 @@ This multi-format support allows Inji Wallet to work seamlessly across different
 
 ### Credential Download Options
 
-* **OpenID for VC Issuance**: Interoperable with trusted issuers
-* **Example Issuers**:
+* OpenID for VC Issuance: Interoperable with trusted issuers
+* Supports Draft 13 & v1.0 of Specification
+* Example Issuers:
   * Republic of Veridonia National ID Department - National ID
   * StayProtected Insurance - Insurance Credentials
   * Republic of Veridonia Tax Department - Tax ID
   * AgroVeritas Property & Land Registry - Land Record
+
+### **Credential Sharing Options**
+
+* OpenID for VP Presentation: Interoperable with trusted verifiers
+* Supports Draft 23 & v1.0 of Specification
+* Example Verifiers:
+  * Veridonia Age-Gate Services — Age Verification
+  * StayProtected Insurance — Claims Verification
+  * Republic of Veridonia Tax Department — Tax ID Verification
+  * AgroVeritas Property & Land Registry — Ownership Verification
 
 ### **Claim 169 QR Code Support**
 
@@ -73,12 +84,12 @@ This multi-format support allows Inji Wallet to work seamlessly across different
 
 ## Credential Sharing Options
 
-| Method                     | Description                                                                                                                                                                                                                                                               | Connectivity |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| **Scan PDF**               | Scan PDF on verifier portal (Inji Verify)                                                                                                                                                                                                                                 | Online       |
-| **Print or Screenshot**    | For physical presentation or screen scanning                                                                                                                                                                                                                              | Offline      |
-| **Upload PDF**             | Used in verifier workflows like Inji Verify                                                                                                                                                                                                                               | Online       |
-| **OpenID4VP Presentation** | <ul><li>Users can present <strong>JSON-LD VCs</strong> through an <strong>OpenID4VP-compliant</strong> flow.</li><li>Enables secure, real-time credential sharing with user consent.</li><li>Fully interoperable with Inji Verify and other compliant verifiers</li></ul> | Online       |
+| Method                     | Description                                                                                                                                                                                                                                                                                                   | Connectivity |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| **Scan PDF**               | Scan PDF on verifier portal (Inji Verify)                                                                                                                                                                                                                                                                     | Online       |
+| **Print or Screenshot**    | For physical presentation or screen scanning                                                                                                                                                                                                                                                                  | Offline      |
+| **Upload PDF**             | Used in verifier workflows like Inji Verify                                                                                                                                                                                                                                                                   | Online       |
+| **OpenID4VP Presentation** | <ul><li>Users can present <strong>JSON-LD VCs</strong> &#x26; I<strong>ETF SD-JWT</strong> through an <strong>OpenID4VP-compliant</strong> flow.</li><li>Enables secure, real-time credential sharing with user consent.</li><li>Fully interoperable with Inji Verify and other compliant verifiers</li></ul> | Online       |
 
 ## User Experience Highlights
 
@@ -86,45 +97,11 @@ This multi-format support allows Inji Wallet to work seamlessly across different
 * Clear distinction between **wallet-stored** and **locally stored** credentials
 * Guided flows and contextual help for all users
 
-| Format                 | Signature Algorithm      | Web Wallet (Login) | Guest Mode (Without Login) | Notes                                               |
-| ---------------------- | ------------------------ | ------------------ | -------------------------- | --------------------------------------------------- |
-| W3C JSON-LD            | ED25519 2018             | Supported          | Supported                  | Compact, fast signatures with high security         |
-| W3C JSON-LD            | ED25519 2020             | Supported          | Supported                  | Enhanced key format with better structure           |
-| W3C JSON-LD            | RS256 (RSA with SHA-256) | Supported          | Supported                  | Backward compatibility; legacy systems              |
-| W3C JSON-LD            | ECC K1                   | Supported          | Supported                  | Common in OpenID ecosystem                          |
-| W3C JSON-LD            | ECC R1                   | Planned            | Planned                    | Strong elliptic curve variant                       |
-| W3C Data Integrity 2.0 | RS256                    | Planned            | Planned                    | JWS with canonicalized digest                       |
-| W3C Data Integrity 2.0 | EdDSA (Ed25519)          | Planned            | Planned                    | Based on JWS EdDSA                                  |
-| W3C Data Integrity 2.0 | ES256K                   | Planned            | Planned                    | JWS-based signing with secp256k1                    |
-| W3C Data Integrity 2.0 | ES256                    | Planned            | Planned                    | Strong elliptic curve variant                       |
-| JWT VC                 | RS256                    | Planned            | Planned                    | Planned under VC-JWT compliance                     |
-| JWT VC                 | ES256K                   | Planned            | Planned                    | Awaiting certification                              |
-| JWT VC                 | ES256                    | Planned            | Planned                    | Under consideration                                 |
-| JWT VC                 | x509 (PKI v3)            | Planned            | Planned                    | Public key in JWT header; x509 cert chain planned   |
-| SD-JWT VC              | RS256                    | Supported          | Supported                  | SD-JWT verification being integrated                |
-| SD-JWT VC              | ES256K                   | Supported          | Supported                  | Selective Disclosure compatible                     |
-| SD-JWT VC              | ES256                    | Planned            | Supported                  | Strong elliptic curve variant                       |
-| SD-JWT VC              | EdDSA (Ed25519)          | Supported          | Supported                  | Not yet supported in Certify (issuer side)          |
-| SD-JWT VC              | x509 (PKI v3)            | In Progress        | In Progress                | Used for advanced SD-JWT scenarios                  |
-| mDoc / mDL             | RS256                    | Planned            | Planned                    | Used in mobile document ecosystems                  |
-| mDoc / mDL             | EdDSA(Ed25519)           | Planned            | Planned                    | Widely used in mobile identity contexts             |
-| mDoc / mDL             | ES256K                   | Planned            | Planned                    | Used in various driver license implementations      |
-| mDoc / mDL             | ES256                    | Planned            | Planned                    | Emerging support for high-security mobile documents |
-| mDoc / mDL             | x509 (PKI v3)            | Planned            | Planned                    | x509 certificate chain                              |
-
-***
+<table data-search="false"><thead><tr><th>Format</th><th>Signature Algorithm</th><th>Web Wallet (Login)</th><th>Guest Mode (Without Login)</th><th>Notes</th></tr></thead><tbody><tr><td>W3C JSON-LD</td><td>ED25519 2018</td><td>Supported</td><td>Supported</td><td>Compact, fast signatures with high security</td></tr><tr><td>W3C JSON-LD</td><td>ED25519 2020</td><td>Supported</td><td>Supported</td><td>Enhanced key format with better structure</td></tr><tr><td>W3C JSON-LD</td><td>RS256 (RSA with SHA-256)</td><td>Supported</td><td>Supported</td><td>Backward compatibility; legacy systems</td></tr><tr><td>W3C JSON-LD</td><td>ECC K1</td><td>Supported</td><td>Supported</td><td>Common in OpenID ecosystem</td></tr><tr><td>W3C JSON-LD</td><td>ECC R1</td><td>Planned</td><td>Planned</td><td>Strong elliptic curve variant</td></tr><tr><td>W3C Data Integrity 2.0</td><td>RS256</td><td>Planned</td><td>Planned</td><td>JWS with canonicalized digest</td></tr><tr><td>W3C Data Integrity 2.0</td><td>EdDSA (Ed25519)</td><td>Planned</td><td>Planned</td><td>Based on JWS EdDSA</td></tr><tr><td>W3C Data Integrity 2.0</td><td>ES256K</td><td>Planned</td><td>Planned</td><td>JWS-based signing with secp256k1</td></tr><tr><td>W3C Data Integrity 2.0</td><td>ES256</td><td>Planned</td><td>Planned</td><td>Strong elliptic curve variant</td></tr><tr><td>JWT VC</td><td>RS256</td><td>Planned</td><td>Planned</td><td>Planned under VC-JWT compliance</td></tr><tr><td>JWT VC</td><td>ES256K</td><td>Planned</td><td>Planned</td><td>Awaiting certification</td></tr><tr><td>JWT VC</td><td>ES256</td><td>Planned</td><td>Planned</td><td>Under consideration</td></tr><tr><td>JWT VC</td><td>x509 (PKI v3)</td><td>Planned</td><td>Planned</td><td>Public key in JWT header; x509 cert chain planned</td></tr><tr><td>SD-JWT VC</td><td>RS256</td><td>Supported</td><td>Supported</td><td>SD-JWT verification being integrated</td></tr><tr><td>SD-JWT VC</td><td>ES256K</td><td>Supported</td><td>Supported</td><td>Selective Disclosure compatible</td></tr><tr><td>SD-JWT VC</td><td>ES256</td><td>Planned</td><td>Supported</td><td>Strong elliptic curve variant</td></tr><tr><td>SD-JWT VC</td><td>EdDSA (Ed25519)</td><td>Supported</td><td>Supported</td><td>Not yet supported in Certify (issuer side)</td></tr><tr><td>SD-JWT VC</td><td>x509 (PKI v3)</td><td>In Progress</td><td>In Progress</td><td>Used for advanced SD-JWT scenarios</td></tr><tr><td>mDoc / mDL</td><td>RS256</td><td>Planned</td><td>Planned</td><td>Used in mobile document ecosystems</td></tr><tr><td>mDoc / mDL</td><td>EdDSA(Ed25519)</td><td>Planned</td><td>Planned</td><td>Widely used in mobile identity contexts</td></tr><tr><td>mDoc / mDL</td><td>ES256K</td><td>Planned</td><td>Planned</td><td>Used in various driver license implementations</td></tr><tr><td>mDoc / mDL</td><td>ES256</td><td>Planned</td><td>Planned</td><td>Emerging support for high-security mobile documents</td></tr><tr><td>mDoc / mDL</td><td>x509 (PKI v3)</td><td>Planned</td><td>Planned</td><td>x509 certificate chain</td></tr></tbody></table>
 
 {% include "../../../../docs/.gitbook/includes/useful-links.md" %}
-
-## Features in the Pipeline
-
-* Selective Disclosure using SD-JWT via OpenIDVP Flow
-* Presentation During Issuance
-* Revocation Status
-* Support of mDoc/mDL VC format
 
 ## Read More
 
 * [Inji Web Wallet User Guide](https://docs.inji.io/inji-wallet/inji-web/functional-overview/end-user-guide)
 * [Feature Workflows](https://docs.inji.io/inji-wallet/inji-web/functional-overview/workflow)
-* _Feature Demo Video (Coming Soon)_
