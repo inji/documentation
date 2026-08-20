@@ -16,22 +16,25 @@ This is an **alpha release** intended primarily for developer and interoperabili
 
 ### Key Highlights
 
-#### 1. OpenID4VCI 1.0 Support
+#### 1. Verifiable Credential Issuance(OpenID4VCI) : Published v1.0 Support
 
 * Added support for the **OpenID4VCI 1.0 Well-Known format** required for discovering issuer metadata.
 * Added VC download support aligned with the **OpenID4VCI 1.0** implementation.
 * Refactored the credential download flow to support the updated VCI 1.0 architecture.
 * Completed the OpenID4VCI 1.0 specification upgrade analysis and implementation groundwork.
 
-#### 2. OpenID4VP 1.0 and DCQL Support
+#### 2. Verifiable Credential Presentation (OpenID4VP) : Published v1.0 Support
 
 * Added backend support in **Mimoto** for **DCQL-based OpenID4VP 1.0 flows**.
 * Added DCQL support as part of the **Data Share** flow in Inji Web Wallet.
 * Added support for processing credential requests containing **credential sets**.
 * Improved credential selection logic for mandatory and optional credentials requested through DCQL.
+
+#### 3. IETF SD-JWT Selective Disclosure Support
+
 * Added support for submitting credentials to the verifier with **SD-JWT claim selection** and VP token signing support.
 
-#### 3. Technical Enhancements
+#### 4. Technical Enhancements
 
 * Fixed the Web Wallet flow where users were not automatically redirected back to **Inji Verify** when no matching credential was available.
 * Improved the handling of credential-selection and presentation flows between Inji Web Wallet and Inji Verify.
@@ -71,22 +74,13 @@ Below is the list of key known issues specific to this release. For all the know
 
 Below is the complete list of bug fixes included in the [**1.0.0-alpha.1** ](https://github.com/inji/inji-web/issues?q=is%3Aissue%20state%3Aclosed%20label%3Abug%20milestone%3A1.0.0-alpha.1%20project%3Ainji%2F6)release.
 
-| GitHub Issue                                        | Description                                                                                                                                       |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [#558](https://github.com/inji/inji-web/issues/558) | Fixed the issue where the user was not redirected back to Inji Verify when no matching credential was found during the Web Wallet OpenID4VP flow. |
-| [#623](https://github.com/inji/inji-web/issues/623) | Fixed the language-selection issue where users had to double-click to select a language.                                                          |
-| [#682](https://github.com/inji/inji-web/issues/682) | Fixed the issue where clicking **Continue** with an available credential redirected the user to the Issuers page.                                 |
-| [#620](https://github.com/inji/inji-web/issues/620) | Fixed the default **“U” user** being displayed on the homepage when the user was not logged in.                                                   |
-| [#656](https://github.com/inji/inji-web/issues/656) | Fixed credential download failures for Mock and Land Registry issuers in the QA environment.                                                      |
-| [#658](https://github.com/inji/inji-web/issues/658) | Fixed SVG Farmer VC download failure from the QA Inji environment.                                                                                |
-| [#644](https://github.com/inji/inji-web/issues/644) | Fixed credential types not being displayed when Mimoto and Mock Services were running locally.                                                    |
-| [#661](https://github.com/inji/inji-web/issues/661) | Fixed Farmer VC download failure after updating the template and context from V2 to V1 on the development integration environment.                |
+<table data-search="false"><thead><tr><th width="229.23828125">GitHub Issue</th><th>Description</th></tr></thead><tbody><tr><td><a href="https://github.com/inji/inji-web/issues/558">#558</a></td><td>Fixed the issue where the user was not redirected back to Inji Verify when no matching credential was found during the Web Wallet OpenID4VP flow.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/623">#623</a></td><td>Fixed the language-selection issue where users had to double-click to select a language.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/682">#682</a></td><td>Fixed the issue where clicking <strong>Continue</strong> with an available credential redirected the user to the Issuers page.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/620">#620</a></td><td>Fixed the default <strong>“U” user</strong> being displayed on the homepage when the user was not logged in.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/656">#656</a></td><td>Fixed credential download failures for Mock and Land Registry issuers in the QA environment.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/658">#658</a></td><td>Fixed SVG Farmer VC download failure from the QA Inji environment.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/644">#644</a></td><td>Fixed credential types not being displayed when Mimoto and Mock Services were running locally.</td></tr><tr><td><a href="https://github.com/inji/inji-web/issues/661">#661</a></td><td>Fixed Farmer VC download failure after updating the template and context from V2 to V1 on the development integration environment.</td></tr></tbody></table>
 
 ### Release Documentation
 
 * [IETF SD-JWT Support & Selective Disclosure](../../overview/features/ietf-sd-jwt-vc-and-selective-disclosure.md)
-* Verifiable Presentations (OpenIDVP) Support 1.0
-* Verifiable Credential Issuance (OpenIDVCI) Support 1.0
+* [Verifiable Credential Issuance(OpenID4VCI) : Published v1.0](../../overview/features/verifiable-credential-issuance-openid4vci-published-v1.0.md)
+* [Verifiable Credential Presentation (OpenID4VP) : Published v1.0](../../overview/features/verifiable-credential-presentation-openid4vp-published-v1.0.md)
 * [QA Report](https://app.gitbook.com/o/-M1FyzBr-VmticWYm8QI/s/aY8BQ4hdzhSchZV814Ev/~/edit/~/changes/1331/inji-wallet/inji-web/inji-web/version-1.0.0-alpha.1/test-report)
 
 ### Additional Resources
