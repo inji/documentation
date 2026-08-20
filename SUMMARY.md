@@ -184,6 +184,7 @@
       * [Verifiable Credential Issuance(OpenID4VCI) : Published v1.0](inji-wallet/inji-web/overview/features/verifiable-credential-issuance-openid4vci-published-v1.0.md)
       * [Verifiable Credential Presentation (OpenID4VP) : Published v1.0](inji-wallet/inji-web/overview/features/verifiable-credential-presentation-openid4vp-published-v1.0.md)
       * [IETF SD-JWT VC and Selective Disclosure](inji-wallet/inji-web/overview/features/ietf-sd-jwt-vc-and-selective-disclosure.md)
+      * [Issuer Configuration and Onboarding (V2 API)](inji-wallet/inji-web/overview/features/issuer-configuration-and-onboarding-v2-api.md)
       * [Verifiable Credential Presentation (OpenID4VP) : Draft 23](inji-wallet/inji-web/overview/features/verifiable-credential-presentation-openid4vp.md)
       * [Claim 169 QR Code Support](inji-wallet/inji-web/overview/features/claim-169-qr-code-support.md)
       * [SVG based Credential Rendering](inji-wallet/inji-web/overview/features/svg-based-credential-rendering.md)
