@@ -181,7 +181,7 @@
 * [Inji Web](inji-wallet/inji-web/README.md)
   * [Overview](inji-wallet/inji-web/overview/README.md)
     * [Features](inji-wallet/inji-web/overview/features/README.md)
-      * [Verifiable Credential Issuance(OpenID4VCI) : Published v1.0](inji-wallet/inji-web/overview/features/verifiable-credential-issuance-openid4vci-published-v1.0.md)
+      * [Verifiable Credential Issuance (OpenID4VCI) : Published v1.0](inji-wallet/inji-web/overview/features/verifiable-credential-issuance-openid4vci-published-v1.0.md)
       * [Verifiable Credential Presentation (OpenID4VP) : Published v1.0](inji-wallet/inji-web/overview/features/verifiable-credential-presentation-openid4vp-published-v1.0.md)
       * [IETF SD-JWT VC and Selective Disclosure](inji-wallet/inji-web/overview/features/ietf-sd-jwt-vc-and-selective-disclosure.md)
       * [Issuer Configuration and Onboarding (V2 API)](inji-wallet/inji-web/overview/features/issuer-configuration-and-onboarding-v2-api.md)

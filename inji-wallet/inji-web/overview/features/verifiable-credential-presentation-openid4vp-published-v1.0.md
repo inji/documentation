@@ -1,8 +1,6 @@
 # Verifiable Credential Presentation (OpenID4VP) : Published v1.0
 
-## OpenID4VP Credential Sharing with DCQL
-
-#### Overview
+## Overview
 
 Inji Web Wallet lets a user share Verifiable Credentials (VCs) already stored in their wallet with an online Verifier using **OpenID for Verifiable Presentations (OpenID4VP)**. In this flow:
 
