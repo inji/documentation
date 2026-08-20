@@ -1,7 +1,5 @@
 # Test Report
 
-<mark style="color:red;">**Coming Soon !**</mark>
-
 ## Introduction <a href="#toc250937750" id="toc250937750"></a>
 
 The scope of testing is to verify fitment to the specification from the perspective of Functionality, Configurability, and Customizability. Verification is performed not only from the end-user perspective but also from the System Integrator (SI) point of view. Hence, the Configurability and Extensibility of the software are also assessed.
@@ -142,8 +140,4 @@ This includes additional reference information for the report. It contains a his
 It outlines the strategy used to ensure a comprehensive evaluation.
 
 <table><thead><tr><th>Version</th><th>Author</th><th>Date</th><th valign="top">Review</th><th valign="top">Affected Sections</th></tr></thead><tbody><tr><td>V2.0</td><td>Nitin</td><td>04/08/2026</td><td valign="top">Chaitanya Kesiraju</td><td valign="top">Updated for release 1.0.0-alpha.1</td></tr></tbody></table>
-
-\
-\
-<br>
 
