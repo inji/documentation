@@ -2,9 +2,9 @@
 
 **Release Name**: Inji Verify v1.0.0-alpha.1
 
-**Support**: Developer Release
+**Support**: Alpha Release
 
-**Release Date**: 4th August, 2026&#x20;
+**Release Date**: 4th August, 2026
 
 {% hint style="success" %}
 **Upgrade Notes**: Refer to '[Migrating from PEX to DCQL](../../technical-overview/integration-guides/transition-from-pex-to-dcql.md)' guide to upgrade to DCQL and also refer to '[Removals & Replacements](./#removals--replacements)' in this release.
