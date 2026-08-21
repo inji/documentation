@@ -8,30 +8,30 @@ icon: rocket-launch
 
 * Name: 1.0.0-alpha.1
 * Date: 13th August 2026
-* Release Notes
+* [Release Notes](../../inji-mobile/versions/version-1.0.0-alpha.1/)
 
 ## Version: 0.17.0
 
 * Name: 0.17.0
 * Date: 27th April 2026
-* Release Notes
+* [Release Notes](version-0.17.0/)
 
 ## Version: 0.16.0
 
 * Name: 0.16.0
 * Date: 13th March 2026
-* Release Notes
+* [Release Notes](./#version-0.16.0)
 
 ## Version: 0.15.0
 
 * Name: 0.15.0
 * Date: 1st December 2025
-* Release Notes
+* [Release Notes](version-0.15.0/)
 
 ## Version: 0.14.1
 
 * Name: 0.14.1
-* Date: Coming Soon!
+* Date: 25th Sept, 2025
 * [Release Notes](version-0.14.1.md)
 
 ## Version: 0.14.0
