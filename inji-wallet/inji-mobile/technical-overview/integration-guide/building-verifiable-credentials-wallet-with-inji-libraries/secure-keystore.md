@@ -1,21 +1,19 @@
-# Secure Keystore
+# Secure Keystore Library
 
 Secure Keystore is a cross-platform cryptographic key management library for **Android** and **iOS**, supporting secure key generation, encryption/decryption, HMAC, and digital signatures using native platform security features (Android Keystore and iOS Keychain/Secure Enclave).
 
-## Platforms Supported
+### Platforms Supported
 
 * Android 6.0+ (Hardware-backed keystore)
 * iOS 13.0+ (Secure Enclave + Keychain)
 
-***
-
-## Artifacts
+### Artifacts
 
 * Maven Snapshots are available [here](https://central.sonatype.com/artifact/io.mosip/secure-keystore)
 
-## Installation
+### Installation
 
-### iOS (Swift)
+#### iOS (Swift)
 
 Using Swift Package Manager:
 
@@ -23,7 +21,7 @@ Using Swift Package Manager:
 2. Go to `File > Swift Packages > Add Package Dependency`
 3. Use the URL: https://github.com/mosip/secure-keystore-ios-swift.git
 
-### Android (Kotlin)
+#### Android (Kotlin)
 
 Add the following in your `settings.gradle.kts`:
 

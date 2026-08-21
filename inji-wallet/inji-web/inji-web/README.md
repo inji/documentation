@@ -8,25 +8,25 @@ icon: rocket-launch
 
 * Name: 1.0.0-alpha.1
 * Date: 13th August 2026
-* [Release Notes](./#version-1.0.0-alpha.1)
+* Release Notes
 
 ## Version: 0.17.0
 
 * Name: 0.17.0
 * Date: 27th April 2026
-* [Release Notes](./#version-0.17.0)
+* Release Notes
 
 ## Version: 0.16.0
 
 * Name: 0.16.0
 * Date: 13th March 2026
-* [Release Notes](./#version-0.16.0)
+* Release Notes
 
 ## Version: 0.15.0
 
 * Name: 0.15.0
 * Date: 1st December 2025
-* [Release Notes](./#version-0.15.0)
+* Release Notes
 
 ## Version: 0.14.1
 

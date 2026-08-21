@@ -4,6 +4,12 @@ icon: rocket-launch
 
 # Releases
 
+## Version: 1.0.0-alpha.1
+
+* Name: 1.0.0-alpha.1
+* Date: 18th August 2026
+* [Release Notes](../../inji-web/inji-web/#version-1.0.0-alpha.1)
+
 ## Version: 0.22.0
 
 * Name: Inji Mobile Wallet 0.22.0
@@ -141,3 +147,4 @@ icon: rocket-launch
 
 * Name: Inji Mobile Wallet 0.8.0 (Alpha)
 * Date: 20th October, 2022
+* Release Notes

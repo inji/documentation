@@ -1,15 +1,15 @@
-# VCI-Client
+# OpenID4VCI Library (VCI Client)
 
-## VCI-Client
+## Verifiable Credentials Issuance (VCI Client)
 
-vci-client library enables to carry out the credential request from the consumer application (mobile wallet or web) and download the VC.
+VCI Client library enables carrying out the credential request from the consumer application (mobile wallet or web) and downloading the VC.
 
 ## Features:
 
 * Request credentials from OID4VCI-compliant credential issuers
 * Supports both the Verifiable Credential download flows defined in the OID4VCI specification:
   * Issuer Initiated Flow (Credential Offer Flow).
-  * Wallet Initiated Flow (Trusted Issuer Flow).
+  * Wallet-initiated flow (Trusted Issuer Flow).
 * Authorization server discovery for both download flows
 * PKCE-compliant OAuth 2.0 Authorization Code flow (RFC 7636)
   * PKCE session is managed internally by the library
@@ -24,7 +24,7 @@ vci-client library enables to carry out the credential request from the consumer
 
 * Kotlin and Swift artifacts are available to integrate with the native mobile applications.
 
-Below sections details on the steps for integrating the Kotlin and Swift packages into the app.
+The section details the steps for integrating the Kotlin and Swift packages into the app.
 
 ## Kotlin package for vci-client:
 
@@ -32,7 +32,7 @@ Below sections details on the steps for integrating the Kotlin and Swift package
 
 * inji-vci-client repo is [here](https://github.com/inji/inji-vci-client)
 
-## Supported platforms
+### Supported platforms
 
 * Android (via aar)
 * JVM (via jar)
@@ -74,6 +74,6 @@ The library provides the following APIs for credential issuance:
 
 ### VCI-Client and Inji Wallet integration:
 
-The below diagram shows how Inji Wallet utilises vci-client library.
+The diagram below shows how Inji Wallet utilises the vci-client library.
 
 <figure><img src="../../../../../.gitbook/assets/inji_mobile_wallet_integration_guides_vci-client-inji-interaction.png" alt=""><figcaption></figcaption></figure>
