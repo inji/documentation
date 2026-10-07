@@ -1142,7 +1142,7 @@ Inji Certify is deployed as **containerized microservices** in your Kubernetes c
 
 #### Deployment Architecture for Inji Certify
 
-<figure><img src="../../.gitbook/assets/certify-deployment-diagram-final.drawio.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/inji-certify-deployment-diagram.png" alt=""><figcaption></figcaption></figure>
 
 **Where Will it Run?**
 
@@ -1502,7 +1502,7 @@ Inji Web UI and dataShare are deployed as **containerized microservices** in you
 
 #### Deployment Architecture for Inji Web Wallet
 
-<figure><img src="../../.gitbook/assets/inji-wallet-web-deployment-final.drawio.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/inji-wallet-web-deployment-diagram.png" alt=""><figcaption></figcaption></figure>
 
 **Where Will It Run?**
 
@@ -1670,7 +1670,7 @@ Inji Verify is deployed as **containerized microservices** in your Kubernetes cl
 
 #### Deployment Architecture for Inji Verify
 
-<figure><img src="../../.gitbook/assets/verify-deployment-diagram-final.drawio.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/inji-verify-deployment-diagram.png" alt=""><figcaption></figcaption></figure>
 
 **Where Will It Run??**
 
