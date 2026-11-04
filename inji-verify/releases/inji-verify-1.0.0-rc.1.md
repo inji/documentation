@@ -41,7 +41,7 @@ The following table outlines the tested and certified compatibility of Inji Veri
 | Inji Wallet         | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases) |
 | Inji Web            | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases) |
 | Pixel-Pass library  | 0.8.0                                                            |
-| vc-verifier library | _1.9.0_                                                          |
+| vc-verifier library | _1.10.0_                                                         |
 
 ### User Stories
 
@@ -86,4 +86,4 @@ Below is a list of some key known issues. For a detailed overview and the comple
 * Integration Guide
 * API Documentation
 * Collab Guide
-* QA Report
+* [QA Report](https://github.com/inji/test-management/tree/master/inji-verify/1.0.0-rc.1)
