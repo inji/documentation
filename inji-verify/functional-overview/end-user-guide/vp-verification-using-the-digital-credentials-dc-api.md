@@ -1,7 +1,5 @@
 # VP Verification using the Digital Credentials (DC) API
 
-### **Inji Verify v1.0.0-rc.1**
-
 ### VP Verification using the Digital Credentials (DC) API
 
 The Digital Credentials API (DC API) lets Inji Verify request credentials directly through the browser, instead of sending the wallet a QR code or a deep link. The browser itself (Chrome) acts as the broker: it discovers the wallets available on the device, shows the consent screen, and returns the Verifiable Presentation to Inji Verify.
@@ -29,8 +27,9 @@ Inji Verify supports DC API through following Use-cases:
   * 4 - View Verification Results.
 * Click **‘Request Verifiable Credentials’** to begin.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image1.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image1.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 2: Select Credential Types
 
@@ -43,8 +42,9 @@ _Mobile View_
 * Click **‘Open Wallet’** to continue with the DC API flow.
 * If you do not wish to proceed, click **Go Back** to return to the ‘VP Verification’ tab.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image2.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image2.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 3: Grant Browser Permission to Access the Digital Wallet
 
@@ -52,8 +52,9 @@ _Mobile View_
   * Click **Continue** to allow the browser to query the wallets on your device.
   * Clicking **Cancel** aborts the request and returns you to the ‘VP Verification’ screen.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image3.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image3.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 4: Review the Credential in the Browser ‘Share info’ Sheet
 
@@ -65,11 +66,13 @@ _Mobile View_
       * **Switch device** - Hand the request over to a wallet on another device (see Flow C).
 * Click **‘Agree and continue’**.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image4.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View - matching credential (Erika’s PID, ARF 1.8)_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image4.png" alt="" width="57"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image5.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View - a second matching credential (Lee’s PID) with View details_
+\_Mobile View - matching credential (Erika’s PID, ARF 1.8)\_
+
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image5.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View - a second matching credential (Lee’s PID) with View details\_
 
 #### Step 5: Authenticate and Consent in the Wallet
 
@@ -78,16 +81,18 @@ _Mobile View - a second matching credential (Lee’s PID) with View details_
   * The wallet may show a caution banner such as **“The website requesting this data is unknown. Make sure you are comfortable sharing this data”** when the verifier is not on a trusted verifier list.
 * Authenticate if prompted, then click **Share** to consent. Click **Cancel** to abort.
 
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image6.png" alt="" width="57"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image6.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+\_Mobile View\_
 
 #### Step 6: Presentation Returned to Inji Verify
 
 * The wallet shows the confirmation **“The info was shared”** and the browser automatically returns to the Inji Verify tab.
 * Inji Verify receives the `vp_token` through the browser, validates it, and moves the stepper to step 4 — **View Verification Results**.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image7.png" alt="" width="500"><figcaption></figcaption></figure>_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image7.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 7: View Verification Results
 
@@ -100,8 +105,9 @@ _Mobile View_
 * Credential status may be **Valid**, **Valid but Expired**, **Invalid**, or **Revoked**.
 * Click **‘Request Verifiable Credentials’** to start a fresh verification.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image8.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image8.png" alt="" width="57"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 ### Cross Device Flow from Desktop
 
@@ -113,16 +119,18 @@ Use this flow when Inji Verify is open on a desktop browser and the credential i
 * Click **‘Request Verifiable Credentials’**; the **‘Verifiable Credential Selection Panel’** appears.
 * Select the required credentials (for example, **EU Personal ID (SD-JWT)**, **MOSIP ID**) and click **‘Open Wallet’**.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image9.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image9.png" alt="" width="250"><figcaption></figcaption></figure>
+
+\_Desktop View\_
 
 #### Step 2: Grant Browser Permission
 
 * The browser shows **“Do you trust this site with your data?”** — _“…wants to use personal info from your digital wallet.”_
 * Click **Continue**.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image10.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image10.png" alt="" width="250"><figcaption></figcaption></figure>
+
+\_Desktop View\_
 
 #### Step 3: Scan the Browser-Generated QR Code
 
@@ -130,27 +138,31 @@ _Desktop View_
 * A QR code is rendered **by the browser itself** (not by the Inji Verify page). Inji Verify continues to show its loading indicator in the background while the exchange is in progress.
 * Scan this QR code using the mobile device that holds the credential, Click **Cancel** at any time to abandon the request.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image11.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image11.png" alt="" width="250"><figcaption></figcaption></figure>
+
+\_Desktop View\_
 
 #### Step 4: Complete the Exchange on the Mobile Device
 
 * Once the QR code is scanned, the desktop dialog changes to **“Follow the steps on your other device”** with a device-pairing animation, indicating that the secure cross-device channel has been established.
 * On the mobile device, select the credential, review the claims to be shared, authenticate, and give consent in the wallet (same wallet screens as in Flow 1 i.e. 'Same Device Flow (Mobile)' - Step 5).
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image12.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image12.png" alt="" width="250"><figcaption></figcaption></figure>
+
+\_Desktop View\_
 
 #### Step 5: View Verification Results
 
 * On successful sharing, the browser dialog closes and Inji Verify advances to next step — **View Verification Results** — and renders the verification outcome for each credential shared from the wallet.
 * Each credential is shown with its status (**Valid** / **Valid but Expired** / **Invalid** / **Revoked**), its disclosed claims, and options to **Download the JSON** or **Expand** the view.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image13.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image13.png" alt="" width="125"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image14.png" alt="" width="500"><figcaption></figcaption></figure>
-_Desktop View — scrolled to the disclosed claims and selective-disclosure note_
+\_Desktop View\_
+
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image14.png" alt="" width="125"><figcaption></figcaption></figure>
+
+\_Desktop View — scrolled to the disclosed claims and selective-disclosure note\_
 
 > **Troubleshooting Note:** During this flow the portal calls `vp-session-request`, the DC API (`dc-api`), and `vp-session-results` in sequence. These calls are visible in the browser’s Network tab and are useful when troubleshooting a failed exchange.
 
@@ -164,24 +176,27 @@ Use this flow when Inji Verify is open on one mobile device and the credential i
 * In the **‘Verifiable Credential Selection Panel’**, select the credentials to request (for example, **MOSIP ID**, **CMWallet EUDI PID (dc+sd-jwt ARF 1.8)**).
 * Click **‘Open Wallet’**.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image15.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image15.png" alt=""><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 2: Choose to Use a Different Device
 
 * The browser searches the wallets available on this device. Since the requested credential is not available locally, it displays the sheet **“Your info wasn’t found”** — _“You can use your info that’s available on another device.”_
 * Click **‘Use a different device’**, or click **Close** to abort the request.)
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image16.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image16.png" alt="" width="70"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 3: Display the QR Code on the Verifier Device
 
 * The browser displays the sheet **“Scan this QR code”** — _“Scan this QR code with the device that has the credential for Chrome that you’d like to use.”_
 * Keep this screen open on the verifier device.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image17.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image17.png" alt="" width="70"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 4: Scan the QR Code from the Wallet Device
 
@@ -189,11 +204,13 @@ _Mobile View_
 * A **‘Use passkey’** chip appears over the scanned QR code. Tap it.
 * The device displays **“Connecting with another device”** while the secure cross-device channel is established between the two phones.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image18.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View — scanning the QR code with Google Lens_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image18.png" alt="" width="70"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image19.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View — establishing the cross-device channel_
+\_Mobile View — scanning the QR code with Google Lens\_
+
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image19.png" alt="" width="70"><figcaption></figcaption></figure>
+
+\_Mobile View — establishing the cross-device channel\_
 
 #### Step 5: Authenticate and Consent in the Wallet
 
@@ -201,8 +218,9 @@ _Mobile View — establishing the cross-device channel_
 * After authentication, the wallet lists the credential and the claims requested and asks for consent.
 * Tap **Share** to send the Verifiable Presentation back to the verifier device.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image20.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image20.png" alt="" width="70"><figcaption></figcaption></figure>
+
+\_Mobile View\_
 
 #### Step 6: View Verification Results on the Verifier Device
 
@@ -212,8 +230,9 @@ _Mobile View_
   * Other possible statuses are **Valid but Expired** and **Revoked**.
 * The disclosed claims are listed below the status, with the selective-disclosure icon against each claim that the holder chose to share, and options to **download** the VC as JSON or **expand** it to full screen.
 
-<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image21.png" alt="" width="500"><figcaption></figcaption></figure>
-_Mobile View — the example below shows an invalid credential result_
+<figure><img src="../../../.gitbook/assets/eug-iv-dcapi-image21.png" alt="" width="71"><figcaption></figcaption></figure>
+
+\_Mobile View — the example below shows an invalid credential result\_
 
 ### Error Handling — DC API Flows
 
@@ -230,10 +249,17 @@ _Mobile View — the example below shows an invalid credential result_
 
 ***
 
-### Notes
+{% hint style="info" %}
+
+
+**Notes:**
 
 1. In DC API flows the browser — not the Inji Verify page — renders the wallet selector, the consent sheet, and the cross-device QR code. The Inji Verify page shows a loading indicator until the browser returns the presentation.
 2. The claims listed on the browser and wallet consent screens are exactly those requested by Inji Verify in the DCQL query for the selected credential types.
 3. For every VC displayed after verification, the verifier can download the VC in JSON format and expand it to full view.
 4. For SD-JWT credentials, claims that were selectively disclosed by the holder are marked with a dedicated icon in the result card.
 5. The wallet shown is the **Multipaz Test App** in Flows 1 and 2, and **CMWallet** in Flow 3. The exact wallet UI varies by wallet vendor.
+{% endhint %}
+
+
+
