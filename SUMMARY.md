@@ -268,6 +268,7 @@
     * [Credential Display Capabilties](inji-verify/functional-overview/end-user-guide/credential-display-capabilties.md)
     * [Error Handling](inji-verify/functional-overview/end-user-guide/error-handling.md)
     * [VP Verification with Inji Verify via Inji Web Wallet](inji-verify/functional-overview/end-user-guide/vp-verification-with-inji-verify-via-inji-web-wallet.md)
+    * [VP Verification using the Digital Credentials (DC) API](inji-verify/functional-overview/end-user-guide/vp-verification-using-the-digital-credentials-dc-api.md)
   * [Functional Overview](inji-verify/functional-overview/functional-overview.md)
 * [Setup](inji-verify/build-and-deploy/README.md)
   * [Local Setup](inji-verify/build-and-deploy/local-setup.md)
