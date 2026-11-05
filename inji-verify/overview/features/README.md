@@ -89,6 +89,46 @@ Inji Verify now describes what it needs from a wallet using DCQL (Digital Creden
 * **Credential combinations** — credential\_sets (OR across options, AND within); optional sets via required: false.
 * **Multiplicity** — multiple (default false) allows more than one presentation per query.
 
+### Digital Credentials API (DC API)
+
+Inji Verify now supports the **W3C Digital Credentials API** (OpenID4VP 1.0, Appendix A) as a same-device presentation path. <!-- In addition to --> /Instead of rendering a QR code or deep-linking to a wallet app, the verifier hands the signed Authorization Request to the browser, which mediates credential selection with the user's wallet and returns the presentation to the page. 
+Cross-device QR-code flows continue to use `direct_post`; the DC API is for same-device presentations only (for now).
+
+- **Session creation** — `POST /v2/vp-session-request` with `responseMode: "dc_api"`. `responseCodeValidationRequired` must be `false`; response-code redirects do not apply to browser-mediated flows.
+- **Signed requests only** — `clientId` must use a signed-request prefix (`decentralized_identifier:` or `x509_san_dns:`), so the wallet can verify verifier identity before releasing credentials. Plain pre-registered client IDs are not accepted for DC API.
+- **Origin binding** — `expected_origins` is derived from the request's `Origin` / `Referer` header, stored on the authorization request and embedded in the signed request JWT. The submission's `Origin` / `Referer` must match the stored values.
+- **Origin-bound holder proof** — The expected audience becomes `origin:<canonical-origin>` instead of the `clientId`: for SD-JWT the KB-JWT `aud`, and for JSON-LD the `proof.domain`, are validated against the origin.
+- **Request JWT shape** — For `dc_api` the signed request omits `state` and `response_uri`, and carries `expected_origins`.
+- **Submission** — New endpoint `POST /vp-submission/dc-api` (JSON), called by the verifier SDK rather than the wallet. It correlates by `requestId` (the role `state` plays in direct-post), needs no cookie, and returns `200 OK` with an empty body. Wallet protocol failures are reported on the same endpoint using `error` / `error_description`.
+- **Result retrieval** — Unchanged: `POST /vp-session-results` with the existing HttpOnly `transaction_id` cookie.
+
+### SDK and UI integration
+
+- **New SDK props** — `enableDcApi` (default `false`) turns on the DC API path, and `dcApiTimeoutMs` (default `300000`) bounds the request-JWT fetch and `navigator.credentials.get` call; invalid values fall back to 5 minutes.
+- **Graceful fallback** — If DC API is enabled but unsupported by the browser or the configured `clientId`, the SDK silently falls back to the deep-link / native-wallet path without surfacing `DC_API_NOT_SUPPORTED`. On desktop that fallback still requires `webWalletBaseUrl`.
+- **Mutual exclusivity** — `enableDcApi` and `webWalletBaseUrl` cannot be used together; Verify UI disables DC API automatically when a web wallet is selected.
+- **Deployment flag** — `ENABLE_DC_API=true` in verify-ui maps to the SDK's `enableDcApi`. `ENABLE_DC_API` and `CLIENT_ID_X509` are configurable through Helm `extraEnvVars`.
+
+### X.509 Client Identification (`x509_san_dns` + `x5c`)
+
+A verifier can now identify itself with an X.509 certificate instead of a DID, giving deployments that already run a PKI a way to establish verifier trust without DID resolution.
+
+- **Client ID prefix** — `client_id=x509_san_dns:<dns-name>`, used for by-reference flows alongside the existing `decentralized_identifier:` prefix.
+- **Certificate chain in the JWT header** — The Authorization Request JWT served from `GET /v2/vp-request/{requestId}` carries `x5c` (the full leaf-first, base64-DER chain) instead of `kid`. The wallet validates the chain and signature directly, and checks that the DNS name in `client_id` is one of the leaf certificate's Subject Alternative Names — no DID document lookup involved.
+- **Per-request selection** — A single deployment can serve both by-reference schemes side by side; whether a request JWT gets `kid` or `x5c` is decided per request from its own `client_id` prefix, not from a global setting.
+- **Deployment identity check** — The DNS name after the prefix must match the deployment's configured identity (`inji.verify.x509-san-dns.host`, env `INJI_X509_SAN_DNS_HOST`) and must appear as a SAN on the signing certificate in the configured keystore.
+- **Errors** — Request-creation failures return `400 Bad Request` with `errorCode: invalid_request` (distinguish causes by `errorMessage`). Signing-time failures are detected when the wallet fetches the JWT and currently surface as `500 Internal Server Error` without a structured body.
+- **Not checked** — Whether the host of `response_uri` matches the `x509_san_dns` `client_id`.
+
+### Embeddable `verify-core` Library
+
+`verify-service` has been split into two Maven modules under a `verify-service-parent` aggregator:
+
+- `verify-core` — An embeddable library carrying the verification domain logic (VP request creation, DCQL validation, VP token verification, result processing). Applications such as Certify can depend on it directly instead of calling Inji Verify over HTTP.
+- `verify-service` — The deployable Spring Boot application: controllers, OpenAPI, actuator, caching and datasource wiring on top of `verify-core`.
+- **Validation moved to the service layer** — Request validations previously performed in controllers now live in the service layer, so embedding applications get the same validation behaviour as the HTTP API.
+- **Quality gates** — Sonar analysis is configured for the new `io.inji.verify:verify-core` module.
+
 ### SD-JWT Credential Verification
 
 Verify selective disclosure credentials while preserving holder privacy.
