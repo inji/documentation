@@ -4,7 +4,7 @@
 
 **Support:** Release Candidate (RC)
 
-**Release Date:** Coming Soon!
+**Release Date:** 10 November, 2026
 
 {% hint style="info" %}
 **Note**:
@@ -31,21 +31,21 @@ Inji Verify v1.0.0-rc.1 extends the OpenID4VP 1.0 / DCQL implementation delivere
 
 ## Repositories: Released/Dependent
 
-| Repositories | Tags: Released/Dependent |
-| ------------ | ------------------------ |
-| Inji Verify  | v1.0.0-rc.1              |
-| Vc-verifier  | 1.10.0                   |
+| Repositories | Tags: Released/Dependent                                            |
+| ------------ | ------------------------------------------------------------------- |
+| Inji Verify  | [v1.0.0-rc.1](https://github.com/inji/inji-verify/tree/v1.0.0-rc.1) |
+| Vc-verifier  | [1.10.0](https://github.com/inji/vc-verifier/tree/v1.10.0)          |
 
 ## Compatible modules
 
 The following table outlines the tested and certified compatibility of Inji Verify v1.0.0-rc.1 with other modules.
 
-| Module              | Version                                                          |
-| ------------------- | ---------------------------------------------------------------- |
-| Inji Wallet         | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases) |
-| Inji Web            | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases) |
-| Pixel-Pass library  | 0.8.0                                                            |
-| vc-verifier library | 1.10.0                                                           |
+| Module              | Version                                                           |
+| ------------------- | ----------------------------------------------------------------- |
+| Inji Wallet         | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases)  |
+| Inji Web            | 1.0.0-rc.1 (Yet to release, Will be compatible when it releases)  |
+| Pixel-Pass library  | [0.8.0](https://docs.inji.io/inji-verify/releases/version-0.17.0) |
+| vc-verifier library | [1.10.0](https://github.com/inji/vc-verifier/tree/v1.10.0)        |
 
 ## User Stories
 
@@ -86,6 +86,6 @@ Below is a list of some key known issues. For a detailed overview and the comple
 
 * [Feature documentation](https://docs.inji.io/inji-verify/overview)
 * [API documentation](https://mosip.stoplight.io/docs/inji-verify/67445477d332e-open-id-4-vp-verifier-api-inji-verify)
-* Integration Guide
+* [Integration Guide](https://docs.inji.io/inji-verify/technical-overview/integration-guides)
 * [Collab guide](https://docs.inji.io/inji-verify/functional-overview/releases-1/inji-verify-collab-guide)
 * [QA Report](test-report.md)
