@@ -1,7 +1,5 @@
 # Version 1.0.0-rc.1
 
-<mark style="color:red;">**Coming Soon!**</mark>
-
 **Release Version:** v1.0.0-rc.1
 
 **Release Type:** Release Candidate (RC)
@@ -35,7 +33,7 @@ It also simplifies Presentation During Issuance by **bringing the required Inji 
 
 #### 1. DPoP-Constrained Access Tokens
 
-Certify can now check that a supported access token is being used by the wallet it was issued to. This helps protect against a copied token being reused by someone else.
+Inji Certify can now check that a supported access token is being used by the wallet it was issued to. This helps protect against a copied token being reused by someone else.
 
 Existing bearer-token integrations continue to work. Wallets using DPoP gain additional protection against token replay and misuse, which means that Inji Certify validates the DPoP proof, including its key binding, request binding, freshness, and single-use identifier.
 
@@ -169,5 +167,5 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 * [Feature Documentation](https://docs.inji.io/inji-certify/overview/features)
 * [Local Setup](https://docs.inji.io/inji-certify/build-and-deploy/local-setup)
 * [API Documentation](https://mosip.stoplight.io/docs/inji-certify)
-* [Test Report](test-report.md)
+* [Test Report](../../../inji-wallet/inji-web/inji-web/version-1.0.0-rc.1/test-report.md)
 
