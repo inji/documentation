@@ -1,7 +1,8 @@
 # Version 1.0.0-rc.1
 
-<mark style="color:red;">**Coming Soon!**</mark>
+# Version 1.0.0-rc.1
 
+<mark style="color:red;">**Coming Soon!**</mark>
 
 
 **Release Version:** v1.0.0-rc.1
@@ -10,26 +11,35 @@
 
 **Release Date:** November 2026
 
-> **Note:** This release builds on the OpenID4VCI 1.0 foundation delivered in v1.0.0-alpha.1. It contains several breaking changes, listed under Breaking changes. Review them before upgrading.
+> **Note:** This release builds on the OpenID4VCI 1.0 foundation delivered in [v1.0.0-alpha.1](link). It contains several breaking changes listed under Breaking changes and 'Upgrade actions', Do review them before upgrade.
 
-### Overview
+## Overview
+Inji Certify v1.0.0-rc.1 makes credential issuance safer and easier to configure. It adds stronger protection for credential requests, improves compatibility with current OpenID4VCI standards, and **catches incomplete configuration earlier**.
 
-Inji Certify v1.0.0-rc.1 focuses on security hardening, richer Presentation During Issuance (PDI), mdoc specification alignment, and stricter, more transparent credential configuration. It introduces DPoP-constrained access tokens, DCQL-based PDI, an embedded Inji Verify library, an upgraded Velocity template engine, and a set of validation and stability fixes.
+It introduces DPoP-constrained access tokens, DCQL-based PDI, an embedded Inji Verify library, an upgraded Velocity template engine, and a set of validation and stability fixes.
 
-**Key changes**
+It also simplifies Presentation During Issuance by **bringing the required Inji Verify capability into Inji Certify itself**. If you use this flow or manage credential configurations, review the 'Breaking changes' and 'Upgrade actions' through this release notes before deploying.
+
+
+## Major Features & Enhancements
+
+**Snapshot of Key Changes**:
 
 * DPoP-constrained access token support on the credential endpoint.
 * DCQL-only VP request configuration for the Interactive Authorization Endpoint (IAE). Presentation Exchange (PEX) is no longer supported.
-* Inji Verify embedded as a library (verify-core 1.0.0-rc.1) in the PDI flow.
+* Inji Verify embedded as a library [verify-core 1.0.0-rc.1](link) in the PDI flow.
 * mdoc alignment with OpenID4VCI 1.0 (credential response structure, integer COSE algorithm identifiers in issuer metadata).
-* Credential Configuration API: cryptographicBindingMethodsSupported, proofTypesSupported and signatureAlgo are validated and mandatory. The properties fallback is removed.
-* ldp\_vc configurations advertise their crypto suite in credential\_signing\_alg\_values\_supported.
+* Credential Configuration API: `cryptographicBindingMethodsSupported`, `proofTypesSupported` and `signatureAlgo` are validated and mandatory. The properties fallback is removed.
+* `ldp_vc` configurations advertise their crypto suite in `credential_signing_alg_values_supported`.
 * Velocity template engine upgraded from 1.7 to 2.4.1 (fixes CVE-2020-13936).
 * Compatibility with eSignet 1.8.0.
 
-### Major Features & Enhancements
+### 1. DPoP-Constrained Access Tokens
+Certify can now check that a supported access token is being used by the wallet it was issued to. This helps protect against a copied token being reused by someone else.
 
-#### 1. DPoP-Constrained Access Tokens
+Existing bearer-token integrations continue to work. Wallets using DPoP gain additional protection against token replay and misuse.
+
+Which means that Certify validates the DPoP proof, including its key binding, request binding, freshness, and single-use identifier.
 
 Certify now acts as a DPoP (RFC 9449) resource server on the credential endpoint. When a wallet presents a DPoP-bound access token, Certify validates the accompanying DPoP proof, so the token can only be used by the holder of the bound key. This protects against access token theft and replay.
 
@@ -39,22 +49,38 @@ Certify now acts as a DPoP (RFC 9449) resource server on the credential endpoint
 * Proofs are single-use (jti replay cache) and checked for typ, alg, signature, htm, htu, iat freshness, ath and cnf.jkt.
 * DPoP applies to tokens issued by an external authorization server such as eSignet. Tokens minted by Certify's own /oauth/token (pre-authorized and PDI flows) are Bearer tokens.
 
-#### 2. DCQL Support in Presentation During Issuance
+### 2. DCQL Support in Presentation During Issuance
+Presentation During Issuance now uses the current OpenID4VP query model. This gives issuers and wallets a clearer way to agree on which credential the wallet must present.
 
-The VP request configuration for the IAE now uses the Digital Credentials Query Language (DCQL), in line with OpenID4VP 1.0. Issuers use a dcqlQuery block to state which credentials the holder must present during issuance. The wallet's vp\_token is keyed by the query, so no presentation\_submission is needed.
+Certify also includes the Inji Verify library for this flow, so you no longer need to run a separate verifier service.
 
-> **Breaking change:** Presentation Exchange (presentation\_definition) is no longer supported in the PDI flow from release-1.0.0-rc1
+Which means that the VP request configuration for the IAE now uses the Digital Credentials Query Language (DCQL), in line with OpenID4VP 1.0. Issuers use a dcqlQuery block to state which credentials the holder must present during issuance. The wallet's vp_token is keyed by the query, so no presentation_submission is needed.
 
-#### 3. Embedded Inji Verify Library in the PDI Flow
+> **Breaking change:** Presentation Exchange (presentation_definition) is no longer supported in the PDI flow starting release-1.0.0-rc1
 
-PDI now uses Inji Verify as an embedded library (verify-core 1.0.0-rc.1) instead of calling a separately deployed Inji Verify service. This removes a runtime dependency and simplifies deployment.
+**Before upgrade**:
 
-#### 4. mdoc Alignment with OpenID4VCI 1.0
+1. Replace each `presentation_definition` with its equivalent `dcqlQuery`.
+2. Remove Presentation During Issuance settings that point to an external Inji Verify service.
+3. Apply the included database upgrade scripts.
 
+**See Also**: [#962](https://github.com/inji/inji-certify/issues/962) and [#902](https://github.com/inji/inji-certify/issues/902).
+
+### 3. Embedded Inji Verify Library in the PDI Flow
+
+PDI now uses Inji Verify as an embedded library [verify-core 1.0.0-rc.1](link) instead of calling a separately deployed Inji Verify service. This removes a runtime dependency and simplifies deployment.
+
+### 4. mdoc Alignment with OpenID4VCI 1.0
+mdoc credential responses and issuer metadata now follow OpenID4VCI 1.0 conventions more closely. Wallets and metadata consumers can identify compatible signing algorithms more reliably.
 * The mdoc credential response structure follows the OpenID4VCI 1.0 specification.
-* credential\_signing\_alg\_values\_supported for mso\_mdoc configurations is published as integer COSE algorithm identifiers (for example -7 for ES256).
+* credential_signing_alg_values_supported for mso_mdoc configurations is published as integer COSE algorithm identifiers (for example -7 for ES256).
 
-#### 5. Credential Configuration API: Mandatory, Validated Metadata
+**Before upgrading**: Update mdoc configurations and metadata consumers to use integer COSE algorithm identifiers, such as `-7` for ES256, rather than string algorithm names. 
+**See Also**: [#954](https://github.com/inji/inji-certify/issues/954).
+
+
+### 5. Credential Configuration API: Mandatory, Validated Metadata
+Credential configuration APIs now require the metadata that Certify publishes to wallets. This means incomplete or unsupported settings are found when you create or update a configuration, rather than being filled from deployment defaults.
 
 The Add (POST /credential-configurations) and Update (PUT /credential-configurations/{credentialConfigKeyId}) APIs now require these attributes, for every credential format:
 
@@ -66,27 +92,32 @@ Values are validated against what the Certify deployment supports and are reflec
 
 The value in the issuer metadata is derived from the configuration:
 
-| Format    | credential\_signing\_alg\_values\_supported advertises                        |
+| Format    | credential_signing_alg_values_supported advertises                        |
 | --------- | ----------------------------------------------------------------------------- |
-| ldp\_vc   | The crypto suite, e.g. Ed25519Signature2020 (OpenID4VCI 1.0 Appendix A.1.2.2) |
+| ldp_vc   | The crypto suite, e.g. Ed25519Signature2020 (OpenID4VCI 1.0 Appendix A.1.2.2) |
 | dc+sd-jwt | The configured signatureAlgo, e.g. ES256                                      |
-| mso\_mdoc | The COSE identifier of signatureAlgo, e.g. -7                                 |
+| mso_mdoc | The COSE identifier of signatureAlgo, e.g. -7                                 |
 
-#### 6. Velocity Template Engine Upgraded from 1.7 to 2.4.1
+**Before upgrade**: Send `cryptographicBindingMethodsSupported` and `proofTypesSupported` in every affected Add or Update request. In DataProvider mode, also send `signatureAlgo`. 
+**See Also**: [#989](https://github.com/inji/inji-certify/issues/989) and [#1099](https://github.com/inji/inji-certify/issues/1099).
+    
+### 6. Velocity Template Engine Upgraded from 1.7 to 2.4.1
 
-Credential templates (vc\_template) are rendered with Velocity 2.4.1, which fixes CVE-2020-13936. Template behaviour changes:
+Velocity was updated from 1.7 to 2.4.1 to address [CVE-2020-13936](https://nvd.nist.gov/vuln/detail/CVE-2020-13936) and limit unsafe reflective access in credential templates.
 
-1. \#if **treats empty values as false.** An empty string, list, map or array is now false. An empty phone field is omitted instead of rendered as "". To always render a field, use #if($var || $var == '') or the quiet reference $!{var}.
-2. **Loop variables renamed.** $velocityCount becomes $foreach.count; $velocityHasNext becomes $foreach.hasNext.
-3. **Reflection blocked.** SecureUberspector is enabled, so templates can no longer call methods on Class, ClassLoader, Runtime or System. Normal field access and the $\_dateTool and $\_esc tools are unaffected.
+Credential templates (vc_template) are rendered with Velocity 2.4.1, which fixes CVE-2020-13936. Template behaviour changes:
 
-> **Breaking change:** Review all existing credential templates.
+1. #if **treats empty values as false.** An empty string, list, map or array is now false. An empty phone field is omitted instead of rendered as "" to always render a field, use #if($var || $var == '') or the quiet reference $!{var}.
+2. **Loop variables renamed**: $velocityCount becomes $foreach.count; $velocityHasNext becomes $foreach.hasNext.
+3. **Reflection blocked**: SecureUberspector is enabled, so templates can no longer call methods on Class, ClassLoader, Runtime or System. Normal field access and the $_dateTool and $_esc tools are unaffected.
 
-#### 7. eSignet 1.8.0 Compatibility
+**Breaking change**: Review existing templates before upgrade. Empty values, loop variables, and reflective access behave differently in Velocity 2.4.1.
+
+### 7. eSignet 1.8.0 Compatibility
 
 Certify is validated with eSignet 1.8.0 as the authorization server. Two properties change (see Breaking Changes).
 
-### User Stories Released
+## User Stories Released
 
 | Description                                                                                                                                       | Git Id                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
@@ -94,24 +125,24 @@ Certify is validated with eSignet 1.8.0 as the authorization server. Two propert
 | Support DCQL in the VP request configuration on the IAE endpoint                                                                                  | [#962](https://github.com/inji/inji-certify/issues/962)   |
 | Integrate Inji Verify as an embedded library in the PDI flow instead of calling it as a separate service                                          | [#902](https://github.com/inji/inji-certify/issues/902)   |
 | Enhance the Interactive Authorization (IAR) endpoint to support OpenID4VCI 1.0-compliant PDI                                                      | [#739](https://github.com/inji/inji-certify/issues/739)   |
-| Validate proof\_types\_supported, cryptographic\_binding\_methods\_supported and signing algorithm in the Add/Update Credential Configuration API | [#989](https://github.com/inji/inji-certify/issues/989)   |
+| Validate proof_types_supported, cryptographic_binding_methods_supported and signing algorithm in the Add/Update Credential Configuration API | [#989](https://github.com/inji/inji-certify/issues/989)   |
 | Make binding methods, proof types and signatureAlgo mandatory on Add/Update and remove the properties fallback                                    | [#1099](https://github.com/inji/inji-certify/issues/1099) |
-| Advertise the crypto suite in credential\_signing\_alg\_values\_supported for ldp\_vc                                                             | [#1110](https://github.com/inji/inji-certify/issues/1110) |
+| Advertise the crypto suite in credential_signing_alg_values_supported for ldp_vc                                                             | [#1110](https://github.com/inji/inji-certify/issues/1110) |
 
-### Bug Fixes
+## Bug Fixes
 
 All bugs fixed in this release are listed [here](https://github.com/inji/inji-certify/issues?q=is%3Aissue+milestone%3A1.0.0-rc.1+type%3ABug).
 
 | Git Id                                                    | Description                                                                                                   |
 | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [#711](https://github.com/inji/inji-certify/issues/711)   | When invalid sd\_claims are provided, the issuer throws an error and does not fetch the VC                    |
+| [#711](https://github.com/inji/inji-certify/issues/711)   | When invalid sd_claims are provided, the issuer throws an error and does not fetch the VC                    |
 | [#679](https://github.com/inji/inji-certify/issues/679)   | Validation issues for the qrsettings block in the Credential Config API                                       |
 | [#686](https://github.com/inji/inji-certify/issues/686)   | Error message mismatch in the mdoc-mDL use case (PDI)                                                         |
-| [#878](https://github.com/inji/inji-certify/issues/878)   | invalid\_request returned for unreadable and malformed bodies on non-VCI endpoints, instead of unknown\_error |
+| [#878](https://github.com/inji/inji-certify/issues/878)   | invalid_request returned for unreadable and malformed bodies on non-VCI endpoints, instead of unknown_error |
 | [#1054](https://github.com/inji/inji-certify/issues/1054) | did:jwk holder ID created from the JWK proof header contained base64 padding, breaking OpenID4VP presentation |
 | [#1044](https://github.com/inji/inji-certify/issues/1044) | mDoc timestamp format did not comply with ISO specification, failing the OpenID4VP conformance test           |
 
-### Known Issues
+## Known Issues
 
 All open issues for Inji Certify are listed [here](https://github.com/inji/inji-certify/issues?q=is%3Aissue+state%3Aopen+-milestone%3A1.0.0-rc.1+type%3ABug).
 
@@ -121,22 +152,20 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 | [#700](https://github.com/inji/inji-certify/issues/700) | Improper validation in Status Update endpoints                  |
 | [#730](https://github.com/inji/inji-certify/issues/730) | SVG template: face image and label attribute path mismatch      |
 
-### Breaking Changes
+## Breaking Changes
 
 | Change                                                                                                                                             | Required action                                                                                                                                                                                                                                                           | Impact                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | mdoc credential response structure aligned to OpenID4VCI 1.0                                                                                       | Update wallets/clients to parse the new structure                                                                                                                                                                                                                         | Clients using the previous mdoc response structure cannot read the issued credential                |
-| mdoc credential\_signing\_alg\_values\_supported: strings replaced by integer COSE identifiers (e.g. -7)                                           | Update mdoc credential configurations and metadata consumers                                                                                                                                                                                                              | Wallets expecting string algorithm names will not match the published metadata                      |
-| ldp\_vc credential\_signing\_alg\_values\_supported now lists the crypto suite (e.g. Ed25519Signature2020) instead of a JWS algorithm (e.g. EdDSA) | Update wallets/clients that read this metadata for ldp\_vc                                                                                                                                                                                                                | Clients matching on the JWS algorithm will not find a match                                         |
-| Credential configuration metadata is mandatory; properties fallback removed;                                                                       | Send cryptographicBindingMethodsSupported and proofTypesSupported on every Add and Update, plus signatureAlgo in DataProvider mode. Add jwk to the ldp\_vc and dc+sd-jwt entries of mosip.certify.credential-config.cryptographic-binding-methods-supported if you use it | Requests that omit these attributes, even Updates that change only an unrelated field, are rejected |
+| mdoc credential_signing_alg_values_supported: strings replaced by integer COSE identifiers (e.g. -7)                                           | Update mdoc credential configurations and metadata consumers                                                                                                                                                                                                              | Wallets expecting string algorithm names will not match the published metadata                      |
+| ldp_vc credential_signing_alg_values_supported now lists the crypto suite (e.g. Ed25519Signature2020) instead of a JWS algorithm (e.g. EdDSA) | Update wallets/clients that read this metadata for ldp_vc                                                                                                                                                                                                                | Clients matching on the JWS algorithm will not find a match                                         |
+| Credential configuration metadata is mandatory; properties fallback removed;                                                                       | Send cryptographicBindingMethodsSupported and proofTypesSupported on every Add and Update, plus signatureAlgo in DataProvider mode. Add jwk to the ldp_vc and dc+sd-jwt entries of mosip.certify.credential-config.cryptographic-binding-methods-supported if you use it | Requests that omit these attributes, even Updates that change only an unrelated field, are rejected |
 | Inji Verify service in PDI replaced by the embedded library                                                                                        | Remove configuration pointing to an external Inji Verify service for PDI                                                                                                                                                                                                  | A separately deployed Inji Verify service is no longer used by Certify                              |
-| PEX replaced by DCQL in the PDI VP request                                                                                                         | Change PDI VP request configurations from presentation\_definition to DCQL (dcqlQuery)                                                                                                                                                                                    | PDI requests configured with a Presentation Exchange definition are not supported                   |
+| PEX replaced by DCQL in the PDI VP request                                                                                                         | Change PDI VP request configurations from presentation_definition to DCQL (dcqlQuery)                                                                                                                                                                                    | PDI requests configured with a Presentation Exchange definition are not supported                   |
 | Velocity 1.7 to 2.4.1                                                                                                                              | Review credential templates: empty values are false in #if; $velocityCount and $velocityHasNext become $foreach.count and $foreach.hasNext; reflective calls are blocked                                                                                                  | Templates relying on old behaviour render differently or fail                                       |
 | eSignet 1.8.0 configuration                                                                                                                        | Set mosip.esignet.discovery.issuer-id to the eSignet issuer base URL (e.g. https://esignet-mock.released.mosip.net/), not the /v1/esignet URL. For MOSIP ID use cases set mosip.certify.ida.vci-user-info-cache=esignet:userinfo instead of userinfo                      | With the old values, Certify does not work with eSignet 1.8.0                                       |
 
-### Supported Platforms & Components
-
-#### Repositories Released
+## Repositories Released
 
 | Repository                 | Version     | Release Date  |
 | -------------------------- | ----------- | ------------- |
@@ -144,7 +173,7 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 | inji-config                | v1.0.0-rc.1 | November 2026 |
 | digital-credential-plugins | v1.0.0-rc.1 | November 2026 |
 
-#### Compatible Modules
+## Compatible Modules
 
 | Module                    | Version                   |
 | ------------------------- | ------------------------- |
@@ -158,7 +187,7 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 | mimoto                    | 1.0.0-rc1(yet to release) |
 | inji-web                  | 1.0.0-rc1(yet to release) |
 
-### Documentation
+## Documentation
 
 * [Feature Documentation](https://docs.inji.io/inji-certify/overview/features)
 * [Local Setup](https://docs.inji.io/inji-certify/build-and-deploy/local-setup)
@@ -170,26 +199,23 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 
 
 
-
 ***
 
-### Features
+# Features
 
+## 1. DPoP-Constrained Access Tokens
 
-
-### 1. DPoP-Constrained Access Tokens
-
-#### What it is
+### What it is
 
 DPoP (Demonstrating Proof of Possession, [RFC 9449](https://www.rfc-editor.org/rfc/rfc9449.html)) binds an access token to a key pair held by the wallet. A stolen token cannot be replayed without the matching private key.
 
-#### How it works
+### How it works
 
 Inji Certify is the **resource server**. It validates DPoP but does not issue DPoP-bound tokens.
 
-1. The wallet requests a token from an authorization server such as eSignet. The client must be registered with additionalConfig.dpop\_bound\_access\_tokens: true.
-2. The authorization server puts the thumbprint of the wallet's public key in the token as cnf.jkt.
-3. The wallet calls the credential endpoint with Authorization: DPoP \<token> and a fresh DPoP proof JWT.
+1. The wallet requests a token from an authorization server such as eSignet. The client must be registered with additionalConfig.`dpop_bound_access_tokens: true`.
+2. The authorization server puts the thumbprint of the wallet's public key in the token as `cnf.jkt`.
+3. The wallet calls the credential endpoint with Authorization: DPoP <token> and a fresh DPoP proof JWT.
 4. Certify verifies the token, then the proof, and issues the credential.
 
 | Token                | Presented as          | Result                    |
@@ -199,20 +225,20 @@ Inji Certify is the **resource server**. It validates DPoP but does not issue DP
 | DPoP-bound           | Bearer                | Refused (downgrade guard) |
 | Plain                | DPoP                  | Refused                   |
 
-#### Proof checks
+### Proof checks
 
 Certify checks that the proof:
 
-* is a single JWT with typ dpop+jwt;
-* uses an allowed asymmetric algorithm and embeds a public jwk;
-* has a valid signature;
-* has htm equal to the HTTP method and htu equal to the public credential endpoint URL;
-* has an iat within the allowed age;
-* has ath equal to the hash of the access token;
-* has a key thumbprint equal to cnf.jkt;
-* has not been used before (jti replay protection).
+* Is a single JWT with typ dpop+jwt
+* Uses an allowed asymmetric algorithm and embeds a public jwk
+* Has a valid signature
+* Has htm equal to the HTTP method and htu equal to the public credential endpoint URL
+* Has an iat within the allowed age
+* Has ath equal to the hash of the access token
+* Has a key thumbprint equal to cnf.jkt
+* Has not been used before (jti replay protection)
 
-#### Configuration
+### Configuration
 
 | Property                                    | Purpose                                                       | Example                                         |
 | ------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------- |
@@ -221,37 +247,34 @@ Certify checks that the proof:
 | mosip.certify.dpop.allowed-algorithms       | Accepted proof algorithms                                     | ES256,ES384,ES512,RS256,PS256,EdDSA             |
 | mosip.certify.dpop.proof-max-age            | Maximum proof age in seconds                                  | 60                                              |
 | mosip.certify.dpop.clock-skew               | Clock drift tolerance in seconds                              | 10                                              |
-| mosip.certify.dpop.jti.cache-expire-seconds | Replay cache TTL. Must exceed proof-max-age + 2 \* clock-skew | 120                                             |
+| mosip.certify.dpop.jti.cache-expire-seconds | Replay cache TTL. Must exceed proof-max-age + 2 * clock-skew | 120                                             |
 | mosip.certify.cache.names                   | Must include dpopJti                                          | ...,dpopJti                                     |
 
 Certify refuses to start if the dpopJti cache TTL is missing or too short. In multi-replica deployments use a distributed cache (spring.cache.type=redis), otherwise a replayed proof can pass on a different pod.
 
-#### Notes
+### Notes
 
 * Tokens minted by Certify's own /oauth/token (pre-authorized and PDI flows) are Bearer tokens, so DPoP applies only to tokens from an external authorization server.
 * DPoP protects against a stolen token alone, not a captured token plus an unused proof. Use TLS on every hop.
 
-***
 
-### 2. Presentation During Issuance with DCQL
+## 2. Presentation During Issuance with DCQL
 
-#### What it is
+### What it is
 
 In Presentation During Issuance (PDI), the holder presents an existing credential before a new one is issued. Certify now describes this request with DCQL, as defined by OpenID4VP 1.0.
 
-#### How it works
+### How it works
 
 1. Certify reads the dcqlQuery block from the VP request configuration file (mosip.certify.vp-request.config-file-url).
 2. The embedded Inji Verify library turns it into an OpenID4VP authorization request.
-3. Certify returns the query as dcql\_query inside openid4vp\_request in the Interactive Authorization Response.
-4. The wallet builds a vp\_token keyed by the credential query id, and posts it to /oauth/iae.
-5. The embedded library verifies the vp\_token. Only vp\_token and state are required; there is no presentation\_submission.
+3. Certify returns the query as dcql_query inside openid4vp_request in the Interactive Authorization Response.
+4. The wallet builds a vp_token keyed by the credential query id, and posts it to /oauth/iae.
+5. The embedded library verifies the vp_token. Only vp_token and state are required; there is no presentation_submission.
 
-#### Sample configuration
+### Sample configuration
 
-json
-
-```
+```json
 {
   "dcqlQuery": {
     "credentials": [
@@ -275,68 +298,64 @@ json
 
 | Field                            | Meaning                                                     |
 | -------------------------------- | ----------------------------------------------------------- |
-| credentials\[].id                | Unique ID the wallet echoes back in the vp\_token           |
-| credentials\[].format            | ldp\_vc, dc+sd-jwt or mso\_mdoc                             |
-| credentials\[].meta.type\_values | Format-specific type constraint                             |
-| credential\_sets\[].options      | Alternative sets of credential IDs that satisfy the request |
+| credentials[].id                | Unique ID the wallet echoes back in the vp_token           |
+| credentials[].format            | ldp_vc, dc+sd-jwt or mso_mdoc                             |
+| credentials[].meta.type_values | Format-specific type constraint                             |
+| credential_sets[].options      | Alternative sets of credential IDs that satisfy the request |
 
-#### Migration
+### Migration
 
-Replace any presentation\_definition (PEX) block with a dcqlQuery. PEX is not supported.
+Replace any presentation_definition (PEX) block with a dcqlQuery. PEX is not supported.
 
-***
 
-### 3. Embedded Inji Verify Library
+## 3. Embedded Inji Verify Library
 
-#### What it is
+### What it is
 
 Certify now embeds Inji Verify's verify-core (1.0.0-rc.1) to build and verify presentations in the PDI flow. No separate Inji Verify service is called.
 
-#### Benefits
+### Benefits
 
 * One less deployable and no network hop on the issuance path.
 * Less TLS and configuration surface, and no verifier-unreachable failure mode.
 
-#### How it works
+### How it works
 
-Certify depends on the verify-core artifact and wires its beans into the application context. VerifiablePresentationRequestService builds the OpenID4VP request from the DCQL query, and VerifiablePresentationSubmissionService verifies the wallet's vp\_token.
+Certify depends on the verify-core artifact and wires its beans into the application context. VerifiablePresentationRequestService builds the OpenID4VP request from the DCQL query, and VerifiablePresentationSubmissionService verifies the wallet's vp_token.
 
-#### Migration
+### Migration
 
 Remove configuration that points PDI at an external Inji Verify service, and drop the unused Inji Verify database artifacts from your Certify deployment.
 
-***
 
-### 5. Credential Configuration: Validated Metadata
+## 5. Credential Configuration: Validated Metadata
 
-#### What it is
+### What it is
 
 The Add and Update Credential Configuration APIs now require the metadata that ends up in the issuer well-known metadata, and validate it against what the deployment supports.
 
-#### Request attributes
+### Request attributes
 
 | Attribute                            | Rule                                                                                       |
 | ------------------------------------ | ------------------------------------------------------------------------------------------ |
 | cryptographicBindingMethodsSupported | Mandatory, non-empty. Values must be supported by the deployment                           |
 | proofTypesSupported                  | Mandatory, non-empty. Values must be supported by the deployment                           |
 | signatureAlgo                        | Mandatory in DataProvider plugin mode. Optional in VCIssuance mode, but validated if sent  |
-| signatureCryptoSuite                 | Required for ldp\_vc. Must not be sent for dc+sd-jwt. Ignored and not stored for mso\_mdoc |
+| signatureCryptoSuite                 | Required for ldp_vc. Must not be sent for dc+sd-jwt. Ignored and not stored for mso_mdoc |
 
 The plugin mode comes from mosip.certify.plugin-mode, not from the request.
 
-#### What the metadata advertises
+### What the metadata advertises
 
-| Format    | credential\_signing\_alg\_values\_supported  |
+| Format    | credential_signing_alg_values_supported  |
 | --------- | -------------------------------------------- |
-| ldp\_vc   | Crypto suite, e.g. \["Ed25519Signature2020"] |
-| dc+sd-jwt | signatureAlgo, e.g. \["ES256"]               |
-| mso\_mdoc | COSE identifier, e.g. \[-7]                  |
+| ldp_vc   | Crypto suite, e.g. ["Ed25519Signature2020"] |
+| dc+sd-jwt | signatureAlgo, e.g. ["ES256"]               |
+| mso_mdoc | COSE identifier, e.g. [-7]                  |
 
-#### Example (DataProvider mode, ldp\_vc)
+### Example (DataProvider mode, ldp_vc)
 
-json
-
-```
+```json
 {
   "credentialConfigKeyId": "RegistrationReceiptCredential",
   "vcTemplate": "<Base64-encoded Velocity template>",
@@ -350,25 +369,24 @@ json
 }
 ```
 
-Each proof type must be declared in mosip.certify.credential-config.proof-types-supported, and proof\_signing\_alg\_values\_supported must be a non-empty subset of the algorithms declared for it. See [Credential Issuer Configuration](https://github.com/inji/inji-certify/blob/release-1.0.x/docs/technical_docs/Credential_Issuer_Configuration.md) for the full validation rules.
+Each proof type must be declared in mosip.certify.credential-config.proof-types-supported, and proof_signing_alg_values_supported must be a non-empty subset of the algorithms declared for it. See [Credential Issuer Configuration](https://github.com/inji/inji-certify/blob/release-1.0.x/docs/technical_docs/Credential_Issuer_Configuration.md) for the full validation rules.
 
-#### Upgrade actions
+### Upgrade actions
 
-* Add jwk to the ldp\_vc and dc+sd-jwt entries of mosip.certify.credential-config.cryptographic-binding-methods-supported if configurations use it:
+* Add jwk to the ldp_vc and dc+sd-jwt entries of mosip.certify.credential-config.cryptographic-binding-methods-supported if configurations use it:
 
 properties
 
 ```
-mosip.certify.credential-config.cryptographic-binding-methods-supported={\
-  'ldp_vc': {'jwk','did:jwk','did:key'},\
-  'mso_mdoc': {'cose_key'},\
-  'dc+sd-jwt': {'jwk','did:jwk','did:key'}\
+mosip.certify.credential-config.cryptographic-binding-methods-supported={
+  'ldp_vc': {'jwk','did:jwk','did:key'},
+  'mso_mdoc': {'cose_key'},
+  'dc+sd-jwt': {'jwk','did:jwk','did:key'}
 }
 ```
 
 * Every Update request must now send the mandatory attributes, even when it only changes an unrelated field such as the display name.
 
-***
 
 
 
