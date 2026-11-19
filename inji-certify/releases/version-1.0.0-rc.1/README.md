@@ -167,5 +167,5 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 * [Feature Documentation](https://docs.inji.io/inji-certify/overview/features)
 * [Local Setup](https://docs.inji.io/inji-certify/build-and-deploy/local-setup)
 * [API Documentation](https://mosip.stoplight.io/docs/inji-certify)
-* [Test Report](../../../inji-wallet/inji-web/inji-web/version-1.0.0-rc.1/test-report.md)
+* [Test Report](test-report.md)
 
