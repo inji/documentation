@@ -33,6 +33,10 @@ Inji Certify enables issuers to expand their credential portfolio even after the
 * **API-driven setup** for fast and seamless integration into existing workflows
 * **No infrastructure changes required**, minimizing operational overhead
 
+**Validated credential configuration:** Starting with v1.0.0-rc.1, Inji Certify validates required credential metadata when an issuer adds or updates a credential configuration. This helps identify missing or unsupported settings before they are published to wallets. Required attributes vary by plugin mode and credential format.
+
+For details, see [Credential Configuration - Validated Metadata](credential-configuration-validated-metadata.md).
+
 Access to comprehensive **documentation and guidelines** — _(refer to this_ [_link_](https://github.com/mosip/inji-certify/blob/master/docs/Credential-Issuer-Configuration.md#credential-configuration) _for details on configuring VC types)_.
 
 ## 4. Support for Multiple Credential Formats
@@ -159,6 +163,8 @@ Inji Certify provides support for integrating with external authentication servi
 * **Standards-Based** — OAuth 2.0 compliance ensures interoperability with widely adopted identity solutions
 * **Customizable per Issuer** — Different issuers can configure different authentication services within the same Certify deployment
 
+**Additional protection for credential requests:** Starting with v1.0.0-rc.1, Inji Certify supports [DPoP-constrained access tokens](dpop-constrained-access-tokens.md) issued by a compatible external authorization server. DPoP binds a token to a wallet-held key, helping prevent misuse of a stolen token. Existing bearer-token integrations continue to work.
+
 ## 11. VC Signing with External CA-Signed Certificates
 
 Inji Certify supports the use of externally issued, CA-signed certificates for credential signing, enabling issuers to integrate their own public key infrastructure (PKI) into the credential issuance workflow.
@@ -184,12 +190,14 @@ Inji Certify introduces support for an additional issuance mode called [Presenta
 
 In this mode, the issuer requests the presentation of an existing Verifiable Credential (VC) from the wallet as part of issuing a new VC. The submitted presentation is verified internally by Inji Certify, and upon successful verification, the issuance of the new VC is triggered and delivered to the wallet.
 
-This feature strengthens security, trust, and interoperability and is typically enabled using protocols such as OpenID4VCIand standards like Presentation Exchange.
+This feature uses OpenID4VCI and OpenID4VP to support standards-based credential issuance and presentation. Starting with v1.0.0-rc.1, issuers configure presentation requests using [Digital Credentials Query Language (DCQL)](presentation-during-issuance-with-dcql.md). Presentation Exchange configurations are no longer supported for this flow in RC-1.
 
 **Capabilities include**:
 
 * Presentation Request — Ability to request the presentation of an existing VC from the wallet
 * Presentation Verification — Internal verification of the submitted VC presentation
+* DCQL-Based Requests — Define which credentials a wallet must present during issuance
+* Embedded Verification — Use the [embedded Inji Verify library](embedded-inji-verify-library.md) to create and verify presentations without a separate Inji Verify service for this flow
 * Conditional Issuance — Automatic issuance and delivery of a new VC upon successful verification
 
 'Inji Certify 0.14.0 Release' lays the groundwork for advanced, trust-based issuance flows in Inji Certify, enabling richer and more secure credential ecosystems.
