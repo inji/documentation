@@ -4,6 +4,12 @@ icon: rocket-launch
 
 # Releases
 
+#### **Version:** v1.0.0-rc.1
+
+* Name: **Release Version**: 1.0.0-rc.1
+* Date: 18th November, 2026
+* [Release Notes](version-1.0.0-rc.1/)
+
 #### **Version:** v1.0.0-alpha.1
 
 * Name: **Release Version**: 1.0.0-alpha.1
