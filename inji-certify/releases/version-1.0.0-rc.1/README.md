@@ -145,7 +145,6 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 | Repository                 | Version                                                                            |
 | -------------------------- | ---------------------------------------------------------------------------------- |
 | inji-certify               | [v1.0.0-rc.1](https://github.com/inji/inji-certify/tree/v1.0.0-rc.1)               |
-| inji-config                | [v1.0.0-rc.1](https://github.com/inji/inji-config/tree/v1.0.0-rc.1)                |
 | digital-credential-plugins | [v1.0.0-rc.1](https://github.com/inji/digital-credential-plugins/tree/v1.0.0-rc.1) |
 
 ### Compatible Modules
@@ -159,13 +158,14 @@ All open issues for Inji Certify are listed [here](https://github.com/inji/inji-
 | esignet-mock-services     | [v0.11.2](https://github.com/mosip/esignet-mock-services/tree/v0.11.2)          |
 | commons                   | [1.6.0](https://github.com/mosip/commons/tree/v1.3.0)                           |
 | inji-verify (verify-core) | [1.0.0-rc.1](https://github.com/inji/inji-verify/tree/v1.0.0-rc.1)              |
-| mimoto                    | 1.0.0-rc1(yet to release)                                                       |
-| inji-web                  | 1.0.0-rc1(yet to release)                                                       |
+| inji-web                  | [1.0.0-rc1](https://github.com/inji/inji-web/tree/v1.0.0-rc.1)                  |
+| inji-config               | [v1.0.0-rc.1](https://github.com/inji/inji-config/tree/v1.0.0-rc.1)             |
+| mimoto                    | [1.0.0-rc1](https://github.com/inji/mimoto/tree/v1.0.0-rc.1)                    |
 
 ### Documentation
 
 * [Feature Documentation](https://docs.inji.io/inji-certify/overview/features)
 * [Local Setup](https://docs.inji.io/inji-certify/build-and-deploy/local-setup)
-* [API Documentation](https://mosip.stoplight.io/docs/inji-certify)
+* [API Documentation](https://mosip.stoplight.io/docs/inji-certify/branches/1.0.0-rc.1/862b584d4329c-open-api-definition)
 * [Test Report](test-report.md)
 
